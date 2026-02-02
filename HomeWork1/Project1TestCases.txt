@@ -1,0 +1,140 @@
+a
+r
+o
+c
+e
+d
+q
+pc
+PC
+ps
+PS
+pl
+PL
+blah
+x
+
+A John Doe 9/2/2022 ECE 10
+A John Doe 9/2/2026 ECE 10
+A John Doe 1/2/2007 ECE 20
+A John Doe 3/20/2007 ECE 20 
+A John Doe 12/20/2004 ECE 65
+A John Doe 2/29/2003 ECE 105 
+A John Doe 4/31/2003  ECE 105
+A John Doe 13/31/2003  ECE 105
+A John Doe 3/32/2003  ECE 105
+A John Doe -1/31/2003  ECE 105
+A John Doe 4/3/2003  CS 29
+A John Doe 4/3/2003  CS 29
+A John Doe 1/20/2003  bait 60
+A John Doe 1/20/2003  bait 60
+A john doe 1/20/2003  bait 60
+A April Doe 1/20/2003   AA 105
+A April Doe 1/20/2003   ECE -1
+
+A Jane Doe 5/1/1996  CS 30
+A Jane Doe 5/1/1996  CS 30
+A April March 3/31/2000  BAIT 109
+A Mary Lindsey 12/1/2001  BAIT 89
+A Duke Ellington 2/29/2004  math 46
+A Roy Brooks 8/8/1999  math 111
+A Roy Brooks 9/9/1999  iti 100
+A Kate Lindsey 7/15/2002  ITI 59
+A Carl Brown 10/7/2004  cs 75
+A Paul Siegel 5/1/2000  CS 90 
+A Bill Scanlan 5/1/1999 CS 120  
+PS
+
+R John Doe 3/20/2007
+R John Doe 3/20/2007
+
+O c111 1 patel hil114
+O cs100 0 patel hil114
+O cs100 1 ppatel hil114
+O cs100 1 patel hill114
+
+O cs100 1 patel hil114
+O cs100 1 patel hil114
+
+O cs200 1 patel hil114
+O cs200 1 harper hil114
+
+O cs100 3 patel hil114
+O cs200 4 patel arc103
+O cs200 5 patel arc103
+O cs300 5 patel arc103
+O cs300 5 harper mu302
+O cs442 1 harper ab2225
+O cs400 3 kaur til232
+O cs400 2 taylor beaud
+O cs442 3 zimnes arc103
+O hst 6 brown beaud
+O ccd 5 brown ab2225
+O phy100 2 lim ab2225
+O phy200 3 lim ab2225
+O ee300 1 taylor til232
+O ee400 1 kaur beaud
+PC
+
+C cs311 2
+C cs100 8
+C cs100 2
+
+E John Ddo 1/2/2007 cs100 1
+E John Doe 1/2/2007 ca111 1
+E John Doe 1/2/2007 cs100 7
+
+E John Doe 1/2/2007 cs100 1
+E John Doe 1/2/2007 cs100 3
+E John Doe 1/2/2007 cs100 1
+E John Doe 1/2/2007 cs200 5
+E Jane Doe 5/1/1996 cs200 5
+E Jane Doe 5/1/1996 cs200 4
+E Mary Lindsey 12/1/2001 cs400 2
+E Carl Brown 10/7/2004 cs400 2
+E Carl Brown 10/7/2004 phy100 2
+E Carl Brown 10/7/2004 cs400 3
+
+E Jane Doe 5/1/1996 hst 1
+E Jane Doe 5/1/1996 hst 6
+E Carl Brown 10/7/2004 hst 6
+E John Doe 1/2/2007 hst 6
+E Paul Siegel 5/1/2000 hst 6
+E Kate Lindsey 7/15/2002 hst 6
+D Paul Siegel 5/1/2000 hst 6
+E Roy Brooks 8/8/1999 hst 6
+E Paul Siegel 5/1/2000 hst 6
+
+E Roy Brooks 8/8/1999 ccd 5
+E Roy Brooks 8/8/1999 cs442 1
+E Roy Brooks 8/8/1999 cs400 3
+E Roy Brooks 8/8/1999 phy200 3
+E Roy Brooks 8/8/1999 cs200 4
+
+E John Doe 12/20/2004 cs300 5
+E John Doe 12/20/2004 cs200 4
+E John Doe 12/20/2004 phy100 2
+E John Doe 12/20/2004 ccd 5
+E John Doe 12/20/2004 ee400 1
+E John Doe 12/20/2004 ee300 1
+E John Doe 12/20/2004 cs442 3
+D John Doe 12/20/2004 ccd 5
+E John Doe 12/20/2004 cs442 3
+E John Doe 4/3/2003 ccd 5
+E Carl Brown 10/7/2004 ccd 5
+E Mary Lindsey 12/1/2001 ccd 5
+E Paul Siegel 5/1/2000 ccd 5
+
+C cs100 1
+D John Doe 1/2/2007 cs100 1
+D John Doe 1/2/2007 cs100 1
+C cs100 1
+O cs100 1 patel hil114
+PC
+PL
+
+q
+Q
+This line is a garbage line to test the Q command.
+
+

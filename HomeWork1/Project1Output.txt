@@ -1,0 +1,265 @@
+Registration System is running.
+
+a is an invalid command!
+r is an invalid command!
+o is an invalid command!
+c is an invalid command!
+e is an invalid command!
+d is an invalid command!
+q is an invalid command!
+pc is an invalid command!
+Schedule is empty!
+ps is an invalid command!
+Student list is empty!
+pl is an invalid command!
+Schedule is empty!
+blah is an invalid command!
+x is an invalid command!
+INVALID: 9/2/2022 younger than 16 years old.
+INVALID: 9/2/2026 cannot be today or a future day.
+[John Doe 1/2/2007] added to the list.
+[John Doe 3/20/2007] added to the list.
+[John Doe 12/20/2004] added to the list.
+INVALID: 2/29/2003 is not a valid calendar date!
+INVALID: 4/31/2003 is not a valid calendar date!
+INVALID: 13/31/2003 is not a valid calendar date!
+INVALID: 3/32/2003 is not a valid calendar date!
+INVALID: -1/31/2003 is not a valid calendar date!
+[John Doe 4/3/2003] added to the list.
+[John Doe 4/3/2003] student is already in the list.
+[John Doe 1/20/2003] added to the list.
+[John Doe 1/20/2003] student is already in the list.
+[john doe 1/20/2003] student is already in the list.
+INVALID: AA major does not exist.
+INVALID: -1 credit is negative!
+[Jane Doe 5/1/1996] added to the list.
+[Jane Doe 5/1/1996] student is already in the list.
+[April March 3/31/2000] added to the list.
+[Mary Lindsey 12/1/2001] added to the list.
+[Duke Ellington 2/29/2004] added to the list.
+[Roy Brooks 8/8/1999] added to the list.
+[Roy Brooks 9/9/1999] added to the list.
+[Kate Lindsey 7/15/2002] added to the list.
+[Carl Brown 10/7/2004] added to the list.
+[Paul Siegel 5/1/2000] added to the list.
+[Bill Scanlan 5/1/1999] added to the list.
+* Student list ordered by last, first name, DOB *
+[Roy Brooks 8/8/1999] [MATH,School of Arts & Sciences] credits earned: 111 [Senior]
+[Roy Brooks 9/9/1999] [ITI,School of Communication and Information] credits earned: 100 [Senior]
+[Carl Brown 10/7/2004] [CS,School of Arts & Sciences] credits earned: 75 [Junior]
+[Jane Doe 5/1/1996] [CS,School of Arts & Sciences] credits earned: 30 [Sophomore]
+[John Doe 1/20/2003] [BAIT,Rutgers Business School] credits earned: 60 [Junior]
+[John Doe 4/3/2003] [CS,School of Arts & Sciences] credits earned: 29 [Freshman]
+[John Doe 12/20/2004] [ECE,School of Engineering] credits earned: 65 [Junior]
+[John Doe 1/2/2007] [ECE,School of Engineering] credits earned: 20 [Freshman]
+[John Doe 3/20/2007] [ECE,School of Engineering] credits earned: 20 [Freshman]
+[Duke Ellington 2/29/2004] [MATH,School of Arts & Sciences] credits earned: 46 [Sophomore]
+[Kate Lindsey 7/15/2002] [ITI,School of Communication and Information] credits earned: 59 [Sophomore]
+[Mary Lindsey 12/1/2001] [BAIT,Rutgers Business School] credits earned: 89 [Junior]
+[April March 3/31/2000] [BAIT,Rutgers Business School] credits earned: 109 [Senior]
+[Bill Scanlan 5/1/1999] [CS,School of Arts & Sciences] credits earned: 120 [Senior]
+[Paul Siegel 5/1/2000] [CS,School of Arts & Sciences] credits earned: 90 [Senior]
+* end of list **
+[John Doe 3/20/2007] removed from the list.
+[John Doe 3/20/2007] is not in the student list.
+INVALID: course name c111 does not exist.
+INVALID: period 0 does not exist.
+INVALID: instructor ppatel does not exist.
+INVALID: classroom hill114 does not exist.
+[CS100 8:30] [PATEL] [HIL114, Hill Center, Busch] added to the schedule.
+INVALID: CS100 period 1 already exists.
+INVALID: PATEL time conflict.
+INVALID: [HIL114, Hill Center, Busch] not available.
+[CS100 12:10] [PATEL] [HIL114, Hill Center, Busch] added to the schedule.
+[CS200 14:00] [PATEL] [ARC103, Allison Road Classroom, Busch] added to the schedule.
+[CS200 15:50] [PATEL] [ARC103, Allison Road Classroom, Busch] added to the schedule.
+INVALID: PATEL time conflict.
+[CS300 15:50] [HARPER] [MU302, Murray Hall, College Avenue] added to the schedule.
+[CS442 8:30] [HARPER] [AB2225, Academic Building, College Avenue] added to the schedule.
+[CS400 12:10] [KAUR] [TIL232, Tillett Hall, Livingston] added to the schedule.
+[CS400 10:20] [TAYLOR] [BEAUD, Beck Hall, Livingston] added to the schedule.
+[CS442 12:10] [ZIMNES] [ARC103, Allison Road Classroom, Busch] added to the schedule.
+[HST 17:40] [BROWN] [BEAUD, Beck Hall, Livingston] added to the schedule.
+[CCD 15:50] [BROWN] [AB2225, Academic Building, College Avenue] added to the schedule.
+[PHY100 10:20] [LIM] [AB2225, Academic Building, College Avenue] added to the schedule.
+[PHY200 12:10] [LIM] [AB2225, Academic Building, College Avenue] added to the schedule.
+[ECE300 8:30] [TAYLOR] [TIL232, Tillett Hall, Livingston] added to the schedule.
+[ECE400 8:30] [KAUR] [BEAUD, Beck Hall, Livingston] added to the schedule.
+* List of sections ordered by course number, section time *
+[CCD 15:50] [BROWN] [AB2225, Academic Building, College Avenue]
+	**No students enrolled**
+[CS100 8:30] [PATEL] [HIL114, Hill Center, Busch]
+	**No students enrolled**
+[CS100 12:10] [PATEL] [HIL114, Hill Center, Busch]
+	**No students enrolled**
+[CS200 14:00] [PATEL] [ARC103, Allison Road Classroom, Busch]
+	**No students enrolled**
+[CS200 15:50] [PATEL] [ARC103, Allison Road Classroom, Busch]
+	**No students enrolled**
+[CS300 15:50] [HARPER] [MU302, Murray Hall, College Avenue]
+	**No students enrolled**
+[CS400 10:20] [TAYLOR] [BEAUD, Beck Hall, Livingston]
+	**No students enrolled**
+[CS400 12:10] [KAUR] [TIL232, Tillett Hall, Livingston]
+	**No students enrolled**
+[CS442 8:30] [HARPER] [AB2225, Academic Building, College Avenue]
+	**No students enrolled**
+[CS442 12:10] [ZIMNES] [ARC103, Allison Road Classroom, Busch]
+	**No students enrolled**
+[ECE300 8:30] [TAYLOR] [TIL232, Tillett Hall, Livingston]
+	**No students enrolled**
+[ECE400 8:30] [KAUR] [BEAUD, Beck Hall, Livingston]
+	**No students enrolled**
+[HST 17:40] [BROWN] [BEAUD, Beck Hall, Livingston]
+	**No students enrolled**
+[PHY100 10:20] [LIM] [AB2225, Academic Building, College Avenue]
+	**No students enrolled**
+[PHY200 12:10] [LIM] [AB2225, Academic Building, College Avenue]
+	**No students enrolled**
+* end of list *
+INVALID: course name cs311 does not exist.
+INVALID: period 8 does not exist.
+CS100 10:20 does not exist.
+INVALID: [John Ddo 1/2/2007] does not exist.
+INVALID: course name ca111 does not exist.
+INVALID: period 7 does not exist.
+[John Doe 1/2/2007] added to CS100 8:30
+[John Doe 1/2/2007] already enrolled in CS100
+[John Doe 1/2/2007] already enrolled in CS100
+Prereq: Sophomore - [John Doe 1/2/2007] [Freshman]
+[Jane Doe 5/1/1996] added to CS200 15:50
+[Jane Doe 5/1/1996] already enrolled in CS200
+Prereq: major only - [Mary Lindsey 12/1/2001] [BAIT]
+[Carl Brown 10/7/2004] added to CS400 10:20
+Time conflict: [Carl Brown 10/7/2004] enrolled in another class at period 2
+[Carl Brown 10/7/2004] already enrolled in CS400
+INVALID: HST 8:30 does not exist.
+[Jane Doe 5/1/1996] added to HST 17:40
+[Carl Brown 10/7/2004] added to HST 17:40
+[John Doe 1/2/2007] added to HST 17:40
+[Paul Siegel 5/1/2000] added to HST 17:40
+Cannot enroll [Kate Lindsey 7/15/2002], HST 17:40 is full.
+[Paul Siegel 5/1/2000] dropped from HST 17:40
+[Roy Brooks 8/8/1999] added to HST 17:40
+Cannot enroll [Paul Siegel 5/1/2000], HST 17:40 is full.
+[Roy Brooks 8/8/1999] added to CCD 15:50
+[Roy Brooks 8/8/1999] added to CS442 8:30
+Prereq: major only - [Roy Brooks 8/8/1999] [MATH]
+[Roy Brooks 8/8/1999] added to PHY200 12:10
+Cannot enroll [Roy Brooks 8/8/1999]; now has 15 will exceeds credit limit of 18.
+Prereq: major only - [John Doe 12/20/2004] [ECE]
+[John Doe 12/20/2004] added to CS200 14:00
+[John Doe 12/20/2004] added to PHY100 10:20
+[John Doe 12/20/2004] added to CCD 15:50
+Prereq: Senior - [John Doe 12/20/2004] [Junior]
+[John Doe 12/20/2004] added to ECE300 8:30
+Cannot enroll [John Doe 12/20/2004]; now has 17 will exceeds credit limit of 18.
+[John Doe 12/20/2004] dropped from CCD 15:50
+[John Doe 12/20/2004] added to CS442 12:10
+[John Doe 4/3/2003] added to CCD 15:50
+[Carl Brown 10/7/2004] added to CCD 15:50
+[Mary Lindsey 12/1/2001] added to CCD 15:50
+Cannot enroll [Paul Siegel 5/1/2000], CCD 15:50 is full.
+CS100 8:30 cannot be removed [1 student(s) enrolled]
+[John Doe 1/2/2007] dropped from CS100 8:30
+[John Doe 1/2/2007] is not enrolled in this section.
+CS100 8:30 removed.
+[CS100 8:30] [PATEL] [HIL114, Hill Center, Busch] added to the schedule.
+* List of sections ordered by course number, section time *
+[CCD 15:50] [BROWN] [AB2225, Academic Building, College Avenue]
+	**Roster**
+	[Roy Brooks 8/8/1999]
+	[John Doe 4/3/2003]
+	[Carl Brown 10/7/2004]
+	[Mary Lindsey 12/1/2001]
+[CS100 8:30] [PATEL] [HIL114, Hill Center, Busch]
+	**No students enrolled**
+[CS100 12:10] [PATEL] [HIL114, Hill Center, Busch]
+	**No students enrolled**
+[CS200 14:00] [PATEL] [ARC103, Allison Road Classroom, Busch]
+	**Roster**
+	[John Doe 12/20/2004]
+[CS200 15:50] [PATEL] [ARC103, Allison Road Classroom, Busch]
+	**Roster**
+	[Jane Doe 5/1/1996]
+[CS300 15:50] [HARPER] [MU302, Murray Hall, College Avenue]
+	**No students enrolled**
+[CS400 10:20] [TAYLOR] [BEAUD, Beck Hall, Livingston]
+	**Roster**
+	[Carl Brown 10/7/2004]
+[CS400 12:10] [KAUR] [TIL232, Tillett Hall, Livingston]
+	**No students enrolled**
+[CS442 8:30] [HARPER] [AB2225, Academic Building, College Avenue]
+	**Roster**
+	[Roy Brooks 8/8/1999]
+[CS442 12:10] [ZIMNES] [ARC103, Allison Road Classroom, Busch]
+	**Roster**
+	[John Doe 12/20/2004]
+[ECE300 8:30] [TAYLOR] [TIL232, Tillett Hall, Livingston]
+	**Roster**
+	[John Doe 12/20/2004]
+[ECE400 8:30] [KAUR] [BEAUD, Beck Hall, Livingston]
+	**No students enrolled**
+[HST 17:40] [BROWN] [BEAUD, Beck Hall, Livingston]
+	**Roster**
+	[Jane Doe 5/1/1996]
+	[Carl Brown 10/7/2004]
+	[John Doe 1/2/2007]
+	[Roy Brooks 8/8/1999]
+[PHY100 10:20] [LIM] [AB2225, Academic Building, College Avenue]
+	**Roster**
+	[John Doe 12/20/2004]
+[PHY200 12:10] [LIM] [AB2225, Academic Building, College Avenue]
+	**Roster**
+	[Roy Brooks 8/8/1999]
+* end of list *
+* List of sections ordered by campus, building *
+[CS200 14:00] [PATEL] [ARC103, Allison Road Classroom, Busch]
+	**Roster**
+	[John Doe 12/20/2004]
+[CS200 15:50] [PATEL] [ARC103, Allison Road Classroom, Busch]
+	**Roster**
+	[Jane Doe 5/1/1996]
+[CS442 12:10] [ZIMNES] [ARC103, Allison Road Classroom, Busch]
+	**Roster**
+	[John Doe 12/20/2004]
+[CS100 8:30] [PATEL] [HIL114, Hill Center, Busch]
+	**No students enrolled**
+[CS100 12:10] [PATEL] [HIL114, Hill Center, Busch]
+	**No students enrolled**
+[CS442 8:30] [HARPER] [AB2225, Academic Building, College Avenue]
+	**Roster**
+	[Roy Brooks 8/8/1999]
+[CCD 15:50] [BROWN] [AB2225, Academic Building, College Avenue]
+	**Roster**
+	[Roy Brooks 8/8/1999]
+	[John Doe 4/3/2003]
+	[Carl Brown 10/7/2004]
+	[Mary Lindsey 12/1/2001]
+[PHY100 10:20] [LIM] [AB2225, Academic Building, College Avenue]
+	**Roster**
+	[John Doe 12/20/2004]
+[PHY200 12:10] [LIM] [AB2225, Academic Building, College Avenue]
+	**Roster**
+	[Roy Brooks 8/8/1999]
+[CS300 15:50] [HARPER] [MU302, Murray Hall, College Avenue]
+	**No students enrolled**
+[ECE400 8:30] [KAUR] [BEAUD, Beck Hall, Livingston]
+	**No students enrolled**
+[HST 17:40] [BROWN] [BEAUD, Beck Hall, Livingston]
+	**Roster**
+	[Jane Doe 5/1/1996]
+	[Carl Brown 10/7/2004]
+	[John Doe 1/2/2007]
+	[Roy Brooks 8/8/1999]
+[CS400 10:20] [TAYLOR] [BEAUD, Beck Hall, Livingston]
+	**Roster**
+	[Carl Brown 10/7/2004]
+[CS400 12:10] [KAUR] [TIL232, Tillett Hall, Livingston]
+	**No students enrolled**
+[ECE300 8:30] [TAYLOR] [TIL232, Tillett Hall, Livingston]
+	**Roster**
+	[John Doe 12/20/2004]
+* end of list **
+q is an invalid command!
+Registration System is terminated.
