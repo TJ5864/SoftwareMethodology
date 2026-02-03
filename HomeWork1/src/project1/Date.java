@@ -10,7 +10,7 @@ public class Date {
     private static final int MIN_YEAR = 1900;
     private static final int MIN_MONTH = 1;
     private static final int MAX_MONTH = 12;
-    private static final int FEBRUARY = 2;
+    private static final int FEBRUARY_INDEX = 1;
 
     private int year;
     private int month;
@@ -27,21 +27,6 @@ public class Date {
         this.year=year;
 
     }
-    /** Method tells us weather the date is valis
-     * @return true if the date is valid false if not*/
-    public boolean isValid(){
-        if(year < 0) return false;
-        if(month < 1 || month > 12) return false;
-        int [] daysInMonth = {31,28,31,30,31,30,31,31,30,31,30,31};
-
-        if (isLeapYear()) {
-            daysInMonth[1] = 29;
-        }
-        if (day < 1 || day > daysInMonth[month - 1]) return false;
-
-        return true;
-
-    }
     /** Tells us if the year is leap year and we need to adjust days
      * @return true if leapyear false otherwise */
     private boolean isLeapYear(){
@@ -49,6 +34,23 @@ public class Date {
         if (year % 100 == 0) return false;
         return year % 4 == 0;
     }
+
+    /** Method tells us weather the date is valis
+     * @return true if the date is valid false if not*/
+    public boolean isValid(){
+        if(year < MIN_YEAR) return false;
+        if(month < MIN_MONTH || MAX_MONTH > 12) return false;
+        int [] daysInMonth = {31,28,31,30,31,30,31,31,30,31,30,31};
+
+        if (isLeapYear()) {
+            daysInMonth[FEBRUARY_INDEX] = 29;
+        }
+        if (day < 1 || day > daysInMonth[month - 1]) return false;
+
+        return true;
+
+    }
+
 
     /** toString method convert the numeric date into a string ready to be output
      * @return the month/day/year as a string */
