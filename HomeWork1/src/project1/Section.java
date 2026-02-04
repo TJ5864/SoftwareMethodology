@@ -2,7 +2,7 @@ package project1;
 
 /**
  * @author mss444
- * Creates the Section object
+ * Creates the Section objects
  */
 
 public class Section {
