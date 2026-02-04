@@ -3,7 +3,7 @@ package project1;
 import java.util.Scanner;
 public class Main {
     //*  This is the project1.Main method where we will run all the other methods and classes
-    // @author Thomas Thomassen
+    // @author Thomas Thomassen, Mostafa Shalan
     // @param
     // @return*/
 
