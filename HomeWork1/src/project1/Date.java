@@ -4,8 +4,6 @@ package project1;
  * creates the date variables
  *
  *            */
-
-
 public class Date {
     private static final int MIN_YEAR = 1900;
     private static final int MIN_MONTH = 1;
@@ -39,7 +37,7 @@ public class Date {
      * @return true if the date is valid false if not*/
     public boolean isValid(){
         if(year < MIN_YEAR) return false;
-        if(month < MIN_MONTH || MAX_MONTH > 12) return false;
+        if(month < MIN_MONTH || month> MAX_MONTH) return false;
         int [] daysInMonth = {31,28,31,30,31,30,31,31,30,31,30,31};
 
         if (isLeapYear()) {
@@ -50,6 +48,25 @@ public class Date {
         return true;
 
     }
+    /** Determine wherther the dates are equal
+     * @param obj we are comparing the object
+     * @return True if dates are equal False if not*/
+    @Override
+    public boolean equals(Object obj){
+        if (this == obj) {
+            return true;
+        }
+
+        if (!(obj instanceof Date)) {
+            return false;
+        }
+
+        Date other = (Date) obj;
+
+        return year == other.year
+                && month == other.month
+                && day == other.day;
+    }
 
 
     /** toString method convert the numeric date into a string ready to be output
@@ -58,4 +75,20 @@ public class Date {
     public String toString(){
         return month + "/" + day + "/" + year;
     }
+
+    /**
+     * Testbed main method for Date.
+     *
+     * @param args command line arguments
+     */
+    public static void main(String[] args) {
+        Date d1 = new Date(2, 29, 2024);
+        Date d2 = new Date(2, 29, 2023);
+
+        System.out.println(d1.isValid()); // true
+        System.out.println(d2.isValid()); // false
+    }
+
+
 }
+

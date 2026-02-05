@@ -35,8 +35,44 @@ public class Profile implements Comparable<Profile>{
      * @return True if profiles are equal false if they are not */
 
     @Override
-    public boolean eqauls(Object obj){
-            return;
+    public boolean equals(Object obj){
+        if(this == obj){
+            return true;
+        }
+        if(!(obj instanceof Profile)){
+            return false;
+        }
+        Profile other = (Profile) obj;
+
+        return firstName.equalsIgnoreCase(other.firstName)
+                && lastName.equalsIgnoreCase(other.lastName)
+                && dob.equals(other.dob);
+
+    }
+
+
+    /** this toString method returns the string representation of the profile
+     * @return profile as a string */
+    @Override
+    public String toString(){
+        return lastName + ", " + firstName + ", "+ dob;
+    }
+
+    /** Testbed for profile class
+     * @param args  from command line  */
+    public static void main(String[] args){
+        Date d1 = new Date(2, 15, 2004);
+        Date d2 = new Date(2, 15, 2004);
+        Date d3 = new Date(3, 10, 2003);
+
+        Profile p1 = new Profile("John", "Smith", d1);
+        Profile p2 = new Profile("John", "Smith", d2);
+        Profile p3 = new Profile("Jane", "Smith", d3);
+
+        System.out.println(p1.equals(p2));   // should print true
+        System.out.println(p1.equals(p3));   // should print false
+
+        System.out.println(p1.compareTo(p3)); // verifies ordering
 
     }
 }
