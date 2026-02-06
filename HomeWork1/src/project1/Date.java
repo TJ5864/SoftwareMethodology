@@ -4,7 +4,7 @@ package project1;
  * creates the date variables
  *
  *            */
-public class Date {
+public class Date implements Comparable<Date> {
     private static final int MIN_YEAR = 1900;
     private static final int MIN_MONTH = 1;
     private static final int MAX_MONTH = 12;
@@ -48,6 +48,21 @@ public class Date {
         return true;
 
     }
+    /** Override compareTo method for Date class
+     * @param  date object to compare
+     * @return an int based on if the current date is earlier later or the same as the current date
+     * ints will be positive, negative, or 0 */
+    @Override
+    public int compareTo(Date date){
+        if(year != date.year){
+            return(year- date.year);
+        }
+        if(month != date.month){
+            return(month = date.month);
+        }
+        return (day - date.day);
+
+    }
     /** Determine wherther the dates are equal
      * @param obj we are comparing the object
      * @return True if dates are equal False if not*/
@@ -82,11 +97,10 @@ public class Date {
      * @param args command line arguments
      */
     public static void main(String[] args) {
-        Date d1 = new Date(2, 29, 2024);
-        Date d2 = new Date(2, 29, 2023);
+        Date a = new Date(1, 1, 2020);
+        Date b = new Date(1, 1, 2021);
 
-        System.out.println(d1.isValid()); // true
-        System.out.println(d2.isValid()); // false
+        System.out.println(a.compareTo(b));
     }
 
 
