@@ -8,7 +8,7 @@ public enum Major {
     ECE("School of Engineering"),
     MATH("School of Arts & Sciences"),
     ITI("School of Communication and Information"),
-    BAIT("Rutgers Buisness School");
+    BAIT("Rutgers Business School");
 
     private final String school;
 
@@ -29,7 +29,7 @@ public enum Major {
      * @return major description*/
     @Override
     public String toString(){
-        return name() + " (" + school + ")";
+        return name() + "," + school;
     }
 
 }
