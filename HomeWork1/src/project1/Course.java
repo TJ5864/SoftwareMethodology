@@ -30,7 +30,7 @@ public enum Course {
      * @param major
      */
 
-    Course(String courseNum, int creditHours, String standing, String major) {
+    public Course(String courseNum, int creditHours, String standing, String major) {
         this.courseNum = courseNum;
         this.creditHours = creditHours;
         this.standing = standing;
