@@ -1,6 +1,6 @@
 /**
  * @author mss444
- * this enum class includes ___ properties
+ * this enum class includes 2 properties; name and availability
  */
 public enum Instructor{
     PATEL ("Patel"),

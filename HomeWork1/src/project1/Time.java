@@ -7,16 +7,17 @@ package project1;
 
 public enum Time {
 
-    PERIOD1 (1, 8, 30),
-    PERIOD2 (2, 10, 20),
-    PERIOD3 (3, 12, 10),
-    PERIOD4 (4, 2, 00),
-    PERIOD5 (5, 3, 50),
-    PERIOD6 (6, 5, 40);
+    PERIOD1 (1, "8", "30", "AM"),
+    PERIOD2 (2, "10", "20", "AM"),
+    PERIOD3 (3, "12", "10", "PM"),
+    PERIOD4 (4, "2", "00", "PM"),
+    PERIOD5 (5, "3", "50", "PM"),
+    PERIOD6 (6, "5", "40", "PM");
 
     private final int periodNum;
-    private final int hour;
-    private final int minute;
+    private final String hour;
+    private final String minute;
+    private final String meridiem;
 
 
     /**
@@ -26,21 +27,30 @@ public enum Time {
      * @param minute
      */
 
-    Time(periodNum, hour, minute) {
-        this.periodNum = periodNum
+    Time(int periodNum, String hour, String minute, String meridiem) {
+        this.periodNum = periodNum;
         this.hour = hour;
         this.minute = minute;
+        this.meridiem = meridiem;
     }
 
-
-    public int periodNum() {
-        return periodNum
+    /**
+     *
+     * @return the identifying index for the period
+     */
+    public int getPeriodNum() {
+        return periodNum;
     }
 
+    public String getHour() { return hour;}
+
+    public String getMinute() { return minute;}
+
+    public String getMeridiem() {return meridiem;}
 
 
     public static void main(String[] args) {
-        Time period1 = Time.PERIOD1;
-        System.out.println(period1.periodNum());
+        Time period4 = Time.PERIOD4;
+        System.out.println("Period " + period4.getPeriodNum() +" happens at " + period4.getHour() + ":" + period4.getMinute() + " " + period4.getMeridiem());
     }
 }
