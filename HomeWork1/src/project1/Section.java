@@ -26,12 +26,55 @@ public class Section {
 
 
     public void enroll(Student student) {
+        if (isFull()) {
+            System.out.println("Section capacity is full. Cancelling Operation...");
+        }
+        else if (contains(student)) {
+            System.out.println("Student already enrolled in this section. Cancelling Operation...");
+        }
+        else {
+            for (int i = 0; i < MAXCAPACITY; i ++) {
+                if(roster[i] == null) {
+                    roster[i] = student;
+                    numStudents = numStudents + 1;
+                    System.out.println("Student successfully enrolled to this section.");
+                    break;
+                }
+            }
+        }
     } //add student to roster
 
     public void drop(Student student) {
+        if (numStudents == 0) {
+            System.out.println("Section roster is empty. Cancelling Operation...");
+        }
+        else if !(contains(student)) {
+            System.out.println("Student not found in roster. Cancelling Operation....");
+        }
+        else {
+            for (int i = 0; i < MAXCAPACITY; i++) {
+                if (roster[i].equals(student)) {
+                    roster[i] = null;
+                    numStudents = numStudents - 1;
+                    System.out.println("Student successfully dropped from section.")
+                }
+            }
+        }
     }//remove student from roster
 
+    /**
+     *
+     * @param student object containing information about a student
+     * @return true if a student is registered to a section  else false
+     */
     public boolean contains(Student student) {
+
+        for (int i = 0; i < MAXCAPACITY; i++) {
+            if (roster[i].equals(student)) {
+                return true; //loop will terminate if the sutdent is found.
+            }
+        }
+        return false //if it goes through  the entire array and doesn't find the student, it will just return false
     }
 
     /**
@@ -43,6 +86,27 @@ public class Section {
     }
 
     public void print() {
+
     }
 
+    @Override
+    public String toString() {
+        return "[" + course.getCourseNum() + " " + time.getHour() + ":" + time.getMinute() + "] [" +instructor.getName() + "] [" + classroom.getClassroomNum() + ", " + classroom.getBuilding() + ", " + classroom.getCampus() + "]";
+    }
+
+    @Override
+    public boolean equals(Section section2) {
+        if (this == section2){
+            return true;
+        }
+        if !(section2 instanceof Section) {
+            return false;
+        }
+        Section section = (Section) section2;
+        return classroom.equals(section.classroom) && time.equals(section.time) //need to write equals functions for classroom and time classes
+    }
+
+    public static void main(String[] args) {
+
+    }
 }
