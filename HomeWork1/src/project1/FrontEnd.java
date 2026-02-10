@@ -64,6 +64,10 @@ public class FrontEnd {
         if(major == null) return;
 
         Integer credits = checkCredit(creditT);
+        if(credits == null) return;
+
+        Student s = new Student(profile, major, credits);
+        studentlist.add(s);
 
 
 
