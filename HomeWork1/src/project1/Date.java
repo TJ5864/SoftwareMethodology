@@ -1,4 +1,6 @@
 package project1;
+
+import java.util.Calendar;
 /**
  * @author tjt97
  * creates the date variables
@@ -14,7 +16,26 @@ public class Date implements Comparable<Date> {
     private int month;
     private int day;
 
-/**
+    /** Use Calendar to check today's Date
+     * create getter method so the software works
+     * @return calendar format of today's date*/
+    public Calendar toCalendar(){
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(year, month -1, day);
+        return calendar;
+    }
+    public int getYear(){
+        return year;
+    }
+    public int getMonth(){
+        return month;
+    }
+    public int getDay(){
+        return day; 
+    }
+
+
+  /**
  * create the date object with month day and year
  * @param year tells us the year
  * @param month tells us the month
@@ -80,7 +101,7 @@ public class Date implements Comparable<Date> {
 
         }
         return false;
-        
+
     }
 
 

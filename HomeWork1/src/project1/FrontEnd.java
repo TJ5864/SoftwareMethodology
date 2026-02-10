@@ -1,0 +1,153 @@
+package project1;
+import java.util.Scanner;
+import java.util.Calendar;
+
+public class FrontEnd {
+
+    private StudentList studentlist;
+
+    public FrontEnd(){
+        studentlist = new StudentList();
+
+    }
+/** Run the program, take in user input and based on the input command trigger a method*/
+    public void run(){
+        System.out.println("Registration System is running.");
+
+        Scanner scanner = new Scanner(System.in);
+
+        while (true){
+            String line = scanner.nextLine().trim();
+
+            if(line.isEmpty()){
+                continue;
+            }
+            String[] tokens = line.split("\\s+");
+            String command = tokens[0];
+
+            switch (command){
+                case "A":
+                    doAdd(tokens);
+                    break;
+                case "R":
+                    doRemove(tokens);
+                    break;
+                case "PS":
+                    studentlist.print();
+                    break;
+                case "Q":
+                    System.out.println("Registration System is terminated.");
+                    return;
+                default:
+                    System.out.println("Invalid Command!");
+            }
+
+        }
+    }
+
+/** Add a student to student list based on input features
+ * @param tokens input list of features for the student */
+    private void doAdd(String[] tokens){
+        String firstName = tokens[1];
+        String lastName = tokens[2];
+        String date = tokens[3];
+        String majorT = tokens[4];
+        String creditT = tokens[5];
+
+        Date dob = checkDate(date);
+        if (dob == null) return;
+
+        Profile profile = checkProfile(firstName, lastName, dob);
+        if(profile == null) return;
+
+        Major major = checkMajor(majorT);
+        if(major == null) return;
+
+        Integer credits = checkCredit(creditT);
+
+
+
+    }
+    /** Remove a student based on input commands
+     * @param tokens input list of features*/
+    private void doRemove(String[] tokens){
+
+    }
+
+    /** Check if the date is valid
+     * check if date is older than 16 years old *
+     * @param dateToken string from input that contains input date
+     */
+
+    private Date checkDate(String dateToken){
+        String[] date = dateToken.split("/");
+        int month = Integer.parseInt(date[0]);
+        int day = Integer.parseInt(date[1]);
+        int year = Integer.parseInt(date[2]);
+
+        Date dob = new Date(month, day, year);
+
+        if(!dob.isValid()){
+            System.out.println("Date of birth invalid");
+            return null;
+        }
+        Calendar dobcalendar = dob.toCalendar();
+        Calendar today = Calendar.getInstance();
+        if(!dobcalendar.before(today)){
+            System.out.println("Date of birth invalid: "+ dob);
+            return null;
+        }
+        Calendar sixteen = Calendar.getInstance();
+        sixteen.add(Calendar.YEAR, -16);
+        if(dobcalendar.after(sixteen)){
+            System.out.println("Student must be at least 16 years old!");
+            return null;
+        }
+        return dob;
+
+
+    }
+    /** This checks if the profile is already made
+     * @param first first name input
+     * @param last last name input
+     * @param  dob checked dob input*/
+    private Profile checkProfile(String first, String last, Date dob){
+        Profile profile = new Profile(first, last, dob);
+        if (studentlist.contains(new Student(profile, null, 0))){
+            System.out.println("Student already exists.");
+            return null;
+        }
+        return profile;
+
+    }
+    /** Check if the input major exsists
+     * @param majorT the input major */
+    private Major checkMajor(String majorT){
+        try {
+            return Major.valueOf(majorT.toUpperCase());
+        } catch (IllegalArgumentException e) {
+            System.out.println("Major invalid: " + majorT);
+            return null;
+        }
+    }
+    /** Check to make sure the input credit number is valid
+     * @param num input number of credits */
+    private Integer checkCredit(String num){
+        int credits;
+        try {
+            credits = Integer.parseInt(num);
+        } catch (NumberFormatException e) {
+            System.out.println("Credits completed invalid");
+            return null;
+        }
+
+        if (credits <= 0) {
+            System.out.println("Credits completed invalid: ");
+            return null;
+        }
+        return credits;
+
+    }
+
+
+}
