@@ -18,7 +18,7 @@ public enum Classroom {
      * @param building gives the building name
      * @param campus contains the name of the campus
      */
-    public Classroom(String classroomNum, String building, String campus) {
+    Classroom(String classroomNum, String building, String campus) {
         this.classroomNum = classroomNum;
         this.building = building;
         this.campus = campus;

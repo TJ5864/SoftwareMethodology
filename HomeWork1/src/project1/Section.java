@@ -15,15 +15,14 @@ public class Section {
 
     private final int MAXCAPACITY = 4;
 
-    public Section(Course course, Instructor instructor, Classroom classroom, Time time) {
+    Section(Course course, Instructor instructor, Classroom classroom, Time time) {
         this.course = course;
         this.instructor = instructor;
         this.classroom = classroom;
-        this.Time = time;
+        this.time = time;
         this.roster = new Student[MAXCAPACITY];
         this.numStudents = 0;
     }
-
 
     public void enroll(Student student) {
         if (isFull()) {
@@ -48,7 +47,7 @@ public class Section {
         if (numStudents == 0) {
             System.out.println("Section roster is empty. Cancelling Operation...");
         }
-        else if !(contains(student)) {
+        else if (!(contains(student))) {
             System.out.println("Student not found in roster. Cancelling Operation....");
         }
         else {
@@ -56,7 +55,7 @@ public class Section {
                 if (roster[i].equals(student)) {
                     roster[i] = null;
                     numStudents = numStudents - 1;
-                    System.out.println("Student successfully dropped from section.")
+                    System.out.println("Student successfully dropped from section.");
                 }
             }
         }
@@ -74,7 +73,7 @@ public class Section {
                 return true; //loop will terminate if the sutdent is found.
             }
         }
-        return false //if it goes through  the entire array and doesn't find the student, it will just return false
+        return false; //if it goes through  the entire array and doesn't find the student, it will just return false
     }
 
     /**
@@ -85,28 +84,47 @@ public class Section {
         return numStudents == MAXCAPACITY; //will return True of the number of students is equal to the max capacity (i.e. 4 Students)
     }
 
+    /**
+     * prints out the data string retrieved from the toString() method
+     */
     public void print() {
-
+        System.out.print(toString());
     }
 
+    /**
+     * creates string containing info about course num, time, instructor, and c
+     * @return String containing information about the section
+     */
     @Override
     public String toString() {
         return "[" + course.getCourseNum() + " " + time.getHour() + ":" + time.getMinute() + "] [" +instructor.getName() + "] [" + classroom.getClassroomNum() + ", " + classroom.getBuilding() + ", " + classroom.getCampus() + "]";
     }
 
+    /**
+     * checks to see if two sections are the same by checking if the course id and the timings are the same
+     * @param section2 section object to compare current section object to
+     * @return true if two objects are the same (courseid and periods are same); false otherwise
+     */
     @Override
-    public boolean equals(Section section2) {
+    public boolean equals(Object section2) {
         if (this == section2){
             return true;
         }
-        if !(section2 instanceof Section) {
+        if (!(section2 instanceof Section)) {
             return false;
         }
         Section section = (Section) section2;
-        return classroom.equals(section.classroom) && time.equals(section.time) //need to write equals functions for classroom and time classes
+        String classroomNum = section.classroom.getClassroomNum();
+        int periodID = section.time.getPeriodNum();
+        return classroom.getClassroomNum().equalsIgnoreCase(classroomNum) && time.getPeriodNum() == periodID;
     }
 
-    public static void main(String[] args) {
 
+    public static void main(String[] args) {
+        Classroom classroom1 = Classroom.HIL114;
+        System.out.println(classroom1.getClassroomNum());
+
+
+        //Section section1 = new Section()
     }
 }

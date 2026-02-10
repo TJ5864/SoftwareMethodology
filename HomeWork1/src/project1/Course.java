@@ -1,4 +1,4 @@
-
+package project1;
 /**
  * @author mss444
  * this is an enum class for the Courses *
@@ -30,7 +30,7 @@ public enum Course {
      * @param major
      */
 
-    public Course(String courseNum, int creditHours, String standing, String major) {
+    Course(String courseNum, int creditHours, String standing, String major) {
         this.courseNum = courseNum;
         this.creditHours = creditHours;
         this.standing = standing;

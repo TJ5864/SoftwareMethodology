@@ -1,3 +1,4 @@
+package project1;
 /**
  * @author mss444
  * this enum class includes 2 properties; name and availability
@@ -20,7 +21,7 @@ public enum Instructor{
     private boolean[] availability;
     private String name;
 
-    public Instructor(String name){
+    Instructor(String name){
         this.name = name;
         this.availability = new boolean[TOTALPERIODS];
 

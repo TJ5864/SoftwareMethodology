@@ -27,7 +27,7 @@ public enum Time {
      * @param minute
      */
 
-    public Time(int periodNum, String hour, String minute, String meridiem) {
+    Time(int periodNum, String hour, String minute, String meridiem) {
         this.periodNum = periodNum;
         this.hour = hour;
         this.minute = minute;
