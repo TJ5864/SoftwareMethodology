@@ -20,7 +20,7 @@ public enum Instructor{
     private boolean[] availability;
     private String name;
 
-    Instructor(String name){
+    public Instructor(String name){
         this.name = name;
         this.availability = new boolean[TOTALPERIODS];
 
