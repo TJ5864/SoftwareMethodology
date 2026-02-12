@@ -32,12 +32,19 @@ public class FrontEnd {
                 case "R":
                     doRemove(tokens);
                     break;
+                case "O":
+                case "C":
+                case "E":
+                case "D":
                 case "PS":
                     studentlist.print();
                     break;
+                case "PL":
+                case "PC":
                 case "Q":
                     System.out.println("Registration System is terminated.");
                     return;
+
                 default:
                     System.out.println("Invalid Command!");
             }
@@ -75,6 +82,21 @@ public class FrontEnd {
     /** Remove a student based on input commands
      * @param tokens input list of features*/
     private void doRemove(String[] tokens){
+        String first = tokens[0];
+        String last = tokens[1];
+        String date = tokens[2];
+
+        Date dob = checkDate(date);
+        if(dob == null) return;
+
+        Profile profile = new Profile(first,last,dob);
+        Student student = new Student(profile, null, 0);
+
+        if(!studentlist.contains(student)){
+            System.out.println("Student does not exist.");
+            return;
+        }
+        //check if student is in any section before we remove him
 
     }
 

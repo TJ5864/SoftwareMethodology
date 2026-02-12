@@ -13,7 +13,7 @@ public class Section {
     private Student[] roster; // not complete
     private int numStudents;  // not complete
 
-    private final int MAXCAPACITY = 4;
+    private static final int MAX_CAPACITY = 4;
 
     /**
      * Section constructor
@@ -27,7 +27,7 @@ public class Section {
         this.instructor = instructor;
         this.classroom = classroom;
         this.time = time;
-        this.roster = new Student[MAXCAPACITY];
+        this.roster = new Student[MAX_CAPACITY];
         this.numStudents = 0;
     }
 
@@ -45,7 +45,7 @@ public class Section {
             System.out.println("Student already enrolled in this section. Cancelling Operation...");
         }
         else {
-            for (int i = 0; i < MAXCAPACITY; i ++) {
+            for (int i = 0; i < MAX_CAPACITY; i ++) {
                 if(roster[i] == null) {
                     roster[i] = student;
                     numStudents = numStudents + 1;
@@ -65,7 +65,7 @@ public class Section {
             System.out.println("Student not found in roster. Cancelling Operation....");
         }
         else {
-            for (int i = 0; i < MAXCAPACITY; i++) {
+            for (int i = 0; i < MAX_CAPACITY; i++) {
                 if (roster[i].equals(student)) {
                     roster[i] = null;
                     numStudents = numStudents - 1;
@@ -73,7 +73,8 @@ public class Section {
                 }
             }
         }
-    }//remove student from roster
+        }
+
 
     /**
      *
@@ -82,9 +83,9 @@ public class Section {
      */
     public boolean contains(Student student) {
 
-        for (int i = 0; i < MAXCAPACITY; i++) {
-            if (roster[i].equals(student)) {
-                return true; //loop will terminate if the sutdent is found.
+        for (int i = 0; i < MAX_CAPACITY; i++) {
+            if (roster[i]!= null && roster[i].equals(student)) {
+                return true; //loop will terminate if the student is found.
             }
         }
         return false; //if it goes through  the entire array and doesn't find the student, it will just return false
@@ -95,7 +96,7 @@ public class Section {
      * @return True if  the number of students is equal to the max capacity (i.e. 4) or False if numStudents < MAXCAPACITY
      */
     public boolean isFull() {
-        return numStudents == MAXCAPACITY; //will return True of the number of students is equal to the max capacity (i.e. 4 Students)
+        return numStudents == MAX_CAPACITY; //will return True of the number of students is equal to the max capacity (i.e. 4 Students)
     }
 
     /**
