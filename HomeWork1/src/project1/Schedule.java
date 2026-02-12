@@ -94,11 +94,42 @@ public class Schedule {
             return;
         }
 
-        sectionIdx = find(section);
+        int sectionIdx = find(section);
         sections[sectionIdx].drop(student);
+
+    }
+    /** compareByClassroom is helper method for print by classroom
+     * @return int positive if s2 should come before s1, negative if s1 should come before s2 and 0
+     * if they are equal*/
+    private int compareByClassroom(Section s1, Section s2) {
+        int campusCompare = s1.getClassroom().getCampus().compareTo(s2.getClassroom().getCampus());
+
+        if (campusCompare != 0) {
+            return campusCompare;
+        }
+
+        return s1.getClassroom().getBuilding().compareTo(s2.getClassroom().getBuilding());
     }
 
+    /** print by classroom calls the helper method compare classroom, based on the output it
+     * sorts the classrooms by campus and building than prints them in sorted order.*/
+
     public void printByClassroom () {
+        for (int i = 1; i < numSections; i++) {
+
+            Section key = sections[i];
+            int j = i - 1;
+
+            while (j >= 0 && compareByClassroom(sections[j], key) > 0) {
+                sections[j + 1] = sections[j];
+                j--;
+            }
+
+            sections[j + 1] = key;
+        }
+        for (int i = 0; i < numSections; i++) {
+            sections[i].print();
+        }
 
     }
 
