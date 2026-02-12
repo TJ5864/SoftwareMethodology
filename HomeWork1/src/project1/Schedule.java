@@ -94,7 +94,7 @@ public class Schedule {
             return;
         }
 
-        sectionIdx = find(section);
+        int sectionIdx = find(section);
         sections[sectionIdx].drop(student);
     }
 
