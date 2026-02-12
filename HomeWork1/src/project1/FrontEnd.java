@@ -85,8 +85,15 @@ public class FrontEnd {
     }
 
     private void doAddSection(String[] tokens){
+        private final int OFFERARGS = 5;
+
+        if (tokens.length() < OFFERARGS) {
+            System.out.println("Not enough arguments");
+            return;
+        }
+
        String courseNum = tokens[1];
-       String inputPeriod = tokens[2];
+       int inputPeriod = Integer.parseInt(tokens[2]);
        String inputInstructor = tokens[3];
        String roomNum = tokens[4];
 
@@ -94,20 +101,53 @@ public class FrontEnd {
        try{
            course = Course.valueOf(courseNum.toUpperCase());
        }catch (IllegalArgumentException e){
-           System.out.println("Invalid Course Number.");
+           System.out.println("INVALID: course name " + courseNum + " does not exist.");
            return;
        }
-       int input = Integer.parseInt(inputPeriod);
-       Time time = findTimePeriod(input);
+
+
+       Time time = findTimePeriod(inputPeriod);
        if(time == null){
-           System.out.println("Invalid period.");
+           System.out.println("INVALID: period " + inputInstructor + " does not exist.");
            return;
        }
 
+       Classroom classroom = findClassroom(roomNum);
+       if(classroom == null) {
+           System.out.println("INVALID: classroom " + roomNum + " does not exist.");
+           return;
+       }
 
+       Instructor instructor = findInstructor(inputInstructor);
+       if (instructor == null) {
+           System.out.println("INVALID: instructor " + inputInstructor + " does not exist.");
+           return;
+       }
+
+       if (!(instructor.checkAvailability(inputPeriod))) {
+           System.out.println("INVALID: " + inputInstructor.toUpperCase() + " time conflict." );
+           return;
+       }
+
+       if (!(classroom.checkAvailability(inputPeriod))) {
+           System.out.println("INVALID: [" + classroom.getClassroomNum() + ", " + classroom.getBuilding() + ", " + classroom.getCampus() + "] not available.");
+           return;
+       }
+
+       Section section = new Section(course, instructor, classroom, time);
+
+       if (schedule.contains(section)) {
+           System.out.println("INVALID: " + section.getCourse().getCourseNum() + " period " + section.getTime().getPeriodNum() + " already exists." );
+           return;
+       }
+
+       schedule.add(section);
+       instructor.fillAvailability(inputPeriod);
+       classroom.fillAvailability(inputPeriod);
 
 
     }
+
 /** find time helper method, used to return time when given period
  * @param input integer period that was input
  * @return Time the time the period occurs */
@@ -119,6 +159,49 @@ public class FrontEnd {
         }
         return null;
     }
+
+    /**
+     * find course helper method, used to return course when given the course num
+     * @param courseNum the identifying key of the course
+     * @return course object
+     */
+    private Course findCourse(String courseNum){
+        for (Course c: Course.values()) {
+            if (c.getCourseNum().equalsIgnoreCase(course)) {
+                return c;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * find classroom helper method, used to return classroom when given the classroom num
+     * @param classroomNum identifying key for enum class classroom
+     * @return classroom object
+     */
+    private Classroom findClassroom(String classroomNum) {
+        for (Classroom cl: Classroom.values()) {
+            if (cl.getClassroomNum().equalsIgnoreCase(classroomNum)){
+                return cl;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * find instructor helper method, used to return instructo when given instructor's name
+     * @param instructorName name of instructor
+     * @return instructor object
+     */
+    private Instructor findInstructor (String instructorName) {
+        for (Instructor i: Instructor.values()) {
+            if (i.getName().equalsIgnoreCase(instructorName)) {
+                return i;
+            }
+        }
+        return null;
+    }
+
     /** Remove a student based on input commands
      * @param tokens input list of features*/
     private void doRemove(String[] tokens){
