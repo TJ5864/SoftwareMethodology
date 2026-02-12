@@ -1,13 +1,16 @@
 package project1;
+import java.time.Period;
 import java.util.Scanner;
 import java.util.Calendar;
 
 public class FrontEnd {
 
     private StudentList studentlist;
+    private Schedule schedule;
 
     public FrontEnd(){
         studentlist = new StudentList();
+        schedule = new Schedule();
 
     }
 /** Run the program, take in user input and based on the input command trigger a method*/
@@ -33,6 +36,7 @@ public class FrontEnd {
                     doRemove(tokens);
                     break;
                 case "O":
+                    doAddSection(tokens);
                 case "C":
                 case "E":
                 case "D":
@@ -79,6 +83,42 @@ public class FrontEnd {
 
 
     }
+
+    private void doAddSection(String[] tokens){
+       String courseNum = tokens[1];
+       String inputPeriod = tokens[2];
+       String inputInstructor = tokens[3];
+       String roomNum = tokens[4];
+
+       Course course;
+       try{
+           course = Course.valueOf(courseNum.toUpperCase());
+       }catch (IllegalArgumentException e){
+           System.out.println("Invalid Course Number.");
+           return;
+       }
+       int input = Integer.parseInt(inputPeriod);
+       Time time = findTimePeriod(input);
+       if(time == null){
+           System.out.println("Invalid period.");
+           return;
+       }
+
+
+
+
+    }
+/** find time helper method, used to return time when given period
+ * @param input integer period that was input
+ * @return Time the time the period occurs */
+    private Time findTimePeriod(int input){
+        for(Time t : Time.values()){
+            if(t.getPeriodNum()== input){
+                return t;
+            }
+        }
+        return null;
+    }
     /** Remove a student based on input commands
      * @param tokens input list of features*/
     private void doRemove(String[] tokens){
@@ -96,6 +136,7 @@ public class FrontEnd {
             System.out.println("Student does not exist.");
             return;
         }
+        
         //check if student is in any section before we remove him
 
     }
