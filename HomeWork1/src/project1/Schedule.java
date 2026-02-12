@@ -69,6 +69,42 @@ public class Schedule {
         sections[numSections-1] = null;
         numSections--;
     }
+
+    /**
+     * enrolls the student to a section
+     * @param section we will enroll the student in
+     * @param student we want to enroll to the section
+     */
+    public void enroll(Section section, Student student){
+        if (!(contains(section))) {
+            return;
+        }
+
+        int sectionIdx = find(section);
+        sections[sectionIdx].enroll(student);
+    }
+
+    /**
+     * will remove a student from a section
+     * @param section contains the target section the student wants to drop
+     * @param student is who wants to drop the section
+     */
+    public void drop(Section section, Student student) {
+        if (!(contains(section))){
+            return;
+        }
+
+        sectionIdx = find(section);
+        sections[sectionIdx].drop(student);
+    }
+
+    public void printByClassroom () {
+
+    }
+
+
+
+
 }
 
 
