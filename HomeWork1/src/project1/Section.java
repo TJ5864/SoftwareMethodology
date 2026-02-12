@@ -15,6 +15,8 @@ public class Section {
 
     private static final int MAX_CAPACITY = 4;
 
+
+
     /**
      * Section constructor
      * @param course enum object tracking courseNum, credits, standing, and major req
@@ -31,6 +33,21 @@ public class Section {
         this.numStudents = 0;
     }
 
+    public Classroom getClassroom(){
+        return classroom;
+    }
+    public Course getCourse(){
+        return course;
+    }
+    public Time getTime(){
+        return time;
+    }
+    public Instructor getInstructor(){
+        return instructor;
+    }
+    public int getNumStudents(){
+        return numStudents;
+    }
 
     public void enroll(Student student) {
         if (isFull()) {
