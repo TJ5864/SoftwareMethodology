@@ -94,43 +94,78 @@ public class Schedule {
             return;
         }
 
-        int sectionIdx = find(section);
+        sectionIdx = find(section);
         sections[sectionIdx].drop(student);
-
-    }
-    /** compareByClassroom is helper method for print by classroom
-     * @return int positive if s2 should come before s1, negative if s1 should come before s2 and 0
-     * if they are equal*/
-    private int compareByClassroom(Section s1, Section s2) {
-        int campusCompare = s1.getClassroom().getCampus().compareTo(s2.getClassroom().getCampus());
-
-        if (campusCompare != 0) {
-            return campusCompare;
-        }
-
-        return s1.getClassroom().getBuilding().compareTo(s2.getClassroom().getBuilding());
     }
 
-    /** print by classroom calls the helper method compare classroom, based on the output it
-     * sorts the classrooms by campus and building than prints them in sorted order.*/
-
-    public void printByClassroom () {
-        for (int i = 1; i < numSections; i++) {
-
-            Section key = sections[i];
-            int j = i - 1;
-
-            while (j >= 0 && compareByClassroom(sections[j], key) > 0) {
-                sections[j + 1] = sections[j];
-                j--;
-            }
-
-            sections[j + 1] = key;
-        }
+    public void printSchedule() {
         for (int i = 0; i < numSections; i++) {
             sections[i].print();
         }
+    }
 
+    /**
+     * prints sections out in order by campus and then building. (Insertion sort)
+     */
+    public void printByClassroom () {
+        for(int i = 1; i < numSections; i++) {
+            Section key = sections[i];
+            String keyCampus = sections[i].getClassroom().getCampus();
+            String keyBuilding = sections[i].getClassroom().getBuilding();
+
+            int j = i - 1;
+
+            while (j >= 0) {
+                String campusJ = sections[j].getClassroom().getCampus();
+                String buildingJ = sections[j].getClassroom().getBuilding();
+
+                int campusCompare = campusJ.compareToIgnoreCase(keyCampus);
+
+                boolean shouldShift = (campusCompare > 0) || (campusCompare ==0 && buildingJ.compareToIgnoreCase(keyBuilding) > 0);
+
+                if (!shouldShift) {
+                    break;
+                }
+
+                sections[j+1] = sections[j];
+                j--;
+            }
+
+            sections[j+1] = key;
+        }
+        printSchedule();
+    }
+
+    /**
+     * prints sections in order of coursenum and then period (also insertion sort)
+     */
+    public void printByCourse() {
+        for(int i = 1; i < numSections; i++) {
+            Section key = sections[i];
+            String keyCourseNum = sections[i].getCourse().getCourseNum();
+            int keyPeriod = sections[i].getTime().getPeriodNum();
+
+            int j = i - 1;
+
+            while (j >= 0) {
+                String courseNumJ = sections[j].getCourse().getCourseNum();
+                int periodJ = sections[j].getTime().getPeriodNum();
+
+                int courseCompare = courseNumJ.compareToIgnoreCase(keyCourseNum);
+
+                boolean shouldShift = (courseCompare > 0) || (courseCompare == 0 && periodJ > keyPeriod);
+
+                if (!shouldShift) {
+                    break;
+                }
+
+                sections[j+1] = sections[j];
+                j--;
+            }
+
+            sections[j+1] = key;
+        }
+        printSchedule();
     }
 
 
