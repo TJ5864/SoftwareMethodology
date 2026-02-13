@@ -72,8 +72,8 @@ O hst 6 brown beaud
 O ccd 5 brown ab2225
 O phy100 2 lim ab2225
 O phy200 3 lim ab2225
-O ee300 1 taylor til232
-O ee400 1 kaur beaud
+O ece300 1 taylor til232
+O ece400 1 kaur beaud
 PC
 
 C cs311 2
@@ -115,8 +115,8 @@ E John Doe 12/20/2004 cs300 5
 E John Doe 12/20/2004 cs200 4
 E John Doe 12/20/2004 phy100 2
 E John Doe 12/20/2004 ccd 5
-E John Doe 12/20/2004 ee400 1
-E John Doe 12/20/2004 ee300 1
+E John Doe 12/20/2004 ece400 1
+E John Doe 12/20/2004 ece300 1
 E John Doe 12/20/2004 cs442 3
 D John Doe 12/20/2004 ccd 5
 E John Doe 12/20/2004 cs442 3

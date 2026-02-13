@@ -30,8 +30,8 @@ public enum Classroom {
         this.campus = campus;
         this.availability = new boolean[TOTALPERIODS];
 
-        for (int i = 0; i < availabiltiy.length; i++) {
-            availability = true;
+        for (int i = 0; i < availability.length; i++) {
+            availability[i] = true;
         }
     }
 

@@ -27,6 +27,10 @@ public class FrontEnd {
             }
             String[] tokens = line.split("\\s+");
             String command = tokens[0];
+            if (!command.matches("[A-Z]+")) {
+                System.out.println(command + " is an invalid command!");
+                continue;
+            }
 
             switch (command){
                 case "A":
@@ -37,25 +41,31 @@ public class FrontEnd {
                     break;
                 case "O":
                     doAddSection(tokens);
+                    break;
                 case "C":
                     doClose(tokens);
+                    break;
                 case "E":
                     doEnroll(tokens);
+                    break;
                 case "D":
                     doDrop(tokens);
+                    break;
                 case "PS":
                     studentlist.print();
                     break;
                 case "PL":
                     schedule.printByClassroom();
+                    break;
                 case "PC":
                     schedule.printByCourse();
+                    break;
                 case "Q":
                     System.out.println("Registration System is terminated.");
                     return;
 
                 default:
-                    System.out.println("Invalid Command!");
+                    System.out.println(command + " is an invalid command!");
             }
 
         }
@@ -74,16 +84,23 @@ public class FrontEnd {
         if (dob == null) return;
 
         Profile profile = checkProfile(firstName, lastName, dob);
-        if(profile == null) return;
+        if(profile == null) {
+            System.out.println("Invalid" );
+            return;
+        }
 
         Major major = checkMajor(majorT);
-        if(major == null) return;
+        if(major == null) {
+            System.out.println("INVALID: "+ majorT +" does not exist");
+            return;
+        }
 
         Integer credits = checkCredit(creditT);
         if(credits == null) return;
 
         Student s = new Student(profile, major, credits);
         studentlist.add(s);
+        System.out.println("["+firstName+" "+ lastName+ " "+ date+ "] added to the list.");
 
 
 
@@ -141,6 +158,7 @@ public class FrontEnd {
        schedule.add(section);
        instructor.fillAvailability(inputPeriod);
        classroom.fillAvailability(inputPeriod);
+       System.out.println("Section Added.");
 
 
     }
@@ -238,7 +256,7 @@ public class FrontEnd {
             return;
         }
         section.enroll(student);
-        System.out.println("Student enrolled successfully.");
+        System.out.println("Student successfully enrolled to this section.");
     }
 /** doDrop, drop a student from a section
  * @param tokens info for student and the course and section*/
@@ -285,7 +303,8 @@ public class FrontEnd {
             return;
         }
         section.drop(student);
-        System.out.println("Student dropped successfully.");
+        System.out.println("Student successfully dropped from section.");
+        
     }
 
 
@@ -383,19 +402,19 @@ public class FrontEnd {
         Date dob = new Date(month, day, year);
 
         if(!dob.isValid()){
-            System.out.println("Date of birth invalid");
+            System.out.println("INVALID: "+dob+" is not a valid calendar date!");
             return null;
         }
         Calendar dobcalendar = dob.toCalendar();
         Calendar today = Calendar.getInstance();
         if(!dobcalendar.before(today)){
-            System.out.println("Date of birth invalid: "+ dob);
+            System.out.println("INVALID: " + dob + " cannot be today or a future day.");
             return null;
         }
         Calendar sixteen = Calendar.getInstance();
         sixteen.add(Calendar.YEAR, -16);
         if(dobcalendar.after(sixteen)){
-            System.out.println("Student must be at least 16 years old!");
+            System.out.println("INVALID: "+ dob + "Student must be at least 16 years old!");
             return null;
         }
         return dob;
@@ -409,21 +428,22 @@ public class FrontEnd {
     private Profile checkProfile(String first, String last, Date dob){
         Profile profile = new Profile(first, last, dob);
         if (studentlist.contains(new Student(profile, null, 0))){
-            System.out.println("Student already exists.");
+            System.out.println("["+ first+" "+ last+ " "+ dob+  "] student is already in the list.");
             return null;
         }
         return profile;
 
     }
-    /** Check if the input major exsists
+    /** Check if the input major exists
      * @param majorT the input major */
     private Major checkMajor(String majorT){
         try {
             return Major.valueOf(majorT.toUpperCase());
         } catch (IllegalArgumentException e) {
-            System.out.println("Major invalid: " + majorT);
+            System.out.println("INVALID: " + majorT+ " major does not exist.");
             return null;
         }
+
     }
     /** Check to make sure the input credit number is valid
      * @param num input number of credits */
@@ -432,12 +452,12 @@ public class FrontEnd {
         try {
             credits = Integer.parseInt(num);
         } catch (NumberFormatException e) {
-            System.out.println("Credits completed invalid");
+            System.out.println("INVALID: "+ num +" is not a number.");
             return null;
         }
 
         if (credits <= 0) {
-            System.out.println("Credits completed invalid: ");
+            System.out.println("INVALID: "+ num + " credit is negative!");
             return null;
         }
         return credits;
