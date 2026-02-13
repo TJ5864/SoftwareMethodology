@@ -12,7 +12,6 @@ public class FrontEnd {
     public FrontEnd(){
         studentlist = new StudentList();
         schedule = new Schedule();
-
     }
 /** Run the program, take in user input and based on the input command trigger a method*/
     public void run(){
@@ -48,7 +47,9 @@ public class FrontEnd {
                     studentlist.print();
                     break;
                 case "PL":
+                    schedule.printByClassroom();
                 case "PC":
+                    schedule.printByCourse();
                 case "Q":
                     System.out.println("Registration System is terminated.");
                     return;
@@ -87,7 +88,8 @@ public class FrontEnd {
 
 
     }
-
+/** doAddSection addes a section of a course to the schedule
+ * @param tokens info for the course we are adding */
     private void doAddSection(String[] tokens){
 
         if (tokens.length < OFFERARGS) {
@@ -107,43 +109,35 @@ public class FrontEnd {
            System.out.println("INVALID: course name " + courseNum + " does not exist.");
            return;
        }
-
-
        Time time = findTimePeriod(inputPeriod);
        if(time == null){
            System.out.println("INVALID: period " + inputInstructor + " does not exist.");
            return;
        }
-
        Classroom classroom = findClassroom(roomNum);
        if(classroom == null) {
            System.out.println("INVALID: classroom " + roomNum + " does not exist.");
            return;
        }
-
        Instructor instructor = findInstructor(inputInstructor);
        if (instructor == null) {
            System.out.println("INVALID: instructor " + inputInstructor + " does not exist.");
            return;
        }
-
        if (!(instructor.checkAvailability(inputPeriod))) {
            System.out.println("INVALID: " + inputInstructor.toUpperCase() + " time conflict." );
            return;
        }
-
        if (!(classroom.checkAvailability(inputPeriod))) {
            System.out.println("INVALID: [" + classroom.getClassroomNum() + ", " + classroom.getBuilding() + ", " + classroom.getCampus() + "] not available.");
            return;
        }
-
        Section section = new Section(course, instructor, classroom, time);
 
        if (schedule.contains(section)) {
            System.out.println("INVALID: " + section.getCourse().getCourseNum() + " period " + section.getTime().getPeriodNum() + " already exists." );
            return;
        }
-
        schedule.add(section);
        instructor.fillAvailability(inputPeriod);
        classroom.fillAvailability(inputPeriod);
@@ -222,7 +216,6 @@ public class FrontEnd {
             System.out.println("Student already enrolled in this course.");
             return;
         }
-
         if (student.getStanding().compareTo(course.getStanding()) < 0) {
             System.out.println("Student does not meet standing requirement.");
             return;
@@ -247,7 +240,8 @@ public class FrontEnd {
         section.enroll(student);
         System.out.println("Student enrolled successfully.");
     }
-
+/** doDrop, drop a student from a section
+ * @param tokens info for student and the course and section*/
     private void doDrop(String [] tokens){
         String fname = tokens[1];
         String lname = tokens[2];
@@ -299,7 +293,7 @@ public class FrontEnd {
 
 /** find time helper method, used to return time when given period
  * @param input integer period that was input
- * @return time the time the period occurs */
+ * @return time the time which the period occurs */
     private Time findTimePeriod(int input){
         for(Time t : Time.values()){
             if(t.getPeriodNum()== input){
@@ -360,17 +354,19 @@ public class FrontEnd {
 
         Date dob = checkDate(date);
         if(dob == null) return;
-
         Profile profile = new Profile(first,last,dob);
         Student student = new Student(profile, null, 0);
-
         if(!studentlist.contains(student)){
-            System.out.println("Student does not exist.");
+            System.out.println("Student " + first +" "+ last+ " does not exist.");
             return;
         }
-        
-        //check if student is in any section before we remove him
+        if(schedule.isStudentEnrolled(student)){
+            System.out.println("Student is currently enrolled in a section.");
+            return;
 
+        }
+        studentlist.remove(student);
+        System.out.println("Student Removed Successfully.");
     }
 
     /** Check if the date is valid

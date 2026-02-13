@@ -118,6 +118,19 @@ public class Schedule {
         }
         return false;
     }
+/** Is Student Enrolled, we use this to check if the student is enrolled in nay courses before we remove them
+ * @param student the student we are looking for
+ * @return True if student is in a course, False otherwise*/
+    public boolean isStudentEnrolled(Student student) {
+
+        for (int i = 0; i < numSections; i++) {
+            if (sections[i].contains(student)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
 /** get section is a helper method that helps us find the section from other methods
  * used in Frontend
  * @param course course we are looking for
