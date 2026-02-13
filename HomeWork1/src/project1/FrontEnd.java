@@ -7,6 +7,7 @@ public class FrontEnd {
 
     private StudentList studentlist;
     private Schedule schedule;
+    private static  int OFFERARGS = 5;
 
     public FrontEnd(){
         studentlist = new StudentList();
@@ -39,6 +40,7 @@ public class FrontEnd {
                     doAddSection(tokens);
                 case "C":
                 case "E":
+                    doEnroll(tokens);
                 case "D":
                 case "PS":
                     studentlist.print();
@@ -85,9 +87,8 @@ public class FrontEnd {
     }
 
     private void doAddSection(String[] tokens){
-        private final int OFFERARGS = 5;
 
-        if (tokens.length() < OFFERARGS) {
+        if (tokens.length < OFFERARGS) {
             System.out.println("Not enough arguments");
             return;
         }
@@ -147,10 +148,79 @@ public class FrontEnd {
 
 
     }
+    private void doEnroll(String[] tokens) {
+        String fname = tokens[1];
+        String lname = tokens[2];
+        String dob = tokens[3];
+        String courseInput = tokens[4];
+        String inputSection = tokens[5];
+        int period;
+        try {
+            period = Integer.parseInt(inputSection);
+        } catch (NumberFormatException e) {
+            System.out.println("INVALID: period " + inputSection + " does not exist.");
+            return;
+        }
+        Date date = checkDate(dob);
+        Profile tempP = new Profile(fname, lname, date);
+        Student student = new Student(tempP, null, 0);
+        if(!studentlist.contains(student)){
+            System.out.println("Student not found");
+            return;
+        }
+        Course course;
+        try{
+            course = Course.valueOf(courseInput.toUpperCase());
+        }catch (IllegalArgumentException e){
+            System.out.println("INVALID: course name " + courseInput + " does not exist.");
+            return;
+        }
+        Time time = findTimePeriod(period);
+        if(time == null){
+            System.out.println("INVALID: period " + period + " does not exist.");
+            return;
+        }
+        Section section = schedule.getSection(course, time);
+        if (section == null) {
+            System.out.println("Section does not exist.");
+            return;
+        }
+        if (schedule.isEnrolledInCourse(student, course)) {   // MUST be public
+            System.out.println("Student already enrolled in this course.");
+            return;
+        }
+
+        if (student.getStanding().compareTo(course.getStanding()) < 0) {
+            System.out.println("Student does not meet standing requirement.");
+            return;
+        }
+        if (course.getMajor() != null && student.getMajor() != course.getMajor()) {
+            System.out.println("Student does not meet major requirement.");
+            return;
+        }
+        if (schedule.hasTimeConflict(student, time)) {
+            System.out.println("Time conflict detected.");
+            return;
+        }
+        int currentCredits = schedule.getTotalCredits(student);
+        if (currentCredits + course.getCreditHours() > 18) {
+            System.out.println("Credit limit exceeded.");
+            return;
+        }
+        if (section.isFull()) {
+            System.out.println("Section is full.");
+            return;
+        }
+        section.enroll(student);
+        System.out.println("Student enrolled successfully.");
+    }
+
+
+
 
 /** find time helper method, used to return time when given period
  * @param input integer period that was input
- * @return Time the time the period occurs */
+ * @return time the time the period occurs */
     private Time findTimePeriod(int input){
         for(Time t : Time.values()){
             if(t.getPeriodNum()== input){
@@ -167,7 +237,7 @@ public class FrontEnd {
      */
     private Course findCourse(String courseNum){
         for (Course c: Course.values()) {
-            if (c.getCourseNum().equalsIgnoreCase(course)) {
+            if (c.getCourseNum().equalsIgnoreCase(courseNum)) {
                 return c;
             }
         }

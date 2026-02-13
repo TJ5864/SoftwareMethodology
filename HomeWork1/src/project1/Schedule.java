@@ -103,6 +103,73 @@ public class Schedule {
             sections[i].print();
         }
     }
+/** InEnrolledInCourse method is a helper for out front end, we are checking if a student is enrolled in other
+ * sections of same course
+ * @param student the student we are looking for
+ * @param  course the specific course we are going to check
+ * @return boolean True if student is in another section False if otherwise*/
+    public boolean isEnrolledInCourse(Student student, Course course) {
+
+        for (int i = 0; i < numSections; i++) {
+            if (sections[i].contains(student) &&
+                    sections[i].getCourse() == course) {
+                return true;
+            }
+        }
+        return false;
+    }
+/** get section is a helper method that helps us find the section from other methods
+ * used in Frontend
+ * @param course course we are looking for
+ * @param time the time the course is at
+ * @return index of course if found*/
+    public Section getSection(Course course, Time time) {
+
+        Section temp = new Section(course, null, null, time);
+
+        int index = find(temp);
+
+        if (index == NOT_FOUND) {
+            return null;
+        }
+
+        return sections[index];
+    }
+ /** hasTimeConflict Used in front end to check if a student is in a section at the same time they
+  * are trying to enroll in
+  * @param student student whos schedule we are checking
+  * @param  time the time we are checking for conflicts at
+  * @return boolean True if there is a time conflict false otherwise.*/
+
+    public boolean hasTimeConflict(Student student, Time time) {
+
+        for (int i = 0; i < numSections; i++) {
+
+            if (sections[i].contains(student) &&
+                    sections[i].getTime() == time) {
+
+                return true;
+            }
+        }
+
+        return false;
+    }
+/** getTotalCredits, looks for what sections/courses a student is taking and calculated total credits
+ * @param student the student whos credits we want to check
+ * return int total number of credits they are taking */
+    public int getTotalCredits(Student student) {
+
+        int total = 0;
+
+        for (int i = 0; i < numSections; i++) {
+
+            if (sections[i].contains(student)) {
+                total += sections[i].getCourse().getCreditHours();
+            }
+        }
+
+        return total;
+    }
 
     /**
      * prints sections out in order by campus and then building. (Insertion sort)

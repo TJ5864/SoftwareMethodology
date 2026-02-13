@@ -23,6 +23,10 @@ public class Student implements Comparable<Student> {
 
     }
 
+    public Major getMajor() {
+        return this.major;
+    }
+
     /** Comapre student using profile
      * @param student2 student we want to compare
      * @return negative zero or positive based on students age */
@@ -50,7 +54,7 @@ public class Student implements Comparable<Student> {
 
     /** Get the student grade level based on credits
      * @return student grade level*/
-    private String getStanding(){
+    public String getStanding(){
         if(creditCompleted < MAX_FRESHMAN_CREDITS){
             return "Freshman";
         }
@@ -62,6 +66,8 @@ public class Student implements Comparable<Student> {
         }
         return "Senior";
     }
+
+
 
     /** Give us the students information as a string
      * contains profile, major and credits

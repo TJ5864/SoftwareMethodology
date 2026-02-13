@@ -5,22 +5,22 @@ package project1;
  */
 
 public enum Course {
-    CS100("CS100", 4, "Freshman", "None"),
-    CS200("CS200", 4, "Sophomore", "None"),
-    CS300("CS300", 4, "Junior", "CS major only"),
-    CS400("CS400", 4, "Junior", "CS major only"),
-    CS442("CS442", 3, "Junior", "None"),
-    PHY100("PHY100", 5, "Freshman", "None"),
-    PHY200("PHY200", 5, "Sophomore", "None"),
-    ECE300("ECE300", 4, "Junior", "ECE major only"),
-    ECE400("ECE400", 4, "Senior", "ECE major only"),
-    CCD("CCD", 4, "Freshman", "None"),
-    HST("HST", 3, "Freshman", "None");
+    CS100("CS100", 4, "Freshman", null),
+    CS200("CS200", 4, "Sophomore", null),
+    CS300("CS300", 4, "Junior", Major.CS),
+    CS400("CS400", 4, "Junior", Major.CS),
+    CS442("CS442", 3, "Junior", null),
+    PHY100("PHY100", 5, "Freshman", null),
+    PHY200("PHY200", 5, "Sophomore", null),
+    ECE300("ECE300", 4, "Junior", Major.ECE),
+    ECE400("ECE400", 4, "Senior", Major.ECE),
+    CCD("CCD", 4, "Freshman", null),
+    HST("HST", 3, "Freshman", null);
 
     private final String courseNum;
     private final int creditHours;
     private final String standing;
-    private final String major;
+    private final Major major;
 
 
     /**
@@ -30,7 +30,7 @@ public enum Course {
      * @param major
      */
 
-    Course(String courseNum, int creditHours, String standing, String major) {
+    Course(String courseNum, int creditHours, String standing, Major major) {
         this.courseNum = courseNum;
         this.creditHours = creditHours;
         this.standing = standing;
@@ -48,7 +48,7 @@ public enum Course {
     /**
      * Getter method
      *
-     * @return
+     * @return course number
      */
     public String getCourseNum() {
         return courseNum;
@@ -57,7 +57,7 @@ public enum Course {
     /**
      * Getter method
      *
-     * @return
+     * @return creditHours
      */
     public int getCreditHours() {
         return creditHours;
@@ -66,7 +66,7 @@ public enum Course {
     /**
      * Getter method
      *
-     * @return
+     * @return standing
      */
     public String getStanding() {
         return standing;
@@ -75,9 +75,9 @@ public enum Course {
     /**
      * Getter method
      *
-     * @return
+     * @return major
      */
-    public String getMajor() {
+    public Major getMajor() {
         return major;
     }
 
