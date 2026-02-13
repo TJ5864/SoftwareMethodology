@@ -11,6 +11,12 @@ public enum Classroom {
     private String classroomNum;
     private String building;
     private String campus;
+    private boolean[] availability;
+
+    /**
+     * global constant TOTALPERIODS offset by 1 to allign index number with period i.e. period 1 = index 1.
+     */
+    private final int TOTALPERIODS = 7;
 
     /**
      * Creates Classroom object with classroom number, building name, and campus
@@ -22,6 +28,11 @@ public enum Classroom {
         this.classroomNum = classroomNum;
         this.building = building;
         this.campus = campus;
+        this.availability = new boolean[TOTALPERIODS];
+
+        for (int i = 0; i < availabiltiy.length; i++) {
+            availability = true;
+        }
     }
 
     /**
@@ -46,6 +57,19 @@ public enum Classroom {
      */
     public String getCampus() {
         return campus;
+    }
+
+    public boolean checkAvailability(int period) {
+        return availability[period];
+    }
+
+    public void fillAvailability(int period) {
+        if (checkAvailability(period)){
+            availability[period] = false;
+            return;
+        }
+        return;
+
     }
 
 
