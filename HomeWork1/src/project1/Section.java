@@ -160,6 +160,19 @@ public class Section {
         return time.getPeriodNum() == periodID && course.getCourseNum().equals(classroomNum);
     }
 
+    public void printRoster() {
+        if (isEmpty()) {
+            System.out.println("**No students enrolled**");
+            return;
+        }
+        System.out.println("**Roster**");
+        for (int i = 0; i < numStudents; i++) {
+            System.out.println(roster[i].getProfile());
+        }
+
+
+    }
+
 
     public static void main(String[] args) {
         Classroom classroom1 = Classroom.HIL114;

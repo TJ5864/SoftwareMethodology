@@ -55,7 +55,7 @@ public class Profile implements Comparable<Profile>{
      * @return profile as a string */
     @Override
     public String toString(){
-        return "[" + lastName + " " + firstName + " "+ dob + "]";
+        return "[" + firstName + " " + lastName + " "+ dob + "]";
     }
 
     /** Testbed for profile class

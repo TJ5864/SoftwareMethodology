@@ -85,13 +85,13 @@ public class FrontEnd {
 
         Profile profile = checkProfile(firstName, lastName, dob);
         if(profile == null) {
-            System.out.println("Invalid" );
+            //System.out.println("Invalid" );
             return;
         }
 
         Major major = checkMajor(majorT);
         if(major == null) {
-            System.out.println("INVALID: "+ majorT +" does not exist");
+            //System.out.println("INVALID: "+ majorT +" does not exist");
             return;
         }
 
@@ -128,7 +128,7 @@ public class FrontEnd {
        }
        Time time = findTimePeriod(inputPeriod);
        if(time == null){
-           System.out.println("INVALID: period " + inputInstructor + " does not exist.");
+           System.out.println("INVALID: period " + inputPeriod + " does not exist.");
            return;
        }
        Classroom classroom = findClassroom(roomNum);
@@ -141,6 +141,12 @@ public class FrontEnd {
            System.out.println("INVALID: instructor " + inputInstructor + " does not exist.");
            return;
        }
+
+       Section section = new Section(course, instructor, classroom, time);
+       if (schedule.contains(section)) {
+           System.out.println("INVALID: " + section.getCourse().getCourseNum() + " period " + section.getTime().getPeriodNum() + " already exists." );
+           return;
+       }
        if (!(instructor.checkAvailability(inputPeriod))) {
            System.out.println("INVALID: " + inputInstructor.toUpperCase() + " time conflict." );
            return;
@@ -149,16 +155,11 @@ public class FrontEnd {
            System.out.println("INVALID: [" + classroom.getClassroomNum() + ", " + classroom.getBuilding() + ", " + classroom.getCampus() + "] not available.");
            return;
        }
-       Section section = new Section(course, instructor, classroom, time);
 
-       if (schedule.contains(section)) {
-           System.out.println("INVALID: " + section.getCourse().getCourseNum() + " period " + section.getTime().getPeriodNum() + " already exists." );
-           return;
-       }
        schedule.add(section);
        instructor.fillAvailability(inputPeriod);
        classroom.fillAvailability(inputPeriod);
-       System.out.println("Section Added.");
+       System.out.println(section + " added to the schedule.");
 
 
     }
@@ -315,7 +316,7 @@ public class FrontEnd {
  * @return time the time which the period occurs */
     private Time findTimePeriod(int input){
         for(Time t : Time.values()){
-            if(t.getPeriodNum()== input){
+            if(t.getPeriodNum() == input){
                 return t;
             }
         }
@@ -376,7 +377,7 @@ public class FrontEnd {
         Profile profile = new Profile(first,last,dob);
         Student student = new Student(profile, null, 0);
         if(!studentlist.contains(student)){
-            System.out.println("Student " + first +" "+ last+ " does not exist.");
+            System.out.println(profile + " is not in the student list.");
             return;
         }
         if(schedule.isStudentEnrolled(student)){
@@ -385,7 +386,7 @@ public class FrontEnd {
 
         }
         studentlist.remove(student);
-        System.out.println("Student Removed Successfully.");
+        System.out.println(profile + " removed from the list.");
     }
 
     /** Check if the date is valid
@@ -414,7 +415,7 @@ public class FrontEnd {
         Calendar sixteen = Calendar.getInstance();
         sixteen.add(Calendar.YEAR, -16);
         if(dobcalendar.after(sixteen)){
-            System.out.println("INVALID: "+ dob + "Student must be at least 16 years old!");
+            System.out.println("INVALID: "+ dob + " younger than 16 years old.");
             return null;
         }
         return dob;

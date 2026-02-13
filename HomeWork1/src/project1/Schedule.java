@@ -99,9 +99,12 @@ public class Schedule {
     }
 
     public void printSchedule() {
+        System.out.println("* List of sections ordered by course number, section time *");
         for (int i = 0; i < numSections; i++) {
             sections[i].print();
+            sections[i].printRoster();
         }
+        System.out.println("* end of list *");
     }
 /** InEnrolledInCourse method is a helper for out front end, we are checking if a student is enrolled in other
  * sections of same course
@@ -184,10 +187,20 @@ public class Schedule {
         return total;
     }
 
+    public boolean isEmpty() {
+        return numSections == 0;
+    }
+
     /**
      * prints sections out in order by campus and then building. (Insertion sort)
      */
     public void printByClassroom () {
+
+        if (isEmpty()) {
+            System.out.println("Schedule is empty!");
+            return;
+        }
+
         for(int i = 1; i < numSections; i++) {
             Section key = sections[i];
             String keyCampus = sections[i].getClassroom().getCampus();
@@ -220,6 +233,12 @@ public class Schedule {
      * prints sections in order of coursenum and then period (also insertion sort)
      */
     public void printByCourse() {
+
+        if (isEmpty()) {
+            System.out.println("Schedule is empty!");
+            return;
+        }
+
         for(int i = 1; i < numSections; i++) {
             Section key = sections[i];
             String keyCourseNum = sections[i].getCourse().getCourseNum();

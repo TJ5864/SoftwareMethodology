@@ -4,15 +4,15 @@ package project1;
  * this enum class includes 2 properties; name and availability
  */
 public enum Instructor{
-    PATEL ("Patel"),
-    LIM ("Lim"),
-    ZIMNES ("Zimnes"),
-    HARPER ("Harper"),
-    KAUR ("Kaur"),
-    TAYLOR ("Taylor"),
-    RAMESH ("Ramesh"),
-    CERAVOLO ("Ceravolo"),
-    BROWN ("Brown");
+    PATEL ("PATEL"),
+    LIM ("LIM"),
+    ZIMNES ("ZIMNES"),
+    HARPER ("HARPER"),
+    KAUR ("KAUR"),
+    TAYLOR ("TAYLOR"),
+    RAMESH ("RAMESH"),
+    CERAVOLO ("CERAVOLO"),
+    BROWN ("BROWN");
 
     /**
      * global constant TOTALPERIODS offset by 1 to allign index number with period i.e. period 1 = index 1.
@@ -55,10 +55,10 @@ public enum Instructor{
     public void fillAvailability(int period){
         if (availability[period]){
             availability[period] = false;
-            System.out.println("Period filled. Instructor assigned to Period " + period + ".");
+            //System.out.println("Period filled. Instructor assigned to Period " + period + ".");
         }
         else {
-            System.out.println("Period already filled. Operation Canceled.");
+            //System.out.println("Period already filled. Operation Canceled.");
         }
     }
 

@@ -35,6 +35,10 @@ public class Student implements Comparable<Student> {
         return this.profile.compareTo(student2.profile);
     }
 
+    public Profile getProfile() {
+        return profile;
+    }
+
     /** Check if 2 students are equal based on profiles
      * Same student
      * @param student2 the student we are comparing
@@ -75,7 +79,7 @@ public class Student implements Comparable<Student> {
     @Override
     public String toString(){
         return profile + " [" + major + "] credits earned: " + creditCompleted +
-                "\n[" + getStanding() + "]";
+                " [" + getStanding() + "]";
     }
 
 

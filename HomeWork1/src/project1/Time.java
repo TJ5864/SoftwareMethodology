@@ -10,9 +10,9 @@ public enum Time {
     PERIOD1 (1, "8", "30", "AM"),
     PERIOD2 (2, "10", "20", "AM"),
     PERIOD3 (3, "12", "10", "PM"),
-    PERIOD4 (4, "2", "00", "PM"),
-    PERIOD5 (5, "3", "50", "PM"),
-    PERIOD6 (6, "5", "40", "PM");
+    PERIOD4 (4, "14", "00", "PM"),
+    PERIOD5 (5, "15", "50", "PM"),
+    PERIOD6 (6, "17", "40", "PM");
 
     private final int periodNum;
     private final String hour;
