@@ -39,6 +39,7 @@ public class FrontEnd {
                     doAddSection(tokens);
                 case "C":
                 case "E":
+                    doEnroll(tokens);
                 case "D":
                 case "PS":
                     studentlist.print();
@@ -104,10 +105,28 @@ public class FrontEnd {
            return;
        }
 
+    }
+
+    private void doEnroll(String[] tokens){
+        String fname = tokens[1];
+        String lname = tokens[2];
+        String dob = tokens[3];
+        String courseInput = tokens[4];
+        String periodInput = tokens[5];
+        int period = Integer.parseInt(periodInput);
+
+
+        Date date = checkDate(dob);
+        Profile tempP = new Profile(fname, lname, date);
+
+        Student temp = new Student(tempP,null,  0);
+
 
 
 
     }
+
+
 /** find time helper method, used to return time when given period
  * @param input integer period that was input
  * @return Time the time the period occurs */
@@ -136,7 +155,7 @@ public class FrontEnd {
             System.out.println("Student does not exist.");
             return;
         }
-        
+
         //check if student is in any section before we remove him
 
     }
