@@ -14,6 +14,7 @@ public class Section {
     private int numStudents;  // not complete
 
     private static final int MAX_CAPACITY = 4;
+    private static final int EMPTY = 0;
 
 
 
@@ -114,6 +115,11 @@ public class Section {
      */
     public boolean isFull() {
         return numStudents == MAX_CAPACITY; //will return True of the number of students is equal to the max capacity (i.e. 4 Students)
+    }
+    /** Check to see if section is Empty
+     * @return True if there are 0 students in the class, False if otherwise*/
+    public boolean isEmpty(){
+        return numStudents == EMPTY;
     }
 
     /**

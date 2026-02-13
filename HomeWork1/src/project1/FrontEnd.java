@@ -39,6 +39,7 @@ public class FrontEnd {
                 case "O":
                     doAddSection(tokens);
                 case "C":
+                    doClose(tokens);
                 case "E":
                     doEnroll(tokens);
                 case "D":
@@ -149,6 +150,37 @@ public class FrontEnd {
 
 
     }
+/** Close a section on the schedule
+ * @param tokens input info*/
+    private void doClose(String[] tokens){
+        String courseInput  = tokens[1];
+        int inputPeriod = Integer.parseInt(tokens[2]);
+        Course course;
+        try{
+            course = Course.valueOf(courseInput.toUpperCase());
+        }catch (IllegalArgumentException e){
+            System.out.println("INVALID: course name " + courseInput + " does not exist.");
+            return;
+        }
+        Time time = findTimePeriod(inputPeriod);
+        if(time == null){
+            System.out.println("INVALID: period " + inputPeriod + " does not exist.");
+            return;
+        }
+        Section section = schedule.getSection(course, time);
+        if (section == null) {
+            System.out.println("Section does not exist.");
+            return;
+        }
+        if(!section.isEmpty()){
+            System.out.println("Section roster is not empty.");
+            return;
+        }
+        schedule.remove(section);
+        System.out.println("Section closed successfully.");
+    }
+    /** doEnroll, enroll student in a course
+     * @param tokens input info*/
     private void doEnroll(String[] tokens) {
         String fname = tokens[1];
         String lname = tokens[2];
