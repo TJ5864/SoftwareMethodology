@@ -7,7 +7,7 @@ public class FrontEnd {
 
     private StudentList studentlist;
     private Schedule schedule;
-    private static  int OFFERARGS = 5;
+    private static final int OFFERARGS = 5;
 
     public FrontEnd(){
         studentlist = new StudentList();
@@ -42,6 +42,7 @@ public class FrontEnd {
                 case "E":
                     doEnroll(tokens);
                 case "D":
+                    doDrop(tokens);
                 case "PS":
                     studentlist.print();
                     break;
@@ -215,6 +216,52 @@ public class FrontEnd {
         System.out.println("Student enrolled successfully.");
     }
 
+    private void doDrop(String [] tokens){
+        String fname = tokens[1];
+        String lname = tokens[2];
+        String inputDate = tokens[3];
+        String inputCourse = tokens[4];
+        String inputPeriod = tokens[5];
+
+        Date date = checkDate(inputDate);
+        Profile profile = new Profile(fname, lname, date);
+        Student student = new Student(profile, null, 0);
+        if(!studentlist.contains(student)){
+            System.out.println("Student " + fname +" "+ lname+ " does not exist.");
+            return;
+        }
+        Course course;
+        try{
+            course = Course.valueOf(inputCourse.toUpperCase());
+        }catch (IllegalArgumentException e){
+            System.out.println("INVALID: course name " + inputCourse + " does not exist.");
+            return;
+        }
+        int period;
+        try {
+            period = Integer.parseInt(inputPeriod);
+        } catch (NumberFormatException e) {
+            System.out.println("INVALID: period " + inputPeriod + " does not exist.");
+            return;
+        }
+        Time time = findTimePeriod(period);
+        if(time == null){
+            System.out.println("INVALID: period " + period + " does not exist.");
+            return;
+        }
+        Section section = schedule.getSection(course, time);
+        if (section == null) {
+            System.out.println("Section does not exist.");
+            return;
+            }
+        if(!section.contains(student)){
+            System.out.println("Section does not contain Student: "+fname+ " "+ lname+".");
+            return;
+        }
+        section.drop(student);
+        System.out.println("Student dropped successfully.");
+    }
+
 
 
 
@@ -275,9 +322,9 @@ public class FrontEnd {
     /** Remove a student based on input commands
      * @param tokens input list of features*/
     private void doRemove(String[] tokens){
-        String first = tokens[0];
-        String last = tokens[1];
-        String date = tokens[2];
+        String first = tokens[1];
+        String last = tokens[2];
+        String date = tokens[3];
 
         Date dob = checkDate(date);
         if(dob == null) return;
