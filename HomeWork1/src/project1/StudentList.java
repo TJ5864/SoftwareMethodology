@@ -68,13 +68,29 @@ public class StudentList {
         return find(student) != NOT_FOUND;
     }
 
+    public boolean isEmpty() {
+        for (int i = 0; i < size; i++) {
+            if (list[i] != null) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     /** Print out the student name lastname/firstname , then dob
      * */
     public void print(){
+        if (isEmpty()) {
+            System.out.println("Student list is empty!");
+            return;
+        }
+
         sortStudent();
+        System.out.println("* Student list ordered by last, first name, DOB *");
         for(int i= 0; i< size; i++){
             System.out.println(list[i]);
         }
+        System.out.println("* end of list **");
 
     }
 
