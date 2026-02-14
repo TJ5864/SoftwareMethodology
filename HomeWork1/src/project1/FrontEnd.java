@@ -273,7 +273,7 @@ public class FrontEnd {
         Profile profile = new Profile(fname, lname, date);
         Student student = new Student(profile, null, 0);
         if(!studentlist.contains(student)){
-            System.out.println("Student " + fname +" "+ lname+ " does not exist.");
+            System.out.println("[" + fname +" "+ lname+" "+ inputDate+ "] does not exist.");
             return;
         }
         Course course;
@@ -297,15 +297,15 @@ public class FrontEnd {
         }
         Section section = schedule.getSection(course, time);
         if (section == null) {
-            System.out.println("Section does not exist.");
+            System.out.println(inputCourse.toUpperCase()+ " "+ time+ " does not exist.");
             return;
             }
         if(!section.contains(student)){
-            System.out.println("Section does not contain Student: "+fname+ " "+ lname+".");
+            System.out.println("["+fname+ " " + lname+ " "+inputDate+"] is not enrolled in this section.");
             return;
         }
         section.drop(student);
-        System.out.println("Student successfully dropped from section.");
+        System.out.println("["+fname+" "+lname+" "+inputDate+"] dropped from "+ course.getCourseNum()+" "+time);
         
     }
 
@@ -378,16 +378,16 @@ public class FrontEnd {
         Profile profile = new Profile(first,last,dob);
         Student student = new Student(profile, null, 0);
         if(!studentlist.contains(student)){
-            System.out.println(profile + " is not in the student list.");
+            System.out.println("["+first+" "+last+" "+date + "] is not in the student list.");
             return;
         }
         if(schedule.isStudentEnrolled(student)){
-            System.out.println("Student is currently enrolled in a section.");
+            System.out.println("["+ first+" "+last+" "+date+ "] is currently enrolled in a section.");
             return;
 
         }
         studentlist.remove(student);
-        System.out.println(profile + " removed from the list.");
+        System.out.println("["+first+" "+last+" "+date + "] removed from the list.");
     }
 
     /** Check if the date is valid
