@@ -181,7 +181,7 @@ public class FrontEnd {
         }
         Section section = schedule.getSection(course, time);
         if (section == null) {
-            System.out.println("Section does not exist.");
+            System.out.println(courseInput.toUpperCase()+" "+ time + " does not exist.");
             return;
         }
         if(!section.isEmpty()){
@@ -189,7 +189,7 @@ public class FrontEnd {
             return;
         }
         schedule.remove(section);
-        System.out.println("Section closed successfully.");
+        System.out.println(courseInput.toUpperCase()+ " " + time + " closed successfully");
     }
     /** doEnroll, enroll student in a course
      * @param tokens input info*/
@@ -207,10 +207,11 @@ public class FrontEnd {
             return;
         }
         Date date = checkDate(dob);
+        if(date == null) return;
         Profile tempP = new Profile(fname, lname, date);
         Student student = new Student(tempP, null, 0);
         if(!studentlist.contains(student)){
-            System.out.println("Student not found");
+            System.out.println("INVALID: ["+ fname + lname+date+"] does not exist." );
             return;
         }
         Course course;
@@ -227,36 +228,36 @@ public class FrontEnd {
         }
         Section section = schedule.getSection(course, time);
         if (section == null) {
-            System.out.println("Section does not exist.");
+            System.out.println(courseInput.toUpperCase()+ " "+ time+ " does not exist.");
             return;
         }
         if (schedule.isEnrolledInCourse(student, course)) {   // MUST be public
-            System.out.println("Student already enrolled in this course.");
+            System.out.println("["+fname + " "+ lname + " "+ dob +"] already enrolled in "+ courseInput.toUpperCase() );
             return;
         }
         if (student.getStanding().compareTo(course.getStanding()) < 0) {
-            System.out.println("Student does not meet standing requirement.");
+            System.out.println("Prereq: "+ course.getStanding() + "-[" + fname + " "+ lname+ " "+ dob+"] ["+student.getStanding()+"]");
             return;
         }
         if (course.getMajor() != null && student.getMajor() != course.getMajor()) {
-            System.out.println("Student does not meet major requirement.");
+            System.out.println("Prereq: major only - [" + fname + " "+ lname + " "+ dob+ "] ["+ student.getMajor()+"]");
             return;
         }
         if (schedule.hasTimeConflict(student, time)) {
-            System.out.println("Time conflict detected.");
+            System.out.println("Time conflict: ["+ fname + " "+ lname+ " "+ dob+ "] enrolled in another class at period "+ time.getPeriodNum());
             return;
         }
         int currentCredits = schedule.getTotalCredits(student);
         if (currentCredits + course.getCreditHours() > 18) {
-            System.out.println("Credit limit exceeded.");
+            System.out.println("Cannot enroll [" + fname + " "+ lname+ " "+ dob+ "]; now has "+ currentCredits + " will exceed credit limit of 18.");
             return;
         }
         if (section.isFull()) {
-            System.out.println("Section is full.");
+            System.out.println("Cannot enroll ["+ fname+" "+lname+" "+dob+"], "+ course.getCourseNum()+" "+ time+" is full.");
             return;
         }
         section.enroll(student);
-        System.out.println("Student successfully enrolled to this section.");
+        System.out.println("["+ fname+" "+lname+" "+dob+"] added to "+ course.getCourseNum()+ " "+ time);
     }
 /** doDrop, drop a student from a section
  * @param tokens info for student and the course and section*/
