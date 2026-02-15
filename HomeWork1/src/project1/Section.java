@@ -50,25 +50,26 @@ public class Section {
         return numStudents;
     }
 
+
     public void enroll(Student student) {
         if (isFull()) {
-            System.out.println("Section capacity is full. Cancelling Operation...");
+            //System.out.println("Section capacity is full. Cancelling Operation...");
         }
         else if (numStudents == 0) {
             roster[0] = student;
             numStudents = numStudents + 1;
-            System.out.println(numStudents);
+            //System.out.println(numStudents);
         }
         else if (contains(student)) {
-            System.out.println("Student already enrolled in this section. Cancelling Operation...");
+            //System.out.println("Student already enrolled in this section. Cancelling Operation...");
         }
         else {
             for (int i = 0; i < MAX_CAPACITY; i ++) {
                 if(roster[i] == null) {
                     roster[i] = student;
                     numStudents = numStudents + 1;
-                    System.out.println((numStudents));
-                    System.out.println("Student successfully enrolled to this section.");
+                    //System.out.println((numStudents));
+                    //System.out.println("Student successfully enrolled to this section.");
                     break;
                 }
             }
@@ -77,17 +78,17 @@ public class Section {
 
     public void drop(Student student) {
         if (numStudents == 0) {
-            System.out.println("Section roster is empty. Cancelling Operation...");
+            //System.out.println("Section roster is empty. Cancelling Operation...");
         }
         else if (!(contains(student))) {
-            System.out.println("Student not found in roster. Cancelling Operation....");
+            //System.out.println("Student not found in roster. Cancelling Operation....");
         }
         else {
             for (int i = 0; i < MAX_CAPACITY; i++) {
-                if (roster[i].equals(student)) {
+                if (roster[i] != null && roster[i].equals(student)) {
                     roster[i] = null;
                     numStudents = numStudents - 1;
-                    System.out.println("Student successfully dropped from section.");
+                    //System.out.println("Student successfully dropped from section.");
                 }
             }
         }

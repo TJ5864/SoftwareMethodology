@@ -119,5 +119,17 @@ public class StudentList {
         }
 
     }
+/** Get student method, used to enroll, check studetns profiles and return matching student based on profile
+ * @param  p profile we are looking for
+ * @return Student the student object with matching profile*/
+    public Student getStudent(Profile p){
+        for(int i = 0; i < size; i++){
+            if(list[i].getProfile().equals(p)){
+                return list[i];
+            }
+        }
+        return null;
+
+    }
 
 }

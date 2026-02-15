@@ -29,7 +29,7 @@ public enum Major {
      * @return major description*/
     @Override
     public String toString(){
-        return name() + "," + school;
+        return name()+ "," + school;
     }
 
 }

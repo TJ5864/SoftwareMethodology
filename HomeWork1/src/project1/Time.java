@@ -34,6 +34,13 @@ public enum Time {
         this.meridiem = meridiem;
     }
 
+    /** Prints the number related to the time
+     * updated Tostring*/
+    @Override
+    public String toString(){
+        return getHour() + ":"+ getMinute();
+    }
+
     /**
      *
      * @return the identifying index for the period

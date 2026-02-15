@@ -174,16 +174,12 @@ public class Schedule {
  * @param student the student whos credits we want to check
  * return int total number of credits they are taking */
     public int getTotalCredits(Student student) {
-
         int total = 0;
-
-        for (int i = 0; i < numSections; i++) {
-
-            if (sections[i].contains(student)) {
-                total += sections[i].getCourse().getCreditHours();
+        for (Section s: sections) {
+            if (s!=null && s.contains(student)) {
+                total += s.getCourse().getCreditHours();
             }
         }
-
         return total;
     }
 

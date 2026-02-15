@@ -12,6 +12,7 @@ public class FrontEnd {
     public FrontEnd(){
         studentlist = new StudentList();
         schedule = new Schedule();
+
     }
 /** Run the program, take in user input and based on the input command trigger a method*/
     public void run(){
@@ -155,7 +156,6 @@ public class FrontEnd {
            System.out.println("INVALID: [" + classroom.getClassroomNum() + ", " + classroom.getBuilding() + ", " + classroom.getCampus() + "] not available.");
            return;
        }
-
        schedule.add(section);
        instructor.fillAvailability(inputPeriod);
        classroom.fillAvailability(inputPeriod);
@@ -186,15 +186,20 @@ public class FrontEnd {
             return;
         }
         if(!section.isEmpty()){
-            System.out.println("Section roster is not empty.");
+            int x = section.getNumStudents();
+            System.out.println(courseInput.toUpperCase()+ " "+ time + " cannot be removed "+x+" student(s) enrolled.");
             return;
         }
         schedule.remove(section);
-        System.out.println(courseInput.toUpperCase()+ " " + time + " closed successfully");
+        System.out.println(courseInput.toUpperCase()+ " " + time + " removed.");
     }
     /** doEnroll, enroll student in a course
      * @param tokens input info*/
     private void doEnroll(String[] tokens) {
+        if (tokens.length < 6) {
+            System.out.println("INVALID: missing arguments for command");
+            return;
+        }
         String fname = tokens[1];
         String lname = tokens[2];
         String dob = tokens[3];
@@ -211,8 +216,8 @@ public class FrontEnd {
         Date date = checkDate(dob);
         if(date == null) return;
         Profile tempP = new Profile(fname, lname, date);
-        Student student = new Student(tempP, null, 0);
-        if(!studentlist.contains(student)){
+        Student student = studentlist.getStudent(tempP);
+        if(student == null){
             System.out.println("INVALID: "+ tempP +" does not exist." );
             return;
         }
@@ -237,6 +242,12 @@ public class FrontEnd {
             System.out.println("["+fname + " "+ lname + " "+ dob +"] already enrolled in "+ courseInput.toUpperCase() );
             return;
         }
+        int currentCredits = schedule.getTotalCredits(student);
+        int newTotal = currentCredits + section.getCourse().getCreditHours();
+        if (newTotal  > 18) {
+            System.out.println("Cannot enroll [" + fname + " "+ lname+ " "+ dob+ "]; now has "+ currentCredits + " will exceed credit limit of 18.");
+            return;
+        }
         if (student.getStanding().compareTo(course.getStanding()) < 0) {
             System.out.println("Prereq: "+ course.getStanding() + " - [" + fname + " "+ lname+ " "+ dob+"] ["+student.getStanding()+"]");
             return;
@@ -249,11 +260,7 @@ public class FrontEnd {
             System.out.println("Time conflict: ["+ fname + " "+ lname+ " "+ dob+ "] enrolled in another class at period "+ time.getPeriodNum());
             return;
         }
-        int currentCredits = schedule.getTotalCredits(student);
-        if (currentCredits + course.getCreditHours() > 18) {
-            System.out.println("Cannot enroll [" + fname + " "+ lname+ " "+ dob+ "]; now has "+ currentCredits + " will exceed credit limit of 18.");
-            return;
-        }
+
         if (section.isFull()) {
             System.out.println("Cannot enroll ["+ fname+" "+lname+" "+dob+"], "+ course.getCourseNum()+" "+ time+" is full.");
             return;
@@ -298,7 +305,7 @@ public class FrontEnd {
         }
         Section section = schedule.getSection(course, time);
         if (section == null) {
-            System.out.println(inputCourse.toUpperCase()+ " "+ time+ " does not exist.");
+            System.out.println("INVALID: "+ inputCourse.toUpperCase()+ " "+ time+ " does not exist.");
             return;
             }
         if(!section.contains(student)){

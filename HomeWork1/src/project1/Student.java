@@ -22,10 +22,15 @@ public class Student implements Comparable<Student> {
         this.creditCompleted = creditCompleted;
 
     }
-
+/** returns the student major */
     public Major getMajor() {
         return this.major;
     }
+/** returns the student credit completed */
+    public int getCreditCompleted() {
+        return creditCompleted;
+    }
+
 
     /** Comapre student using profile
      * @param student2 student we want to compare

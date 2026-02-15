@@ -68,11 +68,11 @@ public enum Instructor{
      */
     public void freeAvailability(int period) {
         if (availability[period]) {
-            System.out.println("This professor was already available during this period. Cancelling Operation.");
+            //System.out.println("This professor was already available during this period. Cancelling Operation.");
         }
         else {
             availability[period] = true;
-            System.out.println("This professor's schedule was freed up at period " + period);
+            //System.out.println("This professor's schedule was freed up at period " + period);
         }
     }
 
