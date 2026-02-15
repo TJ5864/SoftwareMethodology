@@ -207,6 +207,7 @@ public class FrontEnd {
             System.out.println("INVALID: period " + inputSection + " does not exist.");
             return;
         }
+
         Date date = checkDate(dob);
         if(date == null) return;
         Profile tempP = new Profile(fname, lname, date);

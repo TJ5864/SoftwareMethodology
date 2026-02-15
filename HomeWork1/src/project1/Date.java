@@ -79,7 +79,7 @@ public class Date implements Comparable<Date> {
             return(year- date.year);
         }
         if(month != date.month){
-            return(month = date.month);
+            return(month - date.month);
         }
         return (day - date.day);
 

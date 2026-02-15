@@ -104,6 +104,14 @@ public class StudentList {
                 if(list[j].compareTo(list[min])<0){
                     min = j;
                 }
+                else if(list[j].compareTo(list[min]) == 0 ) {
+                    Date minAge = list[min].getProfile().getDob();
+                    Date jAge = list[j].getProfile().getDob();
+
+                    if(jAge.compareTo(minAge) < 0) {
+                        min = j;
+                    }
+                }
             }
             Student temp = list[i];
             list[i] = list[min];

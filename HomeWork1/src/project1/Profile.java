@@ -17,6 +17,10 @@ public class Profile implements Comparable<Profile>{
 
         }
 
+        public Date getDob () {
+            return dob;
+        }
+
 
     @Override
     public int compareTo(Profile other) {
@@ -28,7 +32,8 @@ public class Profile implements Comparable<Profile>{
             if (first != 0) {
                 return first;
             }
-            return dob.toString().compareTo(other.dob.toString());
+            return this.dob.compareTo(other.dob);
+
     }
     /**Determiens weather this profile is equal to another object
      * @param  obj the object to compare
