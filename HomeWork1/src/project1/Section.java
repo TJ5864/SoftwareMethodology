@@ -162,12 +162,12 @@ public class Section {
 
     public void printRoster() {
         if (isEmpty()) {
-            System.out.println("**No students enrolled**");
+            System.out.println("\t**No students enrolled**");
             return;
         }
-        System.out.println("**Roster**");
+        System.out.println("\t **Roster**");
         for (int i = 0; i < numStudents; i++) {
-            System.out.println(roster[i].getProfile());
+            System.out.println("\t" + roster[i].getProfile());
         }
 
 

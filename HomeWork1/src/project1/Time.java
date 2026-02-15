@@ -48,6 +48,10 @@ public enum Time {
 
     public String getMeridiem() {return meridiem;}
 
+    public String getTime() {
+        return getHour() + ":" + getMinute();
+    }
+
 
     public static void main(String[] args) {
         Time period4 = Time.PERIOD4;

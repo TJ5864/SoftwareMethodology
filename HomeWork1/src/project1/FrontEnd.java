@@ -182,7 +182,7 @@ public class FrontEnd {
         }
         Section section = schedule.getSection(course, time);
         if (section == null) {
-            System.out.println(courseInput.toUpperCase()+" "+ time + " does not exist.");
+            System.out.println(courseInput.toUpperCase()+" "+ time.getTime() + " does not exist.");
             return;
         }
         if(!section.isEmpty()){
@@ -212,7 +212,7 @@ public class FrontEnd {
         Profile tempP = new Profile(fname, lname, date);
         Student student = new Student(tempP, null, 0);
         if(!studentlist.contains(student)){
-            System.out.println("INVALID: ["+ fname + lname+date+"] does not exist." );
+            System.out.println("INVALID: "+ tempP +" does not exist." );
             return;
         }
         Course course;
@@ -237,7 +237,7 @@ public class FrontEnd {
             return;
         }
         if (student.getStanding().compareTo(course.getStanding()) < 0) {
-            System.out.println("Prereq: "+ course.getStanding() + "-[" + fname + " "+ lname+ " "+ dob+"] ["+student.getStanding()+"]");
+            System.out.println("Prereq: "+ course.getStanding() + " - [" + fname + " "+ lname+ " "+ dob+"] ["+student.getStanding()+"]");
             return;
         }
         if (course.getMajor() != null && student.getMajor() != course.getMajor()) {
@@ -258,7 +258,7 @@ public class FrontEnd {
             return;
         }
         section.enroll(student);
-        System.out.println("["+ fname+" "+lname+" "+dob+"] added to "+ course.getCourseNum()+ " "+ time);
+        System.out.println(tempP + " added to "+ course.getCourseNum()+ " "+ time.getTime());
     }
 /** doDrop, drop a student from a section
  * @param tokens info for student and the course and section*/
