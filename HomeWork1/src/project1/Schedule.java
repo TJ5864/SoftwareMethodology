@@ -203,28 +203,36 @@ public class Schedule {
             return;
         }
 
-        for(int i = 1; i < numSections; i++) {
+        for (int i = 1; i < numSections; i++) {
+
             Section key = sections[i];
+
+            String keyCampus = key.getClassroom().getCampus();
+            String keyBuilding = key.getClassroom().getBuilding();
+
             int j = i - 1;
 
             while (j >= 0) {
+
                 String campusJ = sections[j].getClassroom().getCampus();
                 String buildingJ = sections[j].getClassroom().getBuilding();
 
                 int campusCompare = campusJ.compareToIgnoreCase(keyCampus);
 
-                boolean shouldShift = (campusCompare > 0) || (campusCompare ==0 && buildingJ.compareToIgnoreCase(keyBuilding) > 0);
+                boolean shouldShift =
+                        (campusCompare > 0) ||
+                                (campusCompare == 0 &&
+                                        buildingJ.compareToIgnoreCase(keyBuilding) > 0);
 
-                if (!shouldShift) {
-                    break;
-                }
+                if (!shouldShift) break;
 
-                sections[j+1] = sections[j];
+                sections[j + 1] = sections[j];
                 j--;
             }
 
-            sections[j+1] = key;
+            sections[j + 1] = key;
         }
+
         System.out.println("* List of sections ordered by campus, building *");
         printSchedule();
         System.out.println("* end of list **");
