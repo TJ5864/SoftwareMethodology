@@ -102,7 +102,7 @@ public class Section {
      */
     public boolean contains(Student student) {
 
-        for (int i = 0; i < MAX_CAPACITY; i++) {
+        for (int i = 0; i < numStudents; i++) {
             if (roster[i]!= null && roster[i].equals(student)) {
                 return true; //loop will terminate if the student is found.
             }

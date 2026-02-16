@@ -63,17 +63,17 @@ public class Student implements Comparable<Student> {
 
     /** Get the student grade level based on credits
      * @return student grade level*/
-    public String getStanding(){
+    public Standing getStanding(){
         if(creditCompleted < MAX_FRESHMAN_CREDITS){
-            return "Freshman";
+            return Standing.FRESHMAN;
         }
         if(creditCompleted < MAX_SOPHOMORE_CREDITS){
-            return "Sophomore";
+            return Standing.SOPHOMORE;
         }
         if(creditCompleted < MAX_JUNIOR_CREDITS){
-            return "Junior" ;
+            return Standing.JUNIOR ;
         }
-        return "Senior";
+        return Standing.SENIOR;
     }
 
 

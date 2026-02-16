@@ -5,21 +5,21 @@ package project1;
  */
 
 public enum Course {
-    CS100("CS100", 4, "Freshman", null),
-    CS200("CS200", 4, "Sophomore", null),
-    CS300("CS300", 4, "Junior", Major.CS),
-    CS400("CS400", 4, "Junior", Major.CS),
-    CS442("CS442", 3, "Junior", null),
-    PHY100("PHY100", 5, "Freshman", null),
-    PHY200("PHY200", 5, "Sophomore", null),
-    ECE300("ECE300", 4, "Junior", Major.ECE),
-    ECE400("ECE400", 4, "Senior", Major.ECE),
-    CCD("CCD", 4, "Freshman", null),
-    HST("HST", 3, "Freshman", null);
+    CS100("CS100", 4, Standing.FRESHMAN, null),
+    CS200("CS200", 4, Standing.SOPHOMORE, null),
+    CS300("CS300", 4, Standing.JUNIOR, Major.CS),
+    CS400("CS400", 4, Standing.JUNIOR, Major.CS),
+    CS442("CS442", 3, Standing.JUNIOR, null),
+    PHY100("PHY100", 5, Standing.FRESHMAN, null),
+    PHY200("PHY200", 5, Standing.SOPHOMORE, null),
+    ECE300("ECE300", 4, Standing.JUNIOR, Major.ECE),
+    ECE400("ECE400", 4, Standing.SENIOR, Major.ECE),
+    CCD("CCD", 4, Standing.FRESHMAN, null),
+    HST("HST", 3, Standing.FRESHMAN, null);
 
     private final String courseNum;
     private final int creditHours;
-    private final String standing;
+    private final Standing standing;
     private final Major major;
 
 
@@ -30,7 +30,7 @@ public enum Course {
      * @param major
      */
 
-    Course(String courseNum, int creditHours, String standing, Major major) {
+    Course(String courseNum, int creditHours, Standing standing, Major major) {
         this.courseNum = courseNum;
         this.creditHours = creditHours;
         this.standing = standing;
@@ -68,7 +68,7 @@ public enum Course {
      *
      * @return standing
      */
-    public String getStanding() {
+    public Standing getStanding() {
         return standing;
     }
 
