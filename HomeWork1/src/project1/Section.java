@@ -166,7 +166,7 @@ public class Section {
             System.out.println("\t**No students enrolled**");
             return;
         }
-        System.out.println("\t **Roster**");
+        System.out.println("\t**Roster**");
         for (int i = 0; i < numStudents; i++) {
             System.out.println("\t" + roster[i].getProfile());
         }

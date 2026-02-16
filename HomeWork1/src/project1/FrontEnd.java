@@ -187,7 +187,7 @@ public class FrontEnd {
         }
         if(!section.isEmpty()){
             int x = section.getNumStudents();
-            System.out.println(courseInput.toUpperCase()+ " "+ time + " cannot be removed "+x+" student(s) enrolled.");
+            System.out.println(courseInput.toUpperCase()+ " "+ time + " cannot be removed ["+x+" student(s) enrolled]");
             return;
         }
         schedule.remove(section);
@@ -235,7 +235,7 @@ public class FrontEnd {
         }
         Section section = schedule.getSection(course, time);
         if (section == null) {
-            System.out.println(courseInput.toUpperCase()+ " "+ time+ " does not exist.");
+            System.out.println("INVALID: " + courseInput.toUpperCase()+ " "+ time+ " does not exist.");
             return;
         }
         if (schedule.isEnrolledInCourse(student, course)) {   // MUST be public
@@ -249,11 +249,11 @@ public class FrontEnd {
             return;
         }
         if (student.getStanding().compareTo(course.getStanding()) < 0) {
-            System.out.println("Prereq: "+ course.getStanding() + " - [" + fname + " "+ lname+ " "+ dob+"] ["+student.getStanding()+"]");
+            System.out.println("Prereq: "+ course.getStanding().getStanding() + " - [" + fname + " "+ lname+ " "+ dob+"] ["+student.getStanding().getStanding()+"]");
             return;
         }
         if (course.getMajor() != null && student.getMajor() != course.getMajor()) {
-            System.out.println("Prereq: major only - [" + fname + " "+ lname + " "+ dob+ "] ["+ student.getMajor()+"]");
+            System.out.println("Prereq: major only - [" + fname + " "+ lname + " "+ dob+ "] ["+ student.getMajor().getMajor() +"]");
             return;
         }
         if (schedule.hasTimeConflict(student, time)) {

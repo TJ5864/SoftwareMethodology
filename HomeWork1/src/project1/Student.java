@@ -22,10 +22,11 @@ public class Student implements Comparable<Student> {
         this.creditCompleted = creditCompleted;
 
     }
-/** returns the student major */
+/** returns the student major object */
     public Major getMajor() {
         return this.major;
     }
+
 /** returns the student credit completed */
     public int getCreditCompleted() {
         return creditCompleted;
@@ -84,7 +85,7 @@ public class Student implements Comparable<Student> {
     @Override
     public String toString(){
         return profile + " [" + major + "] credits earned: " + creditCompleted +
-                " [" + getStanding() + "]";
+                " [" + getStanding().getStanding() + "]";
     }
 
 

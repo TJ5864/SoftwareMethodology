@@ -4,17 +4,19 @@ package project1;
  * @author tjt97*/
 
 public enum Major {
-    CS("School of Arts & Sciences"),
-    ECE("School of Engineering"),
-    MATH("School of Arts & Sciences"),
-    ITI("School of Communication and Information"),
-    BAIT("Rutgers Business School");
+    CS("CS", "School of Arts & Sciences"),
+    ECE("ECE", "School of Engineering"),
+    MATH("MATH", "School of Arts & Sciences"),
+    ITI("ITI", "School of Communication and Information"),
+    BAIT("BAIT", "Rutgers Business School");
 
     private final String school;
+    private final String major;
 
     /** Creates the Major object with its associated school
      * @param school, the school offering the major*/
-    Major(String school){
+    Major(String major, String school){
+        this.major = major;
         this.school = school;
 
     }
@@ -23,6 +25,10 @@ public enum Major {
      * @return school name*/
     public String getSchool(){
         return school;
+    }
+
+    public String getMajor() {
+        return major;
     }
 
     /** Return the major and the school as a String
