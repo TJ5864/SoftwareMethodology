@@ -72,6 +72,14 @@ public enum Classroom {
 
     }
 
+    public void freeAvailability(int period) {
+        if (!checkAvailability(period)) {
+            availability[period] = true;
+            return;
+        }
+        return;
+    }
+
 
     public static void main(String[] args) {
         Classroom til232 = Classroom.TIL232;

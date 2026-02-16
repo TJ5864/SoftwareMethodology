@@ -65,6 +65,14 @@ public class Schedule {
 
         }
         int index = find(section);
+
+        Instructor instructor = sections[index].getInstructor();
+        int period = sections[index].getTime().getPeriodNum();
+        Classroom classroom = sections[index].getClassroom();
+
+        instructor.freeAvailability(period); //free the time slot for the professor
+        classroom.freeAvailability(period); // and the classroom
+
         sections[index] = sections[numSections -1];
         sections[numSections-1] = null;
         numSections--;
@@ -99,12 +107,10 @@ public class Schedule {
     }
 
     public void printSchedule() {
-        System.out.println("* List of sections ordered by course number, section time *");
         for (int i = 0; i < numSections; i++) {
             sections[i].print();
             sections[i].printRoster();
         }
-        System.out.println("* end of list *");
     }
 /** InEnrolledInCourse method is a helper for out front end, we are checking if a student is enrolled in other
  * sections of same course
@@ -199,9 +205,6 @@ public class Schedule {
 
         for(int i = 1; i < numSections; i++) {
             Section key = sections[i];
-            String keyCampus = sections[i].getClassroom().getCampus();
-            String keyBuilding = sections[i].getClassroom().getBuilding();
-
             int j = i - 1;
 
             while (j >= 0) {
@@ -222,7 +225,9 @@ public class Schedule {
 
             sections[j+1] = key;
         }
+        System.out.println("* List of sections ordered by campus, building *");
         printSchedule();
+        System.out.println("* end of list **");
     }
 
     /**
@@ -260,7 +265,10 @@ public class Schedule {
 
             sections[j+1] = key;
         }
+        System.out.println("* List of sections ordered by course number, section time *");
         printSchedule();
+        System.out.println("* end of list *");
+
     }
 
 
