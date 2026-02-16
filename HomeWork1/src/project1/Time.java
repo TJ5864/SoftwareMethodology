@@ -25,6 +25,7 @@ public enum Time {
      * @param periodNum serves as an index to access an period within a day's schedule
      * @param hour serves to represent the hour that a period begins
      * @param minute
+     * @author mss444
      */
 
     Time(int periodNum, String hour, String minute, String meridiem) {

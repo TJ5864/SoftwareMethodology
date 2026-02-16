@@ -1,5 +1,6 @@
 package project1;
-
+/** Schedule class created a schedule of all the sections for each course
+ * @author */
 public class Schedule {
 
     private static final int CAPACITY = 4;
@@ -105,7 +106,7 @@ public class Schedule {
         int sectionIdx = find(section);
         sections[sectionIdx].drop(student);
     }
-
+/** Prints the sections and its roster for the schedule */
     public void printSchedule() {
         for (int i = 0; i < numSections; i++) {
             sections[i].print();
@@ -161,8 +162,7 @@ public class Schedule {
   * are trying to enroll in
   * @param student student whos schedule we are checking
   * @param  time the time we are checking for conflicts at
-  * @return boolean True if there is a time conflict false otherwise.
-  * @author tjt97*/
+  * @return boolean True if there is a time conflict false otherwise.*/
 
     public boolean hasTimeConflict(Student student, Time time) {
 
@@ -179,8 +179,7 @@ public class Schedule {
     }
 /** getTotalCredits, looks for what sections/courses a student is taking and calculated total credits
  * @param student the student whos credits we want to check
- * return int total number of credits they are taking
- * @author tjt97*/
+ * return int total number of credits they are taking*/
     public int getTotalCredits(Student student) {
         int total = 0;
         for (Section s: sections) {

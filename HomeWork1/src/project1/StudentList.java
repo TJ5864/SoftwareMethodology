@@ -35,6 +35,32 @@ public class StudentList {
         list = newList;
     }
 
+    /**Sorts the student for the printing method
+     * sorts students in Alphabetical order, uses CompareTo function*/
+    private void sortStudent(){
+        for(int i = 0; i<size; i++){
+            int min = i;
+
+            for(int j = i+1; j < size; j++){
+                if(list[j].compareTo(list[min])<0){
+                    min = j;
+                }
+                else if(list[j].compareTo(list[min]) == 0 ) {
+                    Date minAge = list[min].getProfile().getDob();
+                    Date jAge = list[j].getProfile().getDob();
+
+                    if(jAge.compareTo(minAge) < 0) {
+                        min = j;
+                    }
+                }
+            }
+            Student temp = list[i];
+            list[i] = list[min];
+            list[min] = temp;
+        }
+
+    }
+
     /** Add student to the end of the list
      * @param student the student we are adding*/
     public void add(Student student){
@@ -94,32 +120,8 @@ public class StudentList {
 
     }
 
-    /**Sorts the student for the printing method
-     * uses CompareTo function*/
-    private void sortStudent(){
-        for(int i = 0; i<size; i++){
-            int min = i;
 
-            for(int j = i+1; j < size; j++){
-                if(list[j].compareTo(list[min])<0){
-                    min = j;
-                }
-                else if(list[j].compareTo(list[min]) == 0 ) {
-                    Date minAge = list[min].getProfile().getDob();
-                    Date jAge = list[j].getProfile().getDob();
-
-                    if(jAge.compareTo(minAge) < 0) {
-                        min = j;
-                    }
-                }
-            }
-            Student temp = list[i];
-            list[i] = list[min];
-            list[min] = temp;
-        }
-
-    }
-/** Get student method, used to enroll, check studetns profiles and return matching student based on profile
+/** Get student method, used to enroll, check students profiles and return matching student based on profile
  * @param  p profile we are looking for
  * @return Student the student object with matching profile*/
     public Student getStudent(Profile p){

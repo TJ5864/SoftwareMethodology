@@ -23,8 +23,7 @@ public class Profile implements Comparable<Profile>{
 
 /** Compares two profiles to each other
  * @param other profile we want to compare
- * @return return 0 if equal, any other number if profiles are different
- * @author tjt97*/
+ * @return return 0 if equal, any other number if profiles are different*/
     @Override
     public int compareTo(Profile other) {
             int last =lastName.compareToIgnoreCase(other.lastName);
@@ -48,8 +47,7 @@ public class Profile implements Comparable<Profile>{
     }
     /**Determiens weather this profile is equal to another object
      * @param  obj the object to compare
-     * @return True if profiles are equal false if they are not
-     * @author tjt97*/
+     * @return True if profiles are equal false if they are not*/
 
     @Override
     public boolean equals(Object obj){
@@ -76,6 +74,7 @@ public class Profile implements Comparable<Profile>{
     }
 
     /** Testbed for profile class
+     * Test Cases shown and described in Table in Test Cases folder
      * @param args  from command line  */
     public static void main(String[] args){
         Profile p1 = new Profile("John", "Doe", new Date(1,1,2000));

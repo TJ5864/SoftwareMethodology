@@ -2,6 +2,10 @@ package project1;
 import java.time.Period;
 import java.util.Scanner;
 import java.util.Calendar;
+/** Connects all classes through the front end, takes in commands and information related to students, from here
+ * we run different checks on students and courses
+ * @author tjt97
+ * @author mss444*/
 
 public class FrontEnd {
 

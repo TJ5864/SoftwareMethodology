@@ -174,7 +174,7 @@ public class Section {
 
     }
 
-
+/** Used to test the method*/
     public static void main(String[] args) {
         Classroom classroom1 = Classroom.HIL114;
         //System.out.println(classroom1.getClassroomNum());

@@ -33,9 +33,9 @@ public class Student implements Comparable<Student> {
     }
 
 
-    /** Comapre student using profile
+    /** Compare student using profile
      * @param student2 student we want to compare
-     * @return negative zero or positive based on students age */
+     * @return negative zero or positive based on students age*/
     @Override
     public int compareTo(Student student2){
         return this.profile.compareTo(student2.profile);
@@ -48,7 +48,7 @@ public class Student implements Comparable<Student> {
     /** Check if 2 students are equal based on profiles
      * Same student
      * @param student2 the student we are comparing
-     * @return True if profiles are the same false otherwise */
+     * @return True if profiles are the same false otherwise*/
     @Override
     public boolean equals(Object student2){
         if (this == student2){

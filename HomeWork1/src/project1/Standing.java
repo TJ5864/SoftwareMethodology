@@ -1,6 +1,7 @@
 package project1;
 /**Standing class to easily compare Grade level for prereqs
- * @author tjt97 */
+ * @author tjt97
+ * @author mss444*/
 
 public enum Standing {
     FRESHMAN("Freshman"),
