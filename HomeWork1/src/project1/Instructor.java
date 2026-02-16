@@ -1,7 +1,7 @@
 package project1;
 
 /**
- * Instructor enum class contains contains the information about a instructor's name & availability
+ * Instructor enum class contains contains the information about a instructor's name and availability
  * @author Mostafa Shalan
  */
 public enum Instructor{
