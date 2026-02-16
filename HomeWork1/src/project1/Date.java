@@ -1,11 +1,9 @@
 package project1;
-
 import java.util.Calendar;
-/**
- * @author tjt97
- * creates the date variables
- * and methods for the class
- */
+
+/**creates the date variables, with month, day, year
+ * includes methods to also check date
+ * @author tjt97*/
 public class Date implements Comparable<Date> {
     private static final int MIN_YEAR = 1900;
     private static final int MIN_MONTH = 1;

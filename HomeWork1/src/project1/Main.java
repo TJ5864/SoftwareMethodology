@@ -1,6 +1,7 @@
 package project1;
 
 import java.util.Scanner;
+/** Used for testing*/
 public class Main {
     //*  This is the project1.Main method where we will run all the other methods and classes
     // @author Thomas Thomassen, Mostafa Shalan

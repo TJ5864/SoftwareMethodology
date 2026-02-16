@@ -3,7 +3,6 @@ package project1;
 /** Represent Student class
  * Students include profile, Major and Credits taken
  * @author tjt97*/
-
 public class Student implements Comparable<Student> {
     private static final int MAX_FRESHMAN_CREDITS = 30;
     private static final int MAX_SOPHOMORE_CREDITS = 60;

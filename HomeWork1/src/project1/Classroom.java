@@ -1,7 +1,6 @@
 package project1;
 /**Creates the classrooms where different courses and sections are located
  * @author mss444 */
-
 public enum Classroom {
     HIL114 ("HIL114", "Hill Center", "Busch"),
     ARC103 ("ARC103", "Allison Road Classroom", "Busch"),

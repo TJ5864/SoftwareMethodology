@@ -1,7 +1,7 @@
 package project1;
+
 /** Create a resizable list of Student objects, manages students and the class section they are in
  * @author tjt97   */
-
 public class StudentList {
     private static final int NOT_FOUND = -1;
     private static final int  CAPACITY = 4;

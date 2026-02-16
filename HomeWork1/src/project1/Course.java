@@ -1,10 +1,8 @@
 package project1;
-/**
- * @author mss444
- * this is an enum class for the Courses
+/**This is an enum class for the Courses.
  * Creates courses with Course ID, Credit hours, Standing, and required Major*
+ * @author mss444
  */
-
 public enum Course {
     CS100("CS100", 4, Standing.FRESHMAN, null),
     CS200("CS200", 4, Standing.SOPHOMORE, null),
@@ -67,15 +65,13 @@ public enum Course {
     /**
      * Getter method
      *
-     * @return standing
-     */
+     * @return standing*/
     public Standing getStanding() {
         return standing;
     }
 
     /**
      * Getter method
-     *
      * @return major
      */
     public Major getMajor() {

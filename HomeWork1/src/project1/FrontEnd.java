@@ -6,7 +6,6 @@ import java.util.Calendar;
  * we run different checks on students and courses
  * @author tjt97
  * @author mss444*/
-
 public class FrontEnd {
 
     private StudentList studentlist;

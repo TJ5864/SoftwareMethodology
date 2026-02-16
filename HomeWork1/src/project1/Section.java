@@ -1,11 +1,9 @@
 package project1;
 
 /**
- * @author mss444
  * Creates the Section objects where we organize, time classroom,
  * instructor and students
- */
-
+ * @author mss444*/
 public class Section {
     private Course course; // done
     private Instructor instructor; // done

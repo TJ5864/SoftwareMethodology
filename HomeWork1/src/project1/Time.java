@@ -1,10 +1,9 @@
 package project1;
 
 /**
- * @author mss444
  * This enum class creates the Time based on period
+ * @author mss444
  */
-
 public enum Time {
 
     PERIOD1 (1, "8", "30", "AM"),

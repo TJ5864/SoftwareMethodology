@@ -2,7 +2,6 @@ package project1;
 
 /** This class represents the available majors and there respective Schools
  * @author tjt97*/
-
 public enum Major {
     CS("CS", "School of Arts & Sciences"),
     ECE("ECE", "School of Engineering"),

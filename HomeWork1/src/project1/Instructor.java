@@ -1,9 +1,7 @@
 package project1;
 
-/**
- * @author mss444
- * this enum class includes 2 properties; name and availability
- */
+/**This enum class includes 2 properties; name and availability
+ * @author mss444*/
 public enum Instructor{
     PATEL ("PATEL"),
     LIM ("LIM"),
