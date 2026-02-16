@@ -12,10 +12,18 @@ public enum Standing {
 
     private final String standing;
 
+    /**
+     * Constructor creating Standing object containing the name of the standing
+     * @param standing String of standing (Freshman... Senior)
+     */
     Standing(String standing) {
         this.standing = standing;
     }
 
+    /**
+     * Getter method that returns the standing
+     * @return standing String containing the name of the standing
+     */
     public String getStanding() {
         return standing;
     }

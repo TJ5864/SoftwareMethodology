@@ -1,9 +1,11 @@
 package project1;
 
 /**
- * Creates the Section objects where we organize, time classroom,
- * instructor and students
- * @author mss444*/
+ * Creates the Section object containing information about the course, instructor, classroom, time, enrolled students,
+ * and the number of students in the section
+ * @author mss444
+ */
+
 public class Section {
     private Course course; // done
     private Instructor instructor; // done
@@ -33,23 +35,50 @@ public class Section {
         this.numStudents = 0;
     }
 
+    /**
+     * Getter method for the Classroom Object
+     * @return classroom Object containing information about location of the section
+     */
     public Classroom getClassroom(){
         return classroom;
     }
+
+    /**
+     * Getter method for the Course object
+     * @return course Object containing information about the course, its credit hours, and its prereqs
+     */
     public Course getCourse(){
         return course;
     }
+
+    /**
+     * Getter method for the Time object
+     * @return time Object containg the period/ 80 min time slot that the section occupies
+     */
     public Time getTime(){
         return time;
     }
+
+    /**
+     * Getter method for the Instructor object
+     * @return instructor Object containing the instructor assigned to the section
+     */
     public Instructor getInstructor(){
         return instructor;
     }
+
+    /**
+     * Getter method for number of students enrolled in the section
+     * @return numStudents int of number of students enrolled in this section
+     */
     public int getNumStudents(){
         return numStudents;
     }
 
-
+    /**
+     * enrolls a student to the section, checking for roster availaiblity and enrollment status prior
+     * @param student Object containing information about the student like name and major
+     */
     public void enroll(Student student) {
         if (isFull()) {
             //System.out.println("Section capacity is full. Cancelling Operation...");
@@ -75,6 +104,10 @@ public class Section {
         }
     } //add student to roster
 
+    /**
+     * unenroll a student from a section, checking to see if roster is empty or if student is enrolled to section prior.
+     * @param student Object containing information about student such as name and major
+     */
     public void drop(Student student) {
         if (numStudents == 0) {
             //System.out.println("Section roster is empty. Cancelling Operation...");
@@ -95,9 +128,9 @@ public class Section {
 
 
     /**
-     *
+     * Method to check if a section has a student enrolled
      * @param student object containing information about a student
-     * @return true if a student is registered to a section  else false
+     * @return true if a student is registered to a section, else false
      */
     public boolean contains(Student student) {
 
@@ -160,6 +193,9 @@ public class Section {
         return time.getPeriodNum() == periodID && course.getCourseNum().equals(classroomNum);
     }
 
+    /**
+     * method necessary to print the roster out for a section.
+     */
     public void printRoster() {
         if (isEmpty()) {
             System.out.println("\t**No students enrolled**");
@@ -173,7 +209,10 @@ public class Section {
 
     }
 
-/** Used to test the method*/
+    /**
+     * main method testing functionality of methods
+     * @param args
+     */
     public static void main(String[] args) {
         Classroom classroom1 = Classroom.HIL114;
         //System.out.println(classroom1.getClassroomNum());

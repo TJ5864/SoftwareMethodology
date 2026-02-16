@@ -1,7 +1,9 @@
 package project1;
 
-/**This enum class includes 2 properties; name and availability
- * @author mss444*/
+/**
+ * Instructor enum class contains contains the information about a instructor's name & availability
+ * @author Mostafa Shalan
+ */
 public enum Instructor{
     PATEL ("PATEL"),
     LIM ("LIM"),
@@ -20,6 +22,11 @@ public enum Instructor{
     private boolean[] availability;
     private String name;
 
+
+    /**
+     * Constructor for Instructor object
+     * @param name String that holds the name of the instructor
+     */
     Instructor(String name){
         this.name = name;
         this.availability = new boolean[TOTALPERIODS];
@@ -31,9 +38,8 @@ public enum Instructor{
 
     /**
      * Getter method for the professors name
-     * @return the professor's name
+     * @return String of professor's name
      */
-
     public String getName(){
         return name;
     }

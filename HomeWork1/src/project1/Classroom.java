@@ -1,6 +1,10 @@
 package project1;
-/**Creates the classrooms where different courses and sections are located
- * @author mss444 */
+
+/**
+ * This is an enum class that contains the information of classroom, including the name, building, campus,
+ * and availability.
+ * @author mss444
+ */
 public enum Classroom {
     HIL114 ("HIL114", "Hill Center", "Busch"),
     ARC103 ("ARC103", "Allison Road Classroom", "Busch"),
@@ -37,7 +41,7 @@ public enum Classroom {
     }
 
     /**
-     * retrieves the classroom numberr
+     * getter method that retrieves the classroom number
      * @return classroom number
      */
     public String getClassroomNum() {
@@ -45,25 +49,34 @@ public enum Classroom {
     }
 
     /**
-     * retrieves the building that a class can occur in
-     * @return building name
+     * getter method that retrieves the building of the classroom
+     * @return building String of building name that the classroom was located in.
      */
     public String getBuilding() {
         return building;
     }
 
     /**
-     * retrieves the campus that the classroom object is
-     * @return campus
+     * retrieves the campus that the classroom is located on
+     * @return campus String containing name of the campus location
      */
     public String getCampus() {
         return campus;
     }
 
+    /**
+     * Method to peek into the classroom's availability at a given period.
+     * @param period int representation of a 80 min portion of the daily schedule.
+     * @return true if available; false if not
+     */
     public boolean checkAvailability(int period) {
         return availability[period];
     }
 
+    /**
+     * Method to mark a classroom unavailable if registered for a section at a specific period.
+     * @param period int representaton of a 80 min portion of the daily schedule
+     */
     public void fillAvailability(int period) {
         if (checkAvailability(period)){
             availability[period] = false;
@@ -72,9 +85,11 @@ public enum Classroom {
         return;
 
     }
-    /** Tells us if there is room in the period to enroll students
-     * @param period int period we are checking*/
 
+    /**
+     * Method to mark a classroom available for a period if a section is dropped for that period
+     * @param period int representaton of a 80 min portion of the daily schedule
+     */
     public void freeAvailability(int period) {
         if (!checkAvailability(period)) {
             availability[period] = true;
@@ -84,6 +99,10 @@ public enum Classroom {
     }
 
 
+    /**
+     * main method for testing
+     * @param args
+     */
     public static void main(String[] args) {
         Classroom til232 = Classroom.TIL232;
         System.out.println(til232.getClassroomNum() + til232.getCampus() + til232.getBuilding());
