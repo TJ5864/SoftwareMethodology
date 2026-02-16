@@ -5,7 +5,7 @@ import java.util.Calendar;
  * @author tjt97
  * creates the date variables
  * and methods for the class
- **/
+ */
 public class Date implements Comparable<Date> {
     private static final int MIN_YEAR = 1900;
     private static final int MIN_MONTH = 1;

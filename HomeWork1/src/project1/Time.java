@@ -2,7 +2,7 @@ package project1;
 
 /**
  * @author mss444
- * This enum class creates the Time thingimajigy
+ * This enum class creates the Time based on period
  */
 
 public enum Time {
@@ -24,7 +24,7 @@ public enum Time {
      * constructor to create the time object
      * @param periodNum serves as an index to access an period within a day's schedule
      * @param hour serves to represent the hour that a period begins
-     * @param minute
+     * @param minute represents the minutes
      * @author mss444
      */
 

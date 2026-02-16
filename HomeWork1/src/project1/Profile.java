@@ -1,6 +1,6 @@
 package project1;
 
-/** Create profiles for studetns with first name last name and date of birth
+/** Create profiles for students with first name last name and date of birth
  * @author tjt97*/
 public class Profile implements Comparable<Profile>{
 

@@ -1,4 +1,6 @@
 package project1;
+/**Creates the classrooms where different courses and sections are located
+ * @author mss444 */
 
 public enum Classroom {
     HIL114 ("HIL114", "Hill Center", "Busch"),
@@ -71,6 +73,8 @@ public enum Classroom {
         return;
 
     }
+    /** Tells us if there is room in the period to enroll students
+     * @param period int period we are checking*/
 
     public void freeAvailability(int period) {
         if (!checkAvailability(period)) {

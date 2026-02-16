@@ -1,4 +1,5 @@
 package project1;
+
 /**
  * @author mss444
  * this enum class includes 2 properties; name and availability

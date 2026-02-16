@@ -1,7 +1,8 @@
 package project1;
 /**
  * @author mss444
- * this is an enum class for the Courses *
+ * this is an enum class for the Courses
+ * Creates courses with Course ID, Credit hours, Standing, and required Major*
  */
 
 public enum Course {

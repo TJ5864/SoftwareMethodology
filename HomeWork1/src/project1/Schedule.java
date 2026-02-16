@@ -1,6 +1,7 @@
 package project1;
 /** Schedule class created a schedule of all the sections for each course
- * @author */
+ * @author mss444
+ * @author tjt97*/
 public class Schedule {
 
     private static final int CAPACITY = 4;

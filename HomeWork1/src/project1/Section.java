@@ -2,7 +2,8 @@ package project1;
 
 /**
  * @author mss444
- * Creates the Section objects
+ * Creates the Section objects where we organize, time classroom,
+ * instructor and students
  */
 
 public class Section {
@@ -112,7 +113,7 @@ public class Section {
 
     /**
      * Checks to see if a section is full or not
-     * @return True if  the number of students is equal to the max capacity (i.e. 4) or False if numStudents < MAXCAPACITY
+     * @return True if  the number of students is equal to the max capacity (i.e. 4) or False if numStudents less than MAXCAPACITY
      */
     public boolean isFull() {
         return numStudents == MAX_CAPACITY; //will return True of the number of students is equal to the max capacity (i.e. 4 Students)
