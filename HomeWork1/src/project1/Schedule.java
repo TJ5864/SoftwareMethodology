@@ -155,7 +155,8 @@ public class Schedule {
   * are trying to enroll in
   * @param student student whos schedule we are checking
   * @param  time the time we are checking for conflicts at
-  * @return boolean True if there is a time conflict false otherwise.*/
+  * @return boolean True if there is a time conflict false otherwise.
+  * @author tjt97*/
 
     public boolean hasTimeConflict(Student student, Time time) {
 
@@ -172,7 +173,8 @@ public class Schedule {
     }
 /** getTotalCredits, looks for what sections/courses a student is taking and calculated total credits
  * @param student the student whos credits we want to check
- * return int total number of credits they are taking */
+ * return int total number of credits they are taking
+ * @author tjt97*/
     public int getTotalCredits(Student student) {
         int total = 0;
         for (Section s: sections) {

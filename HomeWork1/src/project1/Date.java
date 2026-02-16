@@ -4,8 +4,8 @@ import java.util.Calendar;
 /**
  * @author tjt97
  * creates the date variables
- *
- *            */
+ * and methods for the class
+ **/
 public class Date implements Comparable<Date> {
     private static final int MIN_YEAR = 1900;
     private static final int MIN_MONTH = 1;
@@ -15,6 +15,14 @@ public class Date implements Comparable<Date> {
     private int year;
     private int month;
     private int day;
+
+    /** Tells us if the year is leap year and we need to adjust days
+     * @return true if leapyear false otherwise */
+    private boolean isLeapYear(){
+        if (year % 400 == 0) return true;
+        if (year % 100 == 0) return false;
+        return year % 4 == 0;
+    }
 
     /** Use Calendar to check today's Date
      * create getter method so the software works
@@ -46,13 +54,7 @@ public class Date implements Comparable<Date> {
         this.year=year;
 
     }
-    /** Tells us if the year is leap year and we need to adjust days
-     * @return true if leapyear false otherwise */
-    private boolean isLeapYear(){
-        if (year % 400 == 0) return true;
-        if (year % 100 == 0) return false;
-        return year % 4 == 0;
-    }
+
 
     /** Method tells us weather the date is valis
      * @return true if the date is valid false if not*/
@@ -118,12 +120,13 @@ public class Date implements Comparable<Date> {
      * @param args command line arguments
      */
     public static void main(String[] args) {
-        Date a = new Date(1, 1, 2020);
-        Date b = new Date(1, 1, 2021);
+        System.out.println("D1: 2/30/2024 -> " + new Date(2, 30, 2024).isValid());
+        System.out.println("D2: 13/10/2024 -> " + new Date(13, 10, 2024).isValid());
+        System.out.println("D3: 4/31/2024 -> " + new Date(4, 31, 2024).isValid());
+        System.out.println("D4: 1/1/1800 -> " + new Date(1, 1, 1800).isValid());
+        System.out.println("D5: 2/29/2024 -> " + new Date(2, 29, 2024).isValid());
+        System.out.println("D6: 12/25/2025 -> " + new Date(12, 25, 2025).isValid());
 
-        System.out.println(a.compareTo(b));
     }
-
-
 }
 

@@ -21,23 +21,35 @@ public class Profile implements Comparable<Profile>{
             return dob;
         }
 
-
+/** Compares two profiles to each other
+ * @param other profile we want to compare
+ * @return return 0 if equal, any other number if profiles are different
+ * @author tjt97*/
     @Override
     public int compareTo(Profile other) {
             int last =lastName.compareToIgnoreCase(other.lastName);
             if(last != 0){
-                return last;
+                if(last > 0)return 1;
+                else return -1;
             }
             int first = firstName.compareToIgnoreCase(other.firstName);
             if (first != 0) {
-                return first;
+                if(first>0)return 1;
+                else return -1;
             }
-            return this.dob.compareTo(other.dob);
+            int dateCheck = this.dob.compareTo(other.dob);
+            if(dateCheck != 0){
+                if (dateCheck > 0)return 1;
+                else return -1;
+
+            }
+            return 0;
 
     }
     /**Determiens weather this profile is equal to another object
      * @param  obj the object to compare
-     * @return True if profiles are equal false if they are not */
+     * @return True if profiles are equal false if they are not
+     * @author tjt97*/
 
     @Override
     public boolean equals(Object obj){
@@ -66,18 +78,21 @@ public class Profile implements Comparable<Profile>{
     /** Testbed for profile class
      * @param args  from command line  */
     public static void main(String[] args){
-        Date d1 = new Date(2, 15, 2004);
-        Date d2 = new Date(2, 15, 2004);
-        Date d3 = new Date(3, 10, 2003);
+        Profile p1 = new Profile("John", "Doe", new Date(1,1,2000));
+        Profile p2 = new Profile("Jane", "Doe", new Date(1,1,2000));
+        Profile p3 = new Profile("Adam", "Smith", new Date(1,1,2000));
+        Profile p4 = new Profile("John", "Brown", new Date(1,1,2000 ));
+        Profile p5 = new Profile("John", "Doe", new Date(1,1,1999));
+        Profile p6 = new Profile("John", "Doe", new Date(1,1,2001));
+        Profile p7 = new Profile("John", "Doe", new Date(1,1,2000));
 
-        Profile p1 = new Profile("John", "Smith", d1);
-        Profile p2 = new Profile("John", "Smith", d2);
-        Profile p3 = new Profile("Jane", "Smith", d3);
-
-        System.out.println(p1.equals(p2));   // should print true
-        System.out.println(p1.equals(p3));   // should print false
-
-        System.out.println(p1.compareTo(p3)); // verifies ordering
+        System.out.println("P1 (Jane Doe vs John Doe): " + p2.compareTo(p1)); // negative
+        System.out.println("P2 (Smith vs Doe): " + p3.compareTo(p1));       // positive
+        System.out.println("P3 (Brown vs Doe): " + p4.compareTo(p1));       // negative
+        System.out.println("P4 (Doe vs Brown): " + p1.compareTo(p4));       // positive
+        System.out.println("P5 (older DOB): " + p5.compareTo(p1));          // negative
+        System.out.println("P6 (younger DOB): " + p6.compareTo(p1));        // positive
+        System.out.println("P7 (exact same): " + p1.compareTo(p7));         // expect 0
 
     }
 }
