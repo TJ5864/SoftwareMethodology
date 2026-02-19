@@ -3,7 +3,7 @@ package project2;
 /** Represent Student class
  * Students include profile, Major and Credits taken
  * @author tjt97*/
-public class Student implements Comparable<Student> {
+public abstract class Student implements Comparable<Student> {
     private static final int MAX_FRESHMAN_CREDITS = 30;
     private static final int MAX_SOPHOMORE_CREDITS = 60;
     private static final int MAX_JUNIOR_CREDITS = 90;
@@ -21,6 +21,10 @@ public class Student implements Comparable<Student> {
         this.creditCompleted = creditCompleted;
 
     }
+
+/** The abstract method Tuition that will be used in the other classes*/
+    public abstract double tuition(int creditCompleted);
+
 /** returns the student major object */
     public Major getMajor() {
         return this.major;
