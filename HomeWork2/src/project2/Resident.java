@@ -28,8 +28,8 @@ public class Resident extends Student {
     @Override
     public double tuition(int enrolledCredits){
         if (enrolledCredits > EXTRA_THRESHOLD){
-            double extra = enrolledCredits - 16;
-            double cost = FULL_TIME_FEE + FULL_TIME_TUITION + (extra * PART_TIME_RATE) - scholarship;
+            double extraCredits = enrolledCredits - 16;
+            double cost = FULL_TIME_FEE + FULL_TIME_TUITION + (extraCredits * PART_TIME_RATE) - scholarship;
             return cost;
 
         }else if(enrolledCredits < FULL_TIME_MIN){
