@@ -7,4 +7,8 @@ public class TriState extends NonResident{
         super(profile, major, creditCompleted);
         this.state = state;
     }
+
+    public String getState(){
+        return state;
+    }
 }
