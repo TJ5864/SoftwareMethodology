@@ -28,3 +28,8 @@ bin/
 
 ### Mac OS ###
 .DS_Store
+.Rhistory
+
+### Claude / Project Notes ###
+CLAUDE.md
+project2.pdf

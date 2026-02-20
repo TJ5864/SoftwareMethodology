@@ -38,8 +38,17 @@ public class FrontEnd {
             }
 
             switch (command){
-                case "A":
-                    doAdd(tokens);
+                case "AR":
+                    doAddResident(tokens);
+                    break;
+                case "AN":
+                    doAddNonResident(tokens);
+                    break;
+                case "AT":
+                    doAddTriState(tokens);
+                    break;
+                case "AI":
+                    doAddInternational(tokens);
                     break;
                 case "R":
                     doRemove(tokens);
@@ -65,6 +74,9 @@ public class FrontEnd {
                 case "PC":
                     schedule.printByCourse();
                     break;
+                case "S":
+                    doSetScholarship(tokens);
+                    break;
                 case "Q":
                     System.out.println("Registration System is terminated.");
                     return;
@@ -76,40 +88,63 @@ public class FrontEnd {
         }
     }
 
-/** Add a student to student list based on input features
- * @param tokens input list of features for the student */
-    private void doAdd(String[] tokens){
-        String firstName = tokens[1];
-        String lastName = tokens[2];
-        String date = tokens[3];
-        String majorT = tokens[4];
-        String creditT = tokens[5];
-
-        Date dob = checkDate(date);
+    /** Set scholarship for a full-time resident student
+     * @param tokens input containing fname, lname, dob, and scholarship amount */
+    private void doSetScholarship(String[] tokens) {
+        String fname = tokens[1];
+        String lname = tokens[2];
+        String inputDate = tokens[3];
+        int amount;
+        try {
+            amount = Integer.parseInt(tokens[4]);
+        } catch (NumberFormatException e) {
+            System.out.println("INVALID: " + tokens[4] + " is not a valid amount.");
+            return;
+        }
+        Date dob = checkDate(inputDate);
         if (dob == null) return;
-
-        Profile profile = checkProfile(firstName, lastName, dob);
-        if(profile == null) {
-            //System.out.println("Invalid" );
+        Profile profile = new Profile(fname, lname, dob);
+        Student student = studentlist.getStudent(profile);
+        if (student == null) {
+            System.out.println("[" + fname + " " + lname + " " + inputDate + "] does not exist.");
             return;
         }
-
-        Major major = checkMajor(majorT);
-        if(major == null) {
-            //System.out.println("INVALID: "+ majorT +" does not exist");
+        if (!(student instanceof Resident)) {
+            System.out.println("[" + fname + " " + lname + " " + inputDate + "] is not a resident student.");
             return;
         }
-
-        Integer credits = checkCredit(creditT);
-        if(credits == null) return;
-
-        Student s = new Student(profile, major, credits);
-        studentlist.add(s);
-        System.out.println("["+firstName+" "+ lastName+ " "+ date+ "] added to the list.");
-
-
-
+        if (schedule.getTotalCredits(student) < 12) {
+            System.out.println("[" + fname + " " + lname + " " + inputDate + "] is a part-time student.");
+            return;
+        }
+        if (amount <= 0 || amount > 10000) {
+            System.out.println(amount + " is not a valid scholarship amount.");
+            return;
+        }
+        ((Resident) student).setScholarship(amount);
+        System.out.println("[" + fname + " " + lname + " " + inputDate + "] scholarship amount set to " + amount);
     }
+
+    /** Add a Resident student to the student list
+     * @param tokens fname lname dob major credits */
+    private void doAddResident(String[] tokens) {
+    }
+
+    /** Add a NonResident student to the student list
+     * @param tokens fname lname dob major credits */
+    private void doAddNonResident(String[] tokens) {
+    }
+
+    /** Add a TriState student to the student list
+     * @param tokens fname lname dob major credits state */
+    private void doAddTriState(String[] tokens) {
+    }
+
+    /** Add an International student to the student list
+     * @param tokens fname lname dob major credits isStudyAbroad */
+    private void doAddInternational(String[] tokens) {
+    }
+
 /** doAddSection addes a section of a course to the schedule
  * @param tokens info for the course we are adding */
     private void doAddSection(String[] tokens){
@@ -282,9 +317,10 @@ public class FrontEnd {
         String inputPeriod = tokens[5];
 
         Date date = checkDate(inputDate);
+        if (date == null) return;
         Profile profile = new Profile(fname, lname, date);
-        Student student = new Student(profile, null, 0);
-        if(!studentlist.contains(student)){
+        Student student = studentlist.getStudent(profile);
+        if(student == null){
             System.out.println("[" + fname +" "+ lname+" "+ inputDate+ "] does not exist.");
             return;
         }
@@ -388,8 +424,8 @@ public class FrontEnd {
         Date dob = checkDate(date);
         if(dob == null) return;
         Profile profile = new Profile(first,last,dob);
-        Student student = new Student(profile, null, 0);
-        if(!studentlist.contains(student)){
+        Student student = studentlist.getStudent(profile);
+        if(student == null){
             System.out.println("["+first+" "+last+" "+date + "] is not in the student list.");
             return;
         }
@@ -441,7 +477,7 @@ public class FrontEnd {
      * @param  dob checked dob input*/
     private Profile checkProfile(String first, String last, Date dob){
         Profile profile = new Profile(first, last, dob);
-        if (studentlist.contains(new Student(profile, null, 0))){
+        if (studentlist.getStudent(profile) != null){
             System.out.println("["+ first+" "+ last+ " "+ dob+  "] student is already in the list.");
             return null;
         }
