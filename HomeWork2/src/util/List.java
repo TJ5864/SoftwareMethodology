@@ -25,6 +25,55 @@ public class List<E> implements Iterable<E> {
         return NOT_FOUND;
     }
 
+    private void grow() {
+        @SuppressWarnings("unchecked")
+        E[] newList = (E[]) new Object[objects.length + CAPACITY];
+
+        for (int i = 0; i < size; i++) {
+            newList[i] = objects[i];
+        }
+
+        objects = newList;
+    }
+
+    public boolean contains(E e) {
+        return find(e) != NOT_FOUND;
+    }
+
+    public void add(E e) {
+        if (size == objects.length) {
+            grow();
+        }
+
+        objects[size] = e;
+        size++;
+    }
+
+    public void remove(E e) {
+        int targetIndex = find(e);
+        if (targetIndex == NOT_FOUND) {
+            return;
+        }
+
+        int lastObjectIdx = size - 1;
+        objects[targetIndex] = objects[lastObjectIdx];
+        objects[lastObjectIdx] = null;
+        size--;
+    }
+
+    public boolean isEmpty() {
+        return size == 0;
+    }
+
+
+    //what is this method supposed to do? the directions say nothing about it lol
+    public int size() {
+        return size;
+    }
+
+
+
+
     @Override
     public Iterator<E> iterator() {
         return new ListIterator();
