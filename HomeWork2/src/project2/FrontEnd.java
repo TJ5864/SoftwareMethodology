@@ -128,21 +128,88 @@ public class FrontEnd {
     /** Add a Resident student to the student list
      * @param tokens fname lname dob major credits */
     private void doAddResident(String[] tokens) {
+        if (tokens.length < 6) {
+            System.out.println("Missing data tokens.");
+            return;
+        }
+        String fname = tokens[1], lname = tokens[2], inputDate = tokens[3];
+        Date dob = checkDate(inputDate);
+        if (dob == null) return;
+        Profile profile = checkProfile(fname, lname, dob);
+        if (profile == null) return;
+        Major major = checkMajor(tokens[4]);
+        if (major == null) return;
+        Integer credits = checkCredit(tokens[5]);
+        if (credits == null) return;
+        studentlist.add(new Resident(profile, major, credits));
+        System.out.println(profile + "[Resident] added to the list.");
     }
 
     /** Add a NonResident student to the student list
      * @param tokens fname lname dob major credits */
     private void doAddNonResident(String[] tokens) {
+        if (tokens.length < 6) {
+            System.out.println("Missing data tokens.");
+            return;
+        }
+        String fname = tokens[1], lname = tokens[2], inputDate = tokens[3];
+        Date dob = checkDate(inputDate);
+        if (dob == null) return;
+        Profile profile = checkProfile(fname, lname, dob);
+        if (profile == null) return;
+        Major major = checkMajor(tokens[4]);
+        if (major == null) return;
+        Integer credits = checkCredit(tokens[5]);
+        if (credits == null) return;
+        studentlist.add(new NonResident(profile, major, credits));
+        System.out.println(profile + "[Noresident] added to the list.");
     }
 
     /** Add a TriState student to the student list
      * @param tokens fname lname dob major credits state */
     private void doAddTriState(String[] tokens) {
+        if (tokens.length < 7) {
+            System.out.println("Missing data tokens.");
+            return;
+        }
+        String fname = tokens[1], lname = tokens[2], inputDate = tokens[3];
+        Date dob = checkDate(inputDate);
+        if (dob == null) return;
+        Profile profile = checkProfile(fname, lname, dob);
+        if (profile == null) return;
+        Major major = checkMajor(tokens[4]);
+        if (major == null) return;
+        Integer credits = checkCredit(tokens[5]);
+        if (credits == null) return;
+        String state = tokens[6].toUpperCase();
+        if (!state.equals("NY") && !state.equals("CT")) {
+            System.out.println(state + ": Invalid state code.");
+            return;
+        }
+        studentlist.add(new TriState(profile, major, credits, state));
+        System.out.println(profile + "[Tristate: " + state + "] added to the list.");
     }
 
     /** Add an International student to the student list
      * @param tokens fname lname dob major credits isStudyAbroad */
     private void doAddInternational(String[] tokens) {
+        if (tokens.length < 7) {
+            System.out.println("Missing data tokens.");
+            return;
+        }
+        String fname = tokens[1], lname = tokens[2], inputDate = tokens[3];
+        Date dob = checkDate(inputDate);
+        if (dob == null) return;
+        Profile profile = checkProfile(fname, lname, dob);
+        if (profile == null) return;
+        Major major = checkMajor(tokens[4]);
+        if (major == null) return;
+        Integer credits = checkCredit(tokens[5]);
+        if (credits == null) return;
+        boolean isStudyAbroad = Boolean.parseBoolean(tokens[6]);
+        studentlist.add(new International(profile, major, credits, isStudyAbroad));
+        String typeLabel = isStudyAbroad ? "[International study abroad]" : "[International]";
+        System.out.println(profile + typeLabel + " added to the list.");
     }
 
 /** doAddSection addes a section of a course to the schedule
@@ -502,7 +569,7 @@ public class FrontEnd {
         try {
             credits = Integer.parseInt(num);
         } catch (NumberFormatException e) {
-            System.out.println("INVALID: "+ num +" is not a number.");
+            System.out.println("INVALID: "+ num +" is not an integer!");
             return null;
         }
 

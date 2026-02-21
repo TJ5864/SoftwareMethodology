@@ -1,10 +1,11 @@
 package project2;
 
 import util.Date;
+import util.List;
 
 /** Create a resizable list of Student objects, manages students and the class section they are in
  * @author tjt97   */
-public class StudentList {
+public class StudentList extends List<Student> {
     private static final int NOT_FOUND = -1;
     private static final int  CAPACITY = 4;
     private Student[] list;
