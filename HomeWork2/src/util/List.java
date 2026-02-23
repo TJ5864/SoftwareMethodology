@@ -17,8 +17,12 @@ public class List<E> implements Iterable<E> {
  * @param e object we are looking for
  * @return position of e in the list or -1 if not in the list*/
     private int find(E e){
+        if (e == null) {
+            return NOT_FOUND;
+        }
+
         for(int i = 0; i<size; i++){
-            if(objects[i].equals(e)){
+            if(objects[i] != null && objects[i].equals(e)){
                 return i;
             }
         }
@@ -55,9 +59,11 @@ public class List<E> implements Iterable<E> {
             return;
         }
 
-        int lastObjectIdx = size - 1;
-        objects[targetIndex] = objects[lastObjectIdx];
-        objects[lastObjectIdx] = null;
+        for (int i = targetIndex; i < size - 1; i++) {
+            objects[i] = objects[i+1];
+        }
+
+        objects[size - 1] = null;
         size--;
     }
 
@@ -111,8 +117,7 @@ public class List<E> implements Iterable<E> {
         }
 
         @Override
-        public E next() {
-            return objects[current++];
+        public E next(){ return objects[current++];
         }
     }
 

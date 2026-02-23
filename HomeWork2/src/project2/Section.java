@@ -13,11 +13,9 @@ public class Section {
     private Instructor instructor; // done
     private Classroom classroom; // done
     private Time time; //can use other data types // done
-    private Student[] roster; // not complete
-    private int numStudents;  // not complete
+    private StudentList roster;
 
     private static final int MAX_CAPACITY = 4;
-    private static final int EMPTY = 0;
 
 
 
@@ -33,8 +31,7 @@ public class Section {
         this.instructor = instructor;
         this.classroom = classroom;
         this.time = time;
-        this.roster = new Student[MAX_CAPACITY];
-        this.numStudents = 0;
+        this.roster = new StudentList();
     }
 
     /**
@@ -74,7 +71,7 @@ public class Section {
      * @return numStudents int of number of students enrolled in this section
      */
     public int getNumStudents(){
-        return numStudents;
+        return roster.size();
     }
 
     /**
@@ -83,50 +80,25 @@ public class Section {
      */
     public void enroll(Student student) {
         if (isFull()) {
-            //System.out.println("Section capacity is full. Cancelling Operation...");
+           return;
         }
-        else if (numStudents == 0) {
-            roster[0] = student;
-            numStudents = numStudents + 1;
-            //System.out.println(numStudents);
+        if (roster.contains(student)){
+            return;
         }
-        else if (contains(student)) {
-            //System.out.println("Student already enrolled in this section. Cancelling Operation...");
-        }
-        else {
-            for (int i = 0; i < MAX_CAPACITY; i ++) {
-                if(roster[i] == null) {
-                    roster[i] = student;
-                    numStudents = numStudents + 1;
-                    //System.out.println((numStudents));
-                    //System.out.println("Student successfully enrolled to this section.");
-                    break;
-                }
-            }
-        }
-    } //add student to roster
+        roster.add(student);
+    }
 
     /**
      * unenroll a student from a section, checking to see if roster is empty or if student is enrolled to section prior.
      * @param student Object containing information about student such as name and major
      */
     public void drop(Student student) {
-        if (numStudents == 0) {
-            //System.out.println("Section roster is empty. Cancelling Operation...");
+        if (roster.isEmpty()) {
+            return;
         }
-        else if (!(contains(student))) {
-            //System.out.println("Student not found in roster. Cancelling Operation....");
-        }
-        else {
-            for (int i = 0; i < MAX_CAPACITY; i++) {
-                if (roster[i] != null && roster[i].equals(student)) {
-                    roster[i] = null;
-                    numStudents = numStudents - 1;
-                    //System.out.println("Student successfully dropped from section.");
-                }
-            }
-        }
-        }
+
+        roster.remove(student);
+    }
 
 
     /**
@@ -135,13 +107,7 @@ public class Section {
      * @return true if a student is registered to a section, else false
      */
     public boolean contains(Student student) {
-
-        for (int i = 0; i < numStudents; i++) {
-            if (roster[i]!= null && roster[i].equals(student)) {
-                return true; //loop will terminate if the student is found.
-            }
-        }
-        return false; //if it goes through  the entire array and doesn't find the student, it will just return false
+        return roster.contains(student);
     }
 
     /**
@@ -149,12 +115,12 @@ public class Section {
      * @return True if  the number of students is equal to the max capacity (i.e. 4) or False if numStudents less than MAXCAPACITY
      */
     public boolean isFull() {
-        return numStudents == MAX_CAPACITY; //will return True of the number of students is equal to the max capacity (i.e. 4 Students)
+        return roster.size() == MAX_CAPACITY; //will return True of the number of students is equal to the max capacity (i.e. 4 Students)
     }
     /** Check to see if section is Empty
      * @return True if there are 0 students in the class, False if otherwise*/
     public boolean isEmpty(){
-        return numStudents == EMPTY;
+        return roster.isEmpty();
     }
 
     /**
@@ -204,8 +170,9 @@ public class Section {
             return;
         }
         System.out.println("\t**Roster**");
-        for (int i = 0; i < numStudents; i++) {
-            System.out.println("\t" + roster[i].getProfile());
+
+        for (int i = 0; i < roster.size(); i++) {
+            System.out.println("\t" + roster.get(i).getProfile());
         }
 
 

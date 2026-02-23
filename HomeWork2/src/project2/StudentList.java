@@ -2,40 +2,11 @@ package project2;
 
 import util.Date;
 import util.List;
+import util.Sort;
 
 /** Create a resizable list of Student objects, manages students and the class section they are in
  * @author tjt97   */
 public class StudentList extends List<Student> {
-
-
-
-    /**Sorts the student for the printing method
-     * sorts students in Alphabetical order, uses CompareTo function*/
-    private void sortStudent(){
-        for(int i = 0; i < size(); i++){
-            int min = i;
-
-            for(int j = i+1; j < size(); j++){
-                if(get(j).compareTo(get(min)) < 0){
-                    min = j;
-                } else if(get(j).compareTo(get(min)) == 0) {
-                    Date minAge = get(min).getProfile().getDob();
-                    Date jAge = get(j).getProfile().getDob();
-
-                    if(jAge.compareTo(minAge) < 0) {
-                        min = j;
-                    }
-                }
-            }
-            Student temp = get(i);
-            set(i, get(min));
-            set(min, temp);
-        }
-    }
-
-
-
-
 
     /** Print out the student name lastname/firstname , then dob
      * */
@@ -45,13 +16,17 @@ public class StudentList extends List<Student> {
             return;
         }
 
-        sortStudent();
+        Sort.sortStudents(this);
+
         System.out.println("* Student list ordered by last, first name, DOB *");
-        for(int i = 0; i < size(); i++){
+        printStudents();
+        System.out.println("* end of list **");
+    }
+
+    public void printStudents() {
+        for (int i = 0; i < size(); i++) {
             System.out.println(get(i));
         }
-        System.out.println("* end of list **");
-
     }
 
 

@@ -1,6 +1,7 @@
 package project2;
 
 import util.List;
+import util.Sort;
 
 /** Schedule class created a schedule of all the sections for each course
  * @author mss444
@@ -148,31 +149,7 @@ public class Schedule extends List<Section> {
             return;
         }
 
-        for (int i = 1; i < size(); i++) {
-            Section key = get(i);
-            String keyCampus = key.getClassroom().getCampus();
-            String keyBuilding = key.getClassroom().getBuilding();
-
-            int j = i - 1;
-
-            while (j >= 0) {
-                String campusJ = get(j).getClassroom().getCampus();
-                String buildingJ = get(j).getClassroom().getBuilding();
-
-                int campusCompare = campusJ.compareToIgnoreCase(keyCampus);
-
-                boolean shouldShift =
-                        (campusCompare > 0) ||
-                        (campusCompare == 0 && buildingJ.compareToIgnoreCase(keyBuilding) > 0);
-
-                if (!shouldShift) break;
-
-                set(j + 1, get(j));
-                j--;
-            }
-
-            set(j + 1, key);
-        }
+        Sort.sortByClassroom(this);
 
         System.out.println("* List of sections ordered by campus, building *");
         printSchedule();
@@ -188,29 +165,7 @@ public class Schedule extends List<Section> {
             return;
         }
 
-        for (int i = 1; i < size(); i++) {
-            Section key = get(i);
-            String keyCourseNum = key.getCourse().getCourseNum();
-            int keyPeriod = key.getTime().getPeriodNum();
-
-            int j = i - 1;
-
-            while (j >= 0) {
-                String courseNumJ = get(j).getCourse().getCourseNum();
-                int periodJ = get(j).getTime().getPeriodNum();
-
-                int courseCompare = courseNumJ.compareToIgnoreCase(keyCourseNum);
-
-                boolean shouldShift = (courseCompare > 0) || (courseCompare == 0 && periodJ > keyPeriod);
-
-                if (!shouldShift) break;
-
-                set(j + 1, get(j));
-                j--;
-            }
-
-            set(j + 1, key);
-        }
+        Sort.sortByCourse(this);
 
         System.out.println("* List of sections ordered by course number, section time *");
         printSchedule();
