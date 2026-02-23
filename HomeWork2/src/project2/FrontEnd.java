@@ -98,7 +98,7 @@ public class FrontEnd {
         try {
             amount = Integer.parseInt(tokens[4]);
         } catch (NumberFormatException e) {
-            System.out.println("INVALID: " + tokens[4] + " is not a valid amount.");
+            System.out.println("INVALID: amount is not an integer.");
             return;
         }
         Date dob = checkDate(inputDate);
@@ -110,19 +110,19 @@ public class FrontEnd {
             return;
         }
         if (!(student instanceof Resident)) {
-            System.out.println("[" + fname + " " + lname + " " + inputDate + "] is not a resident student.");
+            System.out.println("[" + fname + " " + lname + " " + inputDate + "] is a non-resident not eligible for the scholarship.");
             return;
         }
         if (schedule.getTotalCredits(student) < 12) {
-            System.out.println("[" + fname + " " + lname + " " + inputDate + "] is a part-time student.");
+            System.out.println("[" + fname + " " + lname + " " + inputDate + "] enrolled less than 12 credits, not eligible for the scholarship.");
             return;
         }
         if (amount <= 0 || amount > 10000) {
-            System.out.println(amount + " is not a valid scholarship amount.");
+            System.out.println("INVALID: scholarship amount cannot be 0 or negative or greater than $10,000.");
             return;
         }
         ((Resident) student).setScholarship(amount);
-        System.out.println("[" + fname + " " + lname + " " + inputDate + "] scholarship amount set to " + amount);
+        System.out.println("Scholarship $" + String.format("%,d", amount) + " updated for [" + fname + " " + lname + " " + inputDate + "]");
     }
 
     /** Add a Resident student to the student list
@@ -240,12 +240,12 @@ public class FrontEnd {
        }
        Classroom classroom = findClassroom(roomNum);
        if(classroom == null) {
-           System.out.println("INVALID: classroom " + roomNum + " does not exist.");
+           System.out.println("INVALID: location " + roomNum + " does not exist.");
            return;
        }
        Instructor instructor = findInstructor(inputInstructor);
        if (instructor == null) {
-           System.out.println("INVALID: instructor " + inputInstructor + " does not exist.");
+           System.out.println("INVALID: faculty " + inputInstructor + " does not exist.");
            return;
        }
 

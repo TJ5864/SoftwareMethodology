@@ -6,105 +6,36 @@ import util.List;
 /** Create a resizable list of Student objects, manages students and the class section they are in
  * @author tjt97   */
 public class StudentList extends List<Student> {
-    private static final int NOT_FOUND = -1;
-    private static final int  CAPACITY = 4;
-    private Student[] list;
-    private int size;
 
-    /** Create an student list of the current size*/
-    public StudentList(){
-        list = new Student[CAPACITY];
-        size = 0;
-    }
-    /** Find the index of the student in the list
-     * @param student the student we are looking for
-     * @return index or NOT_FOUND*/
-    private int find(Student student){
-        for(int i = 0; i < size; i++){
-            if(list[i].equals(student)){
-                return i;
-            }
-        }
-        return NOT_FOUND;
 
-    }
-    /** Increase the array capacity by 4*/
-    private void  grow(){
-        Student[] newList = new Student[list.length + CAPACITY];
-
-        for(int i = 0; i < size; i++){
-            newList[i] = list[i];
-        }
-        list = newList;
-    }
 
     /**Sorts the student for the printing method
      * sorts students in Alphabetical order, uses CompareTo function*/
     private void sortStudent(){
-        for(int i = 0; i<size; i++){
+        for(int i = 0; i < size(); i++){
             int min = i;
 
-            for(int j = i+1; j < size; j++){
-                if(list[j].compareTo(list[min])<0){
+            for(int j = i+1; j < size(); j++){
+                if(get(j).compareTo(get(min)) < 0){
                     min = j;
-                }
-                else if(list[j].compareTo(list[min]) == 0 ) {
-                    Date minAge = list[min].getProfile().getDob();
-                    Date jAge = list[j].getProfile().getDob();
+                } else if(get(j).compareTo(get(min)) == 0) {
+                    Date minAge = get(min).getProfile().getDob();
+                    Date jAge = get(j).getProfile().getDob();
 
                     if(jAge.compareTo(minAge) < 0) {
                         min = j;
                     }
                 }
             }
-            Student temp = list[i];
-            list[i] = list[min];
-            list[min] = temp;
+            Student temp = get(i);
+            set(i, get(min));
+            set(min, temp);
         }
-
     }
 
-    /** Add student to the end of the list
-     * @param student the student we are adding*/
-    public void add(Student student){
-        if (size == list.length){
-            grow();
-        }
-        list[size] = student;
-        size++;
 
-    }
 
-    /** Remove the last student in the list
-     * replaces with last element
-     * @param student student we are removing*/
-    public void remove(Student student){
-        int index = find(student);
-        if(index == NOT_FOUND){
-            return;
-        }
-        list[index] = list[size-1];
-        list[size-1] = null;
-        size--;
 
-    }
-
-    /**
-     * check if student is in the list
-     * @param student student we are looking for
-     * @return true if student in list false if otherwise*/
-    public boolean contains(Student student){
-        return find(student) != NOT_FOUND;
-    }
-
-    public boolean isEmpty() {
-        for (int i = 0; i < size; i++) {
-            if (list[i] != null) {
-                return false;
-            }
-        }
-        return true;
-    }
 
     /** Print out the student name lastname/firstname , then dob
      * */
@@ -116,8 +47,8 @@ public class StudentList extends List<Student> {
 
         sortStudent();
         System.out.println("* Student list ordered by last, first name, DOB *");
-        for(int i= 0; i< size; i++){
-            System.out.println(list[i]);
+        for(int i = 0; i < size(); i++){
+            System.out.println(get(i));
         }
         System.out.println("* end of list **");
 
@@ -128,9 +59,9 @@ public class StudentList extends List<Student> {
  * @param  p profile we are looking for
  * @return Student the student object with matching profile*/
     public Student getStudent(Profile p){
-        for(int i = 0; i < size; i++){
-            if(list[i].getProfile().equals(p)){
-                return list[i];
+        for(int i = 0; i < size(); i++){
+            if(get(i).getProfile().equals(p)){
+                return get(i);
             }
         }
         return null;
