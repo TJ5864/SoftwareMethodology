@@ -1,6 +1,7 @@
 package project2;
 import util.Date;
 
+import java.io.File;
 import java.util.Scanner;
 import java.util.Calendar;
 /** Connects all classes through the front end, takes in commands and information related to students, from here
@@ -65,6 +66,9 @@ public class FrontEnd {
                 case "D":
                     doDrop(tokens);
                     break;
+                case "L":
+                    doReadList(tokens);
+                    break;
                 case "PS":
                     studentlist.print();
                     break;
@@ -87,6 +91,41 @@ public class FrontEnd {
 
         }
     }
+
+
+    private void doReadList(String [] tokens) {
+        java.io.File file = new java.io.File("students.txt");
+        try {
+            Scanner fileScanner = new Scanner(file);
+            while (fileScanner.hasNext()) {
+                String line = fileScanner.nextLine().trim();
+                if (line.isEmpty()) continue;
+                String[] parts = line.split("\\s+");
+                switch (parts[0]) {
+                    case "R":
+                        doAddResident(parts);
+                        break;
+                    case "N":
+                        doAddNonResident(parts);
+                        break;
+                    case "T":
+                        doAddTriState(parts);
+                        break;
+                    case "I":
+                        doAddInternational(parts);
+                        break;
+                    default:
+                        System.out.println(parts[0] + " is an invalid command!");
+                }
+            }
+            fileScanner.close();
+
+        } catch (java.io.FileNotFoundException e) {
+            System.out.println("students.txt not found.");
+        }
+    }
+
+
 
     /** Set scholarship for a full-time resident student
      * @param tokens input containing fname, lname, dob, and scholarship amount */
