@@ -185,4 +185,5 @@ public class Schedule extends List<Section> {
         }
         return result;
     }
+
 }

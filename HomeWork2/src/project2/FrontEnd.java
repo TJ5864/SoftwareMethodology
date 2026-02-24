@@ -79,9 +79,7 @@ public class FrontEnd {
                     schedule.printByCourse();
                     break;
                 case "PT":
-
-
-
+                    studentlist.printTuition(schedule);
                     break;
                 case "PG":
                     studentlist.printGraduatingStudents();
