@@ -43,4 +43,24 @@ public class StudentList extends List<Student> {
 
     }
 
+    public void printGraduatingStudents() {
+        StudentList graduatingStudents = new StudentList();
+
+        for (int i = 0; i < size(); i++) {
+            if (get(i).getCreditCompleted() > 120){
+                graduatingStudents.add(get(i));
+            }
+        }
+
+        if (graduatingStudents.isEmpty()){
+            System.out.println("Schedule is empty!");
+            return;
+        }
+
+        Sort.sortByMajor(graduatingStudents);
+        graduatingStudents.printStudents();
+
+
+    }
+
 }

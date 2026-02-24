@@ -78,6 +78,12 @@ public class FrontEnd {
                 case "PC":
                     schedule.printByCourse();
                     break;
+                case "PT":
+
+                    break;
+                case "PG":
+                    studentlist.printGraduatingStudents();
+                    break;
                 case "S":
                     doSetScholarship(tokens);
                     break;

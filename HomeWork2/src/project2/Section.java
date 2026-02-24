@@ -182,57 +182,57 @@ public class Section {
      * main method testing functionality of methods
      * @param args
      */
-    public static void main(String[] args) {
-        Classroom classroom1 = Classroom.HIL114;
-        //System.out.println(classroom1.getClassroomNum());
-        Instructor instructor1 = Instructor.LIM;
-//        System.out.println(instructor1.getName());
-//        System.out.println(instructor1.checkAvailability(1));
-//        instructor1.fillAvailability(1);
-//        instructor1.fillAvailability(1);
-//        System.out.println(instructor1.checkAvailability(1));
-//        instructor1.freeAvailability(1);
-//        instructor1.freeAvailability(1);
-//        System.out.println(instructor1.checkAvailability(1));
-        Course course1 = Course.CS200;
-//        System.out.println(course1.getCourseNum() + course1.getCreditHours() + course1.getStanding() + course1.getMajor());
-        Time time1 = Time.PERIOD1;
-//        System.out.println(time1.getHour() + ":" + time1.getMinute() + " " + time1.getMeridiem() );
-
-
-        Date dob1 = new Date(12, 7, 2003);
-        Profile profile1 = new Profile("Mostafa", "Shalan", dob1);
-//        System.out.println(profile1.toString());
-        Major major1 = Major.CS;
-//        System.out.println(major1.toString());
-        Student student1 = new Student(profile1, major1, 114);
-
-
-
-        Section section1 = new Section(course1, instructor1,classroom1,time1);
-//        section1.print();
-
-
-        Course course2 = Course.CS200;
-        Instructor instructor2 = Instructor.PATEL;
-        Classroom classroom2 = Classroom.ARC103;
-        Time time2 = Time.PERIOD1;
-
-        Section section2 = new Section(course2, instructor2, classroom2, time2);
-//        section2.print();
-
-//        System.out.println(section1.equals(section1)); // should return true because it is itself
-//        System.out.println(section1.equals(course2)); // should return false because not instance of section object
-//        System.out.println(section1.equals(section2)); // should return true because courseNum and periodId are same
-
-        section1.enroll(student1);
-//        System.out.println(section1.isFull());
-//        for (int i = 0; i < 4; i++) {
-//            System.out.println(section1.roster[i]);
-//        }
-        section1.enroll(student1); // should prohibit from allowing student to enroll to the same section
-        System.out.println(section1.contains(student1));
-
-
-    }
+//    public static void main(String[] args) {
+//        Classroom classroom1 = Classroom.HIL114;
+//        //System.out.println(classroom1.getClassroomNum());
+//        Instructor instructor1 = Instructor.LIM;
+////        System.out.println(instructor1.getName());
+////        System.out.println(instructor1.checkAvailability(1));
+////        instructor1.fillAvailability(1);
+////        instructor1.fillAvailability(1);
+////        System.out.println(instructor1.checkAvailability(1));
+////        instructor1.freeAvailability(1);
+////        instructor1.freeAvailability(1);
+////        System.out.println(instructor1.checkAvailability(1));
+//        Course course1 = Course.CS200;
+////        System.out.println(course1.getCourseNum() + course1.getCreditHours() + course1.getStanding() + course1.getMajor());
+//        Time time1 = Time.PERIOD1;
+////        System.out.println(time1.getHour() + ":" + time1.getMinute() + " " + time1.getMeridiem() );
+//
+//
+//        Date dob1 = new Date(12, 7, 2003);
+//        Profile profile1 = new Profile("Mostafa", "Shalan", dob1);
+////        System.out.println(profile1.toString());
+//        Major major1 = Major.CS;
+////        System.out.println(major1.toString());
+//        Student student1 = new Student(profile1, major1, 114);
+//
+//
+//
+//        Section section1 = new Section(course1, instructor1,classroom1,time1);
+////        section1.print();
+//
+//
+//        Course course2 = Course.CS200;
+//        Instructor instructor2 = Instructor.PATEL;
+//        Classroom classroom2 = Classroom.ARC103;
+//        Time time2 = Time.PERIOD1;
+//
+//        Section section2 = new Section(course2, instructor2, classroom2, time2);
+////        section2.print();
+//
+////        System.out.println(section1.equals(section1)); // should return true because it is itself
+////        System.out.println(section1.equals(course2)); // should return false because not instance of section object
+////        System.out.println(section1.equals(section2)); // should return true because courseNum and periodId are same
+//
+//        section1.enroll(student1);
+////        System.out.println(section1.isFull());
+////        for (int i = 0; i < 4; i++) {
+////            System.out.println(section1.roster[i]);
+////        }
+//        section1.enroll(student1); // should prohibit from allowing student to enroll to the same section
+//        System.out.println(section1.contains(student1));
+//
+//
+//    }
 }
