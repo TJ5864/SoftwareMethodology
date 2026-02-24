@@ -80,6 +80,8 @@ public class FrontEnd {
                     break;
                 case "PT":
 
+
+
                     break;
                 case "PG":
                     studentlist.printGraduatingStudents();

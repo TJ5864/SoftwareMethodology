@@ -388,7 +388,7 @@ INVALID: PHY200 15:50 does not exist.
 [Paul Siegel 5/1/2000] added to HST 15:50
 [Paul Siegel 5/1/2000] added to CS100 12:10
 [Kate Lindsey 7/15/2002] added to PHY100 10:20
-[Carl Brown 10/7/2004] dropped from HST 15:50
+[Carl Brown 10/7/2004] is not enrolled in this section.
 [Kate Lindsey 7/15/2002] added to HST 15:50
 [Kate Lindsey 7/15/2002] added to CS100 8:30
 [May Liang 6/30/2004] added to CCD 17:40
@@ -470,7 +470,7 @@ International student study abroad cannot enroll more than 12 credits.
 [May Liang 6/30/2004][International study abroad]
 		CS100[8:30] [credit: 4]
 		CCD[17:40] [credit: 4]
-		**Total credits enrolled: 8 [tuition due: $4,391.00]
+		**Total credits enrolled: 8 [tuition due: $7,041.00]
 [Nathan Lin 12/12/2003][International]
 		CS200[15:50] [credit: 4]
 		CS442[8:30] [credit: 3]

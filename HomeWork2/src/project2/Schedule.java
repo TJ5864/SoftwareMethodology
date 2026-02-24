@@ -171,4 +171,18 @@ public class Schedule extends List<Section> {
         printSchedule();
         System.out.println("* end of list *");
     }
+
+/** getSectionFor method returns a List of all the sections a student is in. This is a
+ * helper method for the PT command
+ * @param student student who we are looking for in the sections
+ * @return result a list of sections the student is in. */
+    public List<Section> getSectionsFor(Student student){
+        List<Section> result= new List<Section>();
+        for(int i = 0; i < size(); i++){
+            if(get(i).contains(student)){
+                result.add(get(i));
+            }
+        }
+        return result;
+    }
 }
