@@ -27,4 +27,9 @@ public class NonResident extends Student {
             return FULL_TIME_TUITION + FULL_TIME_UNIVERSITY_FEE;
         }
     }
+
+//    @Override
+//    public String toString() {
+//       return super.toString() + " [non-resident]";
+//    }
 }

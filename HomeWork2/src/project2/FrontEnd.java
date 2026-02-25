@@ -100,7 +100,7 @@ public class FrontEnd {
 
 
     private void doReadList(String [] tokens) {
-        java.io.File file = new java.io.File("students.txt");
+        java.io.File file = new java.io.File("../../Output:TestCases/students.txt");
         try {
             Scanner fileScanner = new Scanner(file);
             while (fileScanner.hasNext()) {
@@ -124,6 +124,7 @@ public class FrontEnd {
                         System.out.println(parts[0] + " is an invalid command!");
                 }
             }
+            System.out.println("student list loaded from the text file.");
             fileScanner.close();
 
         } catch (java.io.FileNotFoundException e) {
@@ -187,7 +188,7 @@ public class FrontEnd {
         Integer credits = checkCredit(tokens[5]);
         if (credits == null) return;
         studentlist.add(new Resident(profile, major, credits));
-        System.out.println(profile + "[Resident] added to the list.");
+        System.out.println(profile + " [Resident] added to the list.");
     }
 
     /** Add a NonResident student to the student list
@@ -207,7 +208,7 @@ public class FrontEnd {
         Integer credits = checkCredit(tokens[5]);
         if (credits == null) return;
         studentlist.add(new NonResident(profile, major, credits));
-        System.out.println(profile + "[Noresident] added to the list.");
+        System.out.println(profile + " [Noresident] added to the list.");
     }
 
     /** Add a TriState student to the student list
@@ -232,7 +233,7 @@ public class FrontEnd {
             return;
         }
         studentlist.add(new TriState(profile, major, credits, state));
-        System.out.println(profile + "[Tristate: " + state + "] added to the list.");
+        System.out.println(profile + " [Tristate: " + state + "] added to the list.");
     }
 
     /** Add an International student to the student list
@@ -253,7 +254,7 @@ public class FrontEnd {
         if (credits == null) return;
         boolean isStudyAbroad = Boolean.parseBoolean(tokens[6]);
         studentlist.add(new International(profile, major, credits, isStudyAbroad));
-        String typeLabel = isStudyAbroad ? "[International study abroad]" : "[International]";
+        String typeLabel = isStudyAbroad ? " [International study abroad]" : " [International]";
         System.out.println(profile + typeLabel + " added to the list.");
     }
 
@@ -618,7 +619,7 @@ public class FrontEnd {
             return null;
         }
 
-        if (credits <= 0) {
+        if (credits < 0) {
             System.out.println("INVALID: "+ num + " credit is negative!");
             return null;
         }
