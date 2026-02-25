@@ -28,8 +28,8 @@ public class NonResident extends Student {
         }
     }
 
-//    @Override
-//    public String toString() {
-//       return super.toString() + " [non-resident]";
-//    }
+    @Override
+    protected String getStatusLabel() {
+        return "non-resident";
+    }
 }

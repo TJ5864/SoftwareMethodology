@@ -27,12 +27,20 @@ public class International extends NonResident{
         return isStudyAbroad;
     }
 
-    @Override
-    public String toString() {
-        if (isStudyAbroad) {
-            return super.toString() + " [international:study abroad]";
-        }
 
-        return super.toString() + " [international]";
+    @Override
+    protected String getStatusLabel() {
+        if (isStudyAbroad) {
+            return "international:study abroad";
+        }
+        return "international";
     }
+//    @Override
+//    public String toString() {
+//        if (isStudyAbroad) {
+//            return super.toString() + " [international:study abroad]";
+//        }
+//
+//        return super.toString() + " [international]";
+//    }
 }
