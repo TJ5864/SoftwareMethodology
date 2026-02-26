@@ -189,7 +189,7 @@ public class FrontEnd {
         Integer credits = checkCredit(tokens[5]);
         if (credits == null) return;
         studentlist.add(new Resident(profile, major, credits));
-        System.out.println(profile + " [Resident] added to the list.");
+        System.out.println(profile + "[Resident] added to the list.");
     }
 
     /** Add a NonResident student to the student list
@@ -209,7 +209,7 @@ public class FrontEnd {
         Integer credits = checkCredit(tokens[5]);
         if (credits == null) return;
         studentlist.add(new NonResident(profile, major, credits));
-        System.out.println(profile + " [Noresident] added to the list.");
+        System.out.println(profile + "[Noresident] added to the list.");
     }
 
     /** Add a TriState student to the student list
@@ -234,7 +234,7 @@ public class FrontEnd {
             return;
         }
         studentlist.add(new TriState(profile, major, credits, state));
-        System.out.println(profile + " [Tristate: " + state + "] added to the list.");
+        System.out.println(profile + "[Tristate: " + state + "] added to the list.");
     }
 
     /** Add an International student to the student list
@@ -255,7 +255,7 @@ public class FrontEnd {
         if (credits == null) return;
         boolean isStudyAbroad = Boolean.parseBoolean(tokens[6]);
         studentlist.add(new International(profile, major, credits, isStudyAbroad));
-        String typeLabel = isStudyAbroad ? " [International study abroad]" : " [International]";
+        String typeLabel = isStudyAbroad ? "[International study abroad]" : "[International]";
         System.out.println(profile + typeLabel + " added to the list.");
     }
 
@@ -397,8 +397,8 @@ public class FrontEnd {
         }
         int currentCredits = schedule.getTotalCredits(student);
         int newTotal = currentCredits + section.getCourse().getCreditHours();
-        if (newTotal  > 18) {
-            System.out.println("Cannot enroll [" + fname + " "+ lname+ " "+ dob+ "]; now has "+ currentCredits + " will exceed credit limit of 18.");
+        if (newTotal  > 20) {
+            System.out.println("Cannot enroll [" + fname + " "+ lname+ " "+ dob+ "]; now has "+ currentCredits + " will exceed credit limit of 20.");
             return;
         }
         if (student.getStanding().compareTo(course.getStanding()) < 0) {

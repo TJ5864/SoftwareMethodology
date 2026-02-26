@@ -89,7 +89,7 @@ public abstract class Student implements Comparable<Student> {
     public String toString(){
 
         String label = getStatusLabel();
-        String suffix = (label == null || label.isBlank()) ? "" : " [" + label + "]";
+        String suffix = (label == null || label.isBlank()) ? "" : "[" + label + "]";
         return profile + " [" + major + "] credits earned: " + creditCompleted +
                 " [" + getStanding().getStanding() + "]" + suffix;
     }
