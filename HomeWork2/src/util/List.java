@@ -8,6 +8,7 @@ public class List<E> implements Iterable<E> {
     private final int NOT_FOUND = -1;
 
 
+    @SuppressWarnings("unchecked")
     public List() {
         objects = (E[]) new Object[CAPACITY];
         size = 0;

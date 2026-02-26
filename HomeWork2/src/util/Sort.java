@@ -125,5 +125,34 @@ public class Sort {
         }
     }
 
+    public static void sortByMajor(List<Student> list) {
+        if (list == null || list.size() <= 1) {
+            return;
+        }
+
+        for (int i = 1; i < list.size(); i++) {
+            Student key = list.get(i);
+            int j = i -1;
+
+            while (j >= 0) {
+                Student current = list.get(j);
+
+                int majorCompare = current.getMajor().getMajor().compareToIgnoreCase(key.getMajor().getMajor());
+
+                boolean shouldShift = (majorCompare > 0 ) || (majorCompare == 0 && current.compareTo(key) > 0);
+
+                if (!shouldShift) {
+                    break;
+                }
+
+                list.set(j+1, current);
+                j--;
+
+            }
+
+            list.set(j+1, key);
+        }
+    }
+
     private Sort() {}
 }
