@@ -82,7 +82,7 @@ public class FrontEnd {
                     studentlist.printTuition(schedule);
                     break;
                 case "PG":
-                    studentlist.printGraduatingStudents();
+                    studentlist.printGraduatingStudents(schedule);
                     break;
                 case "S":
                     doSetScholarship(tokens);
@@ -397,6 +397,10 @@ public class FrontEnd {
         }
         int currentCredits = schedule.getTotalCredits(student);
         int newTotal = currentCredits + section.getCourse().getCreditHours();
+
+        if (student instanceof International && ((International) student).isStudyAbroad() && newTotal > 12) {
+            System.out.println("International student study abroad cannot enroll more than 12 credits.");
+        }
         if (newTotal  > 20) {
             System.out.println("Cannot enroll [" + fname + " "+ lname+ " "+ dob+ "]; now has "+ currentCredits + " will exceed credit limit of 20.");
             return;

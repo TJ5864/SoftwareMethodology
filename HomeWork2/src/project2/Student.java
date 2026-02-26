@@ -90,13 +90,17 @@ public abstract class Student implements Comparable<Student> {
 
         String label = getStatusLabel();
         String suffix = (label == null || label.isBlank()) ? "" : "[" + label + "]";
+        String scholarshipLabel = getScholarshipLabel();
+        String scholarship = (scholarshipLabel == null || scholarshipLabel.isBlank()) ? "" : " [" + scholarshipLabel + "]";
+
         return profile + " [" + major + "] credits earned: " + creditCompleted +
-                " [" + getStanding().getStanding() + "]" + suffix;
+                " [" + getStanding().getStanding() + "]" + suffix + scholarship;
     }
 
     protected String getStatusLabel() {
         return "";
     }
+    protected String getScholarshipLabel() {return "";}
 
 
 }

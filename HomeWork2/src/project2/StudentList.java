@@ -43,11 +43,11 @@ public class StudentList extends List<Student> {
 
     }
 
-    public void printGraduatingStudents() {
+    public void printGraduatingStudents(Schedule schedule) {
         StudentList graduatingStudents = new StudentList();
 
         for (int i = 0; i < size(); i++) {
-            if (get(i).getCreditCompleted() > 120){
+            if (get(i).getCreditCompleted() + schedule.getTotalCredits(get(i)) >= 120){
                 graduatingStudents.add(get(i));
             }
         }
@@ -57,8 +57,12 @@ public class StudentList extends List<Student> {
             return;
         }
 
-        //Sort.sortByMajor(graduatingStudents);
-        graduatingStudents.printStudents();
+        Sort.sortByMajor(graduatingStudents);
+
+        for( int i = 0; i < graduatingStudents.size(); i++) {
+            Student s = graduatingStudents.get(i);
+            System.out.println(s.getProfile().toString() + "[" + s.getMajor().toString() + "]" );
+        }
 
 
     }

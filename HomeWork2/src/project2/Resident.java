@@ -44,7 +44,19 @@ public class Resident extends Student {
     }
 
     @Override
-    public String toString() {
-        return super.toString() + " [resident]";
+    protected String getStatusLabel() {
+        return "resident";
+    }
+//    @Override
+//    public String toString() {
+//        return super.toString() + "[resident]";
+//    }
+
+    @Override
+    protected String getScholarshipLabel() {
+        if (scholarship == 0) {
+            return "";
+        }
+        return "scholarship: $" + String.format("%,d", scholarship);
     }
 }
