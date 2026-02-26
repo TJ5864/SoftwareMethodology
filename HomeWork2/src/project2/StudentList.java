@@ -57,7 +57,7 @@ public class StudentList extends List<Student> {
             return;
         }
 
-        Sort.sortByMajor(graduatingStudents);
+        //Sort.sortByMajor(graduatingStudents);
         graduatingStudents.printStudents();
 
 

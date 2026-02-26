@@ -10,8 +10,7 @@ import static org.junit.Assert.assertTrue;
  * @author tjt97
  */
 public class DateTest {
-
-    // --- Invalid dates (4 cases) ---
+    // 4 invalid dates
 
     /** February 30 does not exist in any year */
     @Test

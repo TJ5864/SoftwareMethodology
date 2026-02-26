@@ -100,6 +100,7 @@ public class FrontEnd {
 
 
     private void doReadList(String [] tokens) {
+        // Path for our case, not for general use change before submission?
         java.io.File file = new java.io.File("../../Output:TestCases/students.txt");
         try {
             Scanner fileScanner = new Scanner(file);
