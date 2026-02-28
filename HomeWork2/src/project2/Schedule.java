@@ -167,7 +167,7 @@ public class Schedule extends List<Section> {
 
         Sort.sortByCourse(this);
 
-        System.out.println("* List of sections ordered by course number, section time *");
+        System.out.println("* List of sections ordered by course name, section time *");
         printSchedule();
         System.out.println("* end of list *");
     }

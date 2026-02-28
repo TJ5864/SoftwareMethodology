@@ -60,35 +60,36 @@ public class Sort {
     }
 
     /**
-     * Sort sections by campus then building (insertion sort).
+     * Sort sections by campus then building (selection sort).
      */
     public static void sortByClassroom(List<Section> list) {
         if (list == null || list.size() <= 1) return;
 
-        for (int i = 1; i < list.size(); i++) {
-            Section key = list.get(i);
-            String keyCampus = key.getClassroom().getCampus();
-            String keyBuilding = key.getClassroom().getBuilding();
+        for (int i = 0; i < list.size(); i++) {
+            int minIdx = i;
+            String minCampus = list.get(i).getClassroom().getCampus();
+            String minBuilding = list.get(i).getClassroom().getBuilding();
 
-            int j = i - 1;
-
-            while (j >= 0) {
+            for (int j = i + 1; j < list.size(); j++) {
                 String campusJ = list.get(j).getClassroom().getCampus();
                 String buildingJ = list.get(j).getClassroom().getBuilding();
 
-                int campusCompare = campusJ.compareToIgnoreCase(keyCampus);
+                int campusCompare = campusJ.compareToIgnoreCase(minCampus);
 
-                boolean shouldShift =
-                        (campusCompare > 0) ||
-                                (campusCompare == 0 && buildingJ.compareToIgnoreCase(keyBuilding) > 0);
+                boolean isSmaller =
+                        (campusCompare < 0) ||
+                                (campusCompare == 0 && buildingJ.compareToIgnoreCase(minBuilding) < 0);
 
-                if (!shouldShift) break;
-
-                list.set(j + 1, list.get(j));
-                j--;
+                if (isSmaller) {
+                    minIdx = j;
+                    minCampus = campusJ;
+                    minBuilding = buildingJ;
+                }
             }
 
-            list.set(j + 1, key);
+            Section tmp = list.get(i);
+            list.set(i, list.get(minIdx));
+            list.set(minIdx, tmp);
         }
     }
 

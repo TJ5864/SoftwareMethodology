@@ -59,12 +59,12 @@ public class StudentList extends List<Student> {
 
         Sort.sortByMajor(graduatingStudents);
 
+        System.out.println("* List of students eligible for graduation, ordered by major *");
         for( int i = 0; i < graduatingStudents.size(); i++) {
             Student s = graduatingStudents.get(i);
             System.out.println(s.getProfile().toString() + "[" + s.getMajor().toString() + "]" );
         }
-
-
+        System.out.println("* end of list *");
     }
     /** Print tuition report for the PT command, ordered by student profile.
      * Lists each enrolled section then prints the total tuition due.

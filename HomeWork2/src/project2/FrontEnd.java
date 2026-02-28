@@ -22,7 +22,7 @@ public class FrontEnd {
 /** Run the program, take in user input and based on the input command trigger a method*/
     public void run(){
         System.out.println("Registration System is running.");
-
+        System.out.println();
         Scanner scanner = new Scanner(System.in);
 
         while (true){
@@ -400,9 +400,10 @@ public class FrontEnd {
 
         if (student instanceof International && ((International) student).isStudyAbroad() && newTotal > 12) {
             System.out.println("International student study abroad cannot enroll more than 12 credits.");
+            return;
         }
         if (newTotal  > 20) {
-            System.out.println("Cannot enroll [" + fname + " "+ lname+ " "+ dob+ "]; now has "+ currentCredits + " will exceed credit limit of 20.");
+            System.out.println("Cannot enroll [" + fname + " "+ lname+ " "+ dob+ "]; now has "+ currentCredits + " will exceeds credit limit of 20.");
             return;
         }
         if (student.getStanding().compareTo(course.getStanding()) < 0) {
