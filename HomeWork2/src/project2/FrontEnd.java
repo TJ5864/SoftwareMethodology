@@ -100,7 +100,7 @@ public class FrontEnd {
 
 
     private void doReadList(String [] tokens) {
-        java.io.File file = new java.io.File("students.txt");
+        java.io.File file = new java.io.File("../../students.txt");
         try {
             Scanner fileScanner = new Scanner(file);
             while (fileScanner.hasNext()) {
