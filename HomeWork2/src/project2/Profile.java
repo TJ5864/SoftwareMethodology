@@ -12,6 +12,10 @@ public class Profile implements Comparable<Profile>{
 
 
 
+        /** Creates a Profile with the given first name, last name, and date of birth
+         * @param firstName student first name
+         * @param lastName student last name
+         * @param dob student date of birth */
         public Profile(String firstName, String lastName, Date dob){
             this.firstName = firstName;
             this.lastName = lastName;
@@ -19,6 +23,8 @@ public class Profile implements Comparable<Profile>{
 
         }
 
+        /** Returns the date of birth for this profile
+         * @return the date of birth */
         public Date getDob () {
             return dob;
         }

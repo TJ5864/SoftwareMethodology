@@ -23,6 +23,7 @@ public class StudentList extends List<Student> {
         System.out.println("* end of list **");
     }
 
+    /** Prints each student in the list using their toString representation */
     public void printStudents() {
         for (int i = 0; i < size(); i++) {
             System.out.println(get(i));
@@ -43,6 +44,8 @@ public class StudentList extends List<Student> {
 
     }
 
+    /** Prints students who meet the 120-credit graduation requirement, ordered by major
+     * @param schedule the schedule used to calculate total credits enrolled */
     public void printGraduatingStudents(Schedule schedule) {
         StudentList graduatingStudents = new StudentList();
 

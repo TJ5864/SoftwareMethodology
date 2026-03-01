@@ -44,6 +44,8 @@ public abstract class Student implements Comparable<Student> {
         return this.profile.compareTo(student2.profile);
     }
 
+    /** Returns the student profile containing name and date of birth
+     * @return the student profile */
     public Profile getProfile() {
         return profile;
     }
@@ -97,9 +99,13 @@ public abstract class Student implements Comparable<Student> {
                 " [" + getStanding().getStanding() + "]" + suffix + scholarship;
     }
 
+    /** Returns the student type label used in toString, overridden by subclasses
+     * @return status label string such as resident or non-resident */
     protected String getStatusLabel() {
         return "";
     }
+    /** Returns the scholarship label used in toString, overridden by subclasses
+     * @return scholarship label string or empty string if none */
     protected String getScholarshipLabel() {return "";}
 
 

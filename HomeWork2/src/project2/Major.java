@@ -26,6 +26,8 @@ public enum Major {
         return school;
     }
 
+    /** Returns the major abbreviation string
+     * @return the major name such as CS or ECE */
     public String getMajor() {
         return major;
     }

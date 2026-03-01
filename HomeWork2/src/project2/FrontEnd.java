@@ -14,6 +14,7 @@ public class FrontEnd {
     private Schedule schedule;
     private static final int OFFERARGS = 5;
 
+    /** Initializes the FrontEnd with an empty student list and schedule */
     public FrontEnd(){
         studentlist = new StudentList();
         schedule = new Schedule();
@@ -99,6 +100,8 @@ public class FrontEnd {
     }
 
 
+    /** Loads students from students.txt and adds them to the student list
+     * @param tokens the command tokens, only the command itself is used */
     private void doReadList(String [] tokens) {
         java.io.File file = new java.io.File("students.txt");
         try {
@@ -556,11 +559,9 @@ public class FrontEnd {
         System.out.println("["+first+" "+last+" "+date + "] removed from the list.");
     }
 
-    /** Check if the date is valid
-     * check if date is older than 16 years old *
-     * @param dateToken string from input that contains input date
-     */
-
+    /** Checks if the date is a valid calendar date and that the student is at least 16 years old
+     * @param dateToken string from input that contains the date in mm/dd/yyyy format
+     * @return a valid Date object, or null if the date fails any validation check */
     private Date checkDate(String dateToken){
         String[] date = dateToken.split("/");
         int month = Integer.parseInt(date[0]);
@@ -589,10 +590,11 @@ public class FrontEnd {
 
 
     }
-    /** This checks if the profile is already made
+    /** Checks if a profile already exists in the student list
      * @param first first name input
      * @param last last name input
-     * @param  dob checked dob input*/
+     * @param dob checked dob input
+     * @return a new Profile if it does not already exist, or null if the student is already in the list */
     private Profile checkProfile(String first, String last, Date dob){
         Profile profile = new Profile(first, last, dob);
         if (studentlist.getStudent(profile) != null){
@@ -602,8 +604,9 @@ public class FrontEnd {
         return profile;
 
     }
-    /** Check if the input major exists
-     * @param majorT the input major */
+    /** Checks if the input major is a valid Major enum value
+     * @param majorT the input major string
+     * @return the matching Major enum, or null if the major does not exist */
     private Major checkMajor(String majorT){
         try {
             return Major.valueOf(majorT.toUpperCase());
@@ -613,8 +616,9 @@ public class FrontEnd {
         }
 
     }
-    /** Check to make sure the input credit number is valid
-     * @param num input number of credits */
+    /** Checks that the input credit value is a non-negative integer
+     * @param num input number of credits as a string
+     * @return the parsed credit count, or null if the value is invalid */
     private Integer checkCredit(String num){
         int credits;
         try {

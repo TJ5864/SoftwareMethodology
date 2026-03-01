@@ -30,14 +30,20 @@ public class Date implements Comparable<Date> {
         calendar.set(year, month -1, day);
         return calendar;
     }
+    /** Returns the year of this date
+     * @return the year */
     public int getYear(){
         return year;
     }
+    /** Returns the month of this date
+     * @return the month */
     public int getMonth(){
         return month;
     }
+    /** Returns the day of this date
+     * @return the day */
     public int getDay(){
-        return day; 
+        return day;
     }
 
 

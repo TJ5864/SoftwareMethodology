@@ -126,6 +126,8 @@ public class Sort {
         }
     }
 
+    /** Sort students by major name alphabetically, then by profile as a tiebreaker
+     * @param list the list of students to sort */
     public static void sortByMajor(List<Student> list) {
         if (list == null || list.size() <= 1) {
             return;
@@ -155,5 +157,6 @@ public class Sort {
         }
     }
 
+    /** Private constructor to prevent instantiation of this utility class */
     private Sort() {}
 }

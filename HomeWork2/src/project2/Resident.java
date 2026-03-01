@@ -12,6 +12,10 @@ public class Resident extends Student {
     private static final int FULL_TIME_MIN = 12;
     private static final int EXTRA_THRESHOLD = 16;
 
+    /** Creates a Resident student with no scholarship applied
+     * @param profile student profile
+     * @param major student major
+     * @param creditCompleted credits already earned */
     public Resident(Profile profile, Major major, int creditCompleted) {
         super(profile, major, creditCompleted);
         this.scholarship = 0;
@@ -43,6 +47,8 @@ public class Resident extends Student {
 
     }
 
+    /** Returns the resident type label used in toString
+     * @return the string "resident" */
     @Override
     protected String getStatusLabel() {
         return "resident";
@@ -52,6 +58,8 @@ public class Resident extends Student {
 //        return super.toString() + "[resident]";
 //    }
 
+    /** Returns the scholarship label if a scholarship is set, empty string otherwise
+     * @return formatted scholarship string or empty string */
     @Override
     protected String getScholarshipLabel() {
         if (scholarship == 0) {
