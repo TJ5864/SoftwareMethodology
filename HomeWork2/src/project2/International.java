@@ -1,6 +1,7 @@
 package project2;
 
-/** Represents an international non-resident student, subject to admin and health insurance fees */
+/** Represents an international non-resident student, subject to admin and health insurance fees
+ * @author mss444*/
 public class International extends NonResident{
     private boolean isStudyAbroad;
     private static final double ADMIN_FEE = 500;

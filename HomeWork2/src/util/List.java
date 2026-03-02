@@ -2,7 +2,9 @@ package util;
 import java.util.Iterator;
 
 /** Generic resizable array-backed list, does not use ArrayList or Java Collections
- * @param <E> the type of elements stored in this list */
+ * @param <E> the type of elements stored in this list
+ * @author tjt97
+ * @author mss444*/
 public class List<E> implements Iterable<E> {
     private static final int CAPACITY = 4;
     private E[] objects;

@@ -1,6 +1,8 @@
 package project2;
 
-/** Represents a TriState non-resident student from NY or CT, eligible for a tuition discount when full-time */
+/** Represents a TriState non-resident student from NY or CT, eligible for a tuition
+ * discount when full-time
+ * @author mss444*/
 public class TriState extends NonResident{
     private String state;
     private static final double NEW_YORK_TUITION_DISCOUNT = 4000;

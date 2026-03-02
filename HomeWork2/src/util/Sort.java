@@ -7,6 +7,7 @@ import project2.Student;
  * Sorting utility for Project 2.
  * Only static methods that take a List parameter.
  * No printing in this class.
+ * @author mss444
  */
 public class Sort {
 
