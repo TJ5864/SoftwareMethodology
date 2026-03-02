@@ -103,7 +103,7 @@ public class FrontEnd {
     /** Loads students from students.txt and adds them to the student list
      * @param tokens the command tokens, only the command itself is used */
     private void doReadList(String [] tokens) {
-        java.io.File file = new java.io.File("students.txt");
+        java.io.File file = new java.io.File("../../students.txt");
         try {
             Scanner fileScanner = new Scanner(file);
             while (fileScanner.hasNext()) {
