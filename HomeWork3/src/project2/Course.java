@@ -77,14 +77,4 @@ public enum Course {
     }
 
 
-    /**
-     * main method to test out getter methods for functionality.
-     * @param args
-     */
-    public static void main(String[] args) {
-        Course cs100 = Course.CS100;
-        System.out.println(cs100.getCreditHours() + " " + cs100.getCourseNum() + " " + cs100.getMajor() + " " + cs100.getStanding());
-
-
-    }
 }

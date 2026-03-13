@@ -99,12 +99,4 @@ public enum Classroom {
     }
 
 
-    /**
-     * main method for testing
-     * @param args
-     */
-    public static void main(String[] args) {
-        Classroom til232 = Classroom.TIL232;
-        System.out.println(til232.getClassroomNum() + til232.getCampus() + til232.getBuilding());
-    }
 }

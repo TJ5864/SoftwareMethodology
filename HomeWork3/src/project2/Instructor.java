@@ -81,21 +81,6 @@ public enum Instructor{
         }
     }
 
-    /**
-     * Added Testbed main for testing
-     * @param args
-     */
-    public static void main(String[] args) {
-        Instructor patel = Instructor.PATEL;
-        System.out.println(patel.checkAvailability(2));
-        patel.fillAvailability(2);
-        System.out.println(patel.checkAvailability(2));
-        patel.fillAvailability(2);
-        patel.freeAvailability(2);
-        patel.freeAvailability(3);
-        System.out.println(patel.getName());
-
-    }
 
 
 

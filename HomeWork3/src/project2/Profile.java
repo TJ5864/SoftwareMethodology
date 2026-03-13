@@ -81,25 +81,4 @@ public class Profile implements Comparable<Profile>{
         return "[" + firstName + " " + lastName + " "+ dob + "]";
     }
 
-    /** Testbed for profile class
-     * Test Cases shown and described in Table in Test Cases folder
-     * @param args  from command line  */
-    public static void main(String[] args){
-        Profile p1 = new Profile("John", "Doe", new Date(1,1,2000));
-        Profile p2 = new Profile("Jane", "Doe", new Date(1,1,2000));
-        Profile p3 = new Profile("Adam", "Smith", new Date(1,1,2000));
-        Profile p4 = new Profile("John", "Brown", new Date(1,1,2000 ));
-        Profile p5 = new Profile("John", "Doe", new Date(1,1,1999));
-        Profile p6 = new Profile("John", "Doe", new Date(1,1,2001));
-        Profile p7 = new Profile("John", "Doe", new Date(1,1,2000));
-
-        System.out.println("P1 (Jane Doe vs John Doe): " + p2.compareTo(p1)); // negative
-        System.out.println("P2 (Smith vs Doe): " + p3.compareTo(p1));       // positive
-        System.out.println("P3 (Brown vs Doe): " + p4.compareTo(p1));       // negative
-        System.out.println("P4 (Doe vs Brown): " + p1.compareTo(p4));       // positive
-        System.out.println("P5 (older DOB): " + p5.compareTo(p1));          // negative
-        System.out.println("P6 (younger DOB): " + p6.compareTo(p1));        // positive
-        System.out.println("P7 (exact same): " + p1.compareTo(p7));         // expect 0
-
-    }
 }

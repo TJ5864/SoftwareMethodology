@@ -7,26 +7,30 @@ import util.Sort;
  * @author tjt97   */
 public class StudentList extends List<Student> {
 
-    /** Print out the student name lastname/firstname , then dob
-     * */
-    public void print(){
+    /**
+     * Returns the student list sorted by last name, first name, and DOB as a formatted string.
+     * @return String listing all students in order, or a message if the list is empty
+     */
+    public String print(){
         if (isEmpty()) {
-            System.out.println("Student list is empty!");
-            return;
+            return "Student list is empty!";
         }
-
         Sort.sortStudents(this);
-
-        System.out.println("* Student list ordered by last, first name, DOB *");
-        printStudents();
-        System.out.println("* end of list **");
+        return "* Student list ordered by last, first name, DOB *\n" +
+                printStudents() +
+                "* end of list **";
     }
 
-    /** Prints each student in the list using their toString representation */
-    public void printStudents() {
+    /**
+     * Returns each student in the list as a formatted string.
+     * @return String with one student per line using their toString representation
+     */
+    public String printStudents() {
+        StringBuilder sb = new StringBuilder();
         for (int i = 0; i < size(); i++) {
-            System.out.println(get(i));
+            sb.append(get(i)).append("\n");
         }
+        return sb.toString();
     }
 
 
@@ -43,9 +47,12 @@ public class StudentList extends List<Student> {
 
     }
 
-    /** Prints students who meet the 120-credit graduation requirement, ordered by major
-     * @param schedule the schedule used to calculate total credits enrolled */
-    public void printGraduatingStudents(Schedule schedule) {
+    /**
+     * Returns students who meet the 120-credit graduation requirement, ordered by major.
+     * @param schedule the schedule used to calculate total credits enrolled
+     * @return String listing eligible graduating students, or a message if none qualify
+     */
+    public String printGraduatingStudents(Schedule schedule) {
         StudentList graduatingStudents = new StudentList();
 
         for (int i = 0; i < size(); i++) {
@@ -55,53 +62,56 @@ public class StudentList extends List<Student> {
         }
 
         if (graduatingStudents.isEmpty()){
-            System.out.println("Schedule is empty!");
-            return;
+            return "No students eligible for graduation.";
         }
 
         Sort.sortByMajor(graduatingStudents);
 
-        System.out.println("* List of students eligible for graduation, ordered by major *");
-        for( int i = 0; i < graduatingStudents.size(); i++) {
+        StringBuilder sb = new StringBuilder("* List of students eligible for graduation, ordered by major *\n");
+        for (int i = 0; i < graduatingStudents.size(); i++) {
             Student s = graduatingStudents.get(i);
-            System.out.println(s.getProfile().toString() + "[" + s.getMajor().toString() + "]" );
+            sb.append(s.getProfile().toString()).append("[").append(s.getMajor().toString()).append("]\n");
         }
-        System.out.println("* end of list *");
+        sb.append("* end of list *");
+        return sb.toString();
     }
-    /** Print tuition report for the PT command, ordered by student profile.
-     * Lists each enrolled section then prints the total tuition due.
+    /**
+     * Returns a tuition report ordered by student profile.
+     * Lists each enrolled section then the total tuition due.
      * International non-study-abroad students with less than 12 credits receive an error message.
-     * @param schedule the schedule used to look up each students enrolled sections and credits */
-    public void printTuition(Schedule schedule) {
+     * @param schedule the schedule used to look up each student's enrolled sections and credits
+     * @return String containing the full tuition report, or a message if no students exist
+     */
+    public String printTuition(Schedule schedule) {
         if (isEmpty()) {
-            System.out.println("Schedule is empty!");
-            return;
+            return "Student list is empty!";
         }
         Sort.sortStudents(this);
-        System.out.println("* Tuition dues ordered by student. *");
+        StringBuilder sb = new StringBuilder("* Tuition dues ordered by student. *\n");
         for (int i = 0; i < size(); i++) {
             Student s = get(i);
-            System.out.println(s.getProfile() + getTypeLabel(s));
+            sb.append(s.getProfile()).append(getTypeLabel(s)).append("\n");
 
             List<Section> sections = schedule.getSectionsFor(s);
             for (int j = 0; j < sections.size(); j++) {
                 Section sec = sections.get(j);
-                System.out.println("\t\t" + sec.getCourse().getCourseNum() +
-                        "[" + sec.getTime().getTime() + "] [credit: " +
-                        sec.getCourse().getCreditHours() + "]");
+                sb.append("\t\t").append(sec.getCourse().getCourseNum())
+                        .append("[").append(sec.getTime().getTime())
+                        .append("] [credit: ").append(sec.getCourse().getCreditHours()).append("]\n");
             }
             int totalCredits = schedule.getTotalCredits(s);
             if (s instanceof International && !((International) s).isStudyAbroad() && totalCredits < 12) {
-                System.out.println("\t\t**International student must enroll at least 12 credits.");
+                sb.append("\t\t**International student must enroll at least 12 credits.\n");
             } else if (totalCredits == 0) {
-                System.out.println("\t\t**not enrolled.");
+                sb.append("\t\t**not enrolled.\n");
             } else {
                 double tuition = s.tuition(totalCredits);
-                System.out.println("\t\t**Total credits enrolled: " + totalCredits +
-                        " [tuition due: $" + String.format("%,.2f", tuition) + "]");
+                sb.append("\t\t**Total credits enrolled: ").append(totalCredits)
+                        .append(" [tuition due: $").append(String.format("%,.2f", tuition)).append("]\n");
             }
         }
-        System.out.println("* end of list *");
+        sb.append("* end of list *");
+        return sb.toString();
     }
 
     /** Returns the type label string for a student based on their subclass, used in the PT report.

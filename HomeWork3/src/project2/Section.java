@@ -121,12 +121,6 @@ public class Section {
         return roster.isEmpty();
     }
 
-    /**
-     * prints out the data string retrieved from the toString() method
-     */
-    public void print() {
-        System.out.println(toString());
-    }
 
     /**
      * creates string containing info about course num, time, instructor, and c
@@ -160,20 +154,18 @@ public class Section {
     }
 
     /**
-     * method necessary to print the roster out for a section.
+     * Returns the roster as a formatted string for display.
+     * @return String listing all enrolled students, or a message if no students are enrolled
      */
-    public void printRoster() {
+    public String rosterToString() {
         if (isEmpty()) {
-            System.out.println("\t**No students enrolled**");
-            return;
+            return "\t**No students enrolled**\n";
         }
-        System.out.println("\t**Roster**");
-
+        StringBuilder sb = new StringBuilder("\t**Roster**\n");
         for (int i = 0; i < roster.size(); i++) {
-            System.out.println("\t" + roster.get(i).getProfile());
+            sb.append("\t").append(roster.get(i).getProfile()).append("\n");
         }
-
-
+        return sb.toString();
     }
 
     /**

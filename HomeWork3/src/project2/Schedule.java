@@ -54,12 +54,17 @@ public class Schedule extends List<Section> {
         get(sectionIdx).drop(student);
     }
 
-    /** Prints the sections and its roster for the schedule */
-    public void printSchedule() {
+    /**
+     * Returns the sections and their rosters as a formatted string.
+     * @return String containing each section and its enrolled students
+     */
+    public String printSchedule() {
+        StringBuilder sb = new StringBuilder();
         for (int i = 0; i < size(); i++) {
-            get(i).print();
-            get(i).printRoster();
+            sb.append(get(i).toString()).append("\n");
+            sb.append(get(i).rosterToString());
         }
+        return sb.toString();
     }
 
     /**
@@ -141,35 +146,31 @@ public class Schedule extends List<Section> {
     }
 
     /**
-     * prints sections out in order by campus and then building. (Insertion sort)
+     * Returns sections ordered by campus and building as a formatted string.
+     * @return String listing sections sorted by campus and building, or an empty message
      */
-    public void printByClassroom() {
+    public String printByClassroom() {
         if (isEmpty()) {
-            System.out.println("Schedule is empty!");
-            return;
+            return "Schedule is empty!";
         }
-
         Sort.sortByClassroom(this);
-
-        System.out.println("* List of sections ordered by campus, building *");
-        printSchedule();
-        System.out.println("* end of list **");
+        return "* List of sections ordered by campus, building *\n" +
+                printSchedule() +
+                "* end of list **";
     }
 
     /**
-     * prints sections in order of coursenum and then period (also insertion sort)
+     * Returns sections ordered by course name and section time as a formatted string.
+     * @return String listing sections sorted by course and time, or an empty message
      */
-    public void printByCourse() {
+    public String printByCourse() {
         if (isEmpty()) {
-            System.out.println("Schedule is empty!");
-            return;
+            return "Schedule is empty!";
         }
-
         Sort.sortByCourse(this);
-
-        System.out.println("* List of sections ordered by course name, section time *");
-        printSchedule();
-        System.out.println("* end of list *");
+        return "* List of sections ordered by course name, section time *\n" +
+                printSchedule() +
+                "* end of list *";
     }
 
 /** getSectionFor method returns a List of all the sections a student is in. This is a

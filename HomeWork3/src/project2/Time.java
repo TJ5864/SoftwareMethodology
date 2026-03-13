@@ -76,12 +76,4 @@ public enum Time {
     }
 
 
-    /**
-     * main method testing getter methods to ensure that they work.
-     * @param args
-     */
-    public static void main(String[] args) {
-        Time period4 = Time.PERIOD4;
-        System.out.println("Period " + period4.getPeriodNum() +" happens at " + period4.getHour() + ":" + period4.getMinute() + " " + period4.getMeridiem());
-    }
 }
