@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<TabPane xmlns="http://javafx.com/javafx"
+         xmlns:fx="http://javafx.com/fxml"
+         fx:controller="project3.Controller"
+         tabClosingPolicy="UNAVAILABLE">
+
+    <!-- ==================== TAB 1: STUDENTS ==================== -->
+    <Tab text="Students">
+        <VBox spacing="10" style="-fx-padding: 10;">
+
+            <!-- Student Type Selection -->
+            <HBox spacing="10">
+                <Label text="Student Type:"/>
+                <RadioButton text="Resident"    fx:id="rbResident"/>
+                <RadioButton text="Non-Resident" fx:id="rbNonResident"/>
+                <RadioButton text="Tri-State"   fx:id="rbTriState"/>
+                <RadioButton text="International" fx:id="rbInternational"/>
+            </HBox>
+
+            <!-- Input Form -->
+            <GridPane hgap="10" vgap="8">
+                <Label text="First Name:"    GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                <TextField fx:id="tfFirstName" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+                <Label text="Last Name:"     GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                <TextField fx:id="tfLastName"  GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+                <Label text="Date of Birth:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                <TextField fx:id="tfDob"       GridPane.rowIndex="2" GridPane.columnIndex="1"
+                           promptText="mm/dd/yyyy"/>
+
+                <Label text="Credits Completed:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+                <TextField fx:id="tfCredits"     GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+
+                <Label text="Scholarship ($):" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+                <TextField fx:id="tfScholarship"  GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+
+                <!-- TriState only -->
+                <Label text="State (NY/CT):" GridPane.rowIndex="5" GridPane.columnIndex="0"
+                       fx:id="lblState" visible="false"/>
+                <HBox spacing="10"           GridPane.rowIndex="5" GridPane.columnIndex="1"
+                      fx:id="hbState"        visible="false">
+                    <RadioButton text="NY" fx:id="rbNY"/>
+                    <RadioButton text="CT" fx:id="rbCT"/>
+                </HBox>
+
+                <!-- International only -->
+                <Label text="Study Abroad:" GridPane.rowIndex="6" GridPane.columnIndex="0"
+                       fx:id="lblStudyAbroad" visible="false"/>
+                <CheckBox fx:id="cbStudyAbroad" GridPane.rowIndex="6" GridPane.columnIndex="1"
+                          visible="false"/>
+            </GridPane>
+
+            <!-- Major Selection -->
+            <HBox spacing="10">
+                <Label text="Major:"/>
+                <RadioButton text="CS"   fx:id="rbCS"/>
+                <RadioButton text="MATH" fx:id="rbMATH"/>
+                <RadioButton text="EE"   fx:id="rbEE"/>
+                <RadioButton text="ITI"  fx:id="rbITI"/>
+                <RadioButton text="BAIT" fx:id="rbBAIT"/>
+            </HBox>
+
+            <!-- Action Buttons -->
+            <HBox spacing="10">
+                <Button text="Add"            fx:id="btnAdd"         onAction="#handleAdd"/>
+                <Button text="Remove"         fx:id="btnRemove"      onAction="#handleRemove"/>
+                <Button text="Set Scholarship" fx:id="btnScholarship" onAction="#handleSetScholarship"/>
+                <Button text="Load from File" fx:id="btnLoad"        onAction="#handleLoad"/>
+            </HBox>
+
+            <!-- Output Area -->
+            <TextArea fx:id="taStudentOutput" editable="false"
+                      prefHeight="150" wrapText="true"/>
+        </VBox>
+    </Tab>
+
+    <!-- ==================== TAB 2: SCHEDULE ==================== -->
+    <Tab text="Schedule">
+        <VBox spacing="10" style="-fx-padding: 10;">
+
+            <!-- Student Identifier -->
+            <GridPane hgap="10" vgap="8">
+                <Label text="First Name:"    GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                <TextField fx:id="tfSchedFirstName" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+                <Label text="Last Name:"     GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                <TextField fx:id="tfSchedLastName"  GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+                <Label text="Date of Birth:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                <TextField fx:id="tfSchedDob"       GridPane.rowIndex="2" GridPane.columnIndex="1"
+                           promptText="mm/dd/yyyy"/>
+            </GridPane>
+
+            <!-- Course Selection -->
+            <HBox spacing="10">
+                <Label text="Course:"/>
+                <RadioButton text="CS213" fx:id="rbCS213"/>
+                <RadioButton text="CS214" fx:id="rbCS214"/>
+                <RadioButton text="CS336" fx:id="rbCS336"/>
+                <RadioButton text="ITI301" fx:id="rbITI301"/>
+                <RadioButton text="ITI403" fx:id="rbITI403"/>
+                <RadioButton text="EE111" fx:id="rbEE111"/>
+                <RadioButton text="MATH167" fx:id="rbMATH167"/>
+            </HBox>
+
+            <!-- Time Selection -->
+            <HBox spacing="10">
+                <Label text="Time:"/>
+                <RadioButton text="9:00"  fx:id="rbTime9"/>
+                <RadioButton text="10:00" fx:id="rbTime10"/>
+                <RadioButton text="11:00" fx:id="rbTime11"/>
+                <RadioButton text="13:00" fx:id="rbTime13"/>
+                <RadioButton text="14:00" fx:id="rbTime14"/>
+            </HBox>
+
+            <!-- Instructor Selection -->
+            <HBox spacing="10">
+                <Label text="Instructor:"/>
+                <RadioButton text="Menendez" fx:id="rbMenendez"/>
+                <RadioButton text="Venugopal" fx:id="rbVenugopal"/>
+                <RadioButton text="Sesh"     fx:id="rbSesh"/>
+                <RadioButton text="Kaplan"   fx:id="rbKaplan"/>
+                <RadioButton text="Malloy"   fx:id="rbMalloy"/>
+            </HBox>
+
+            <!-- Classroom/Campus Selection -->
+            <HBox spacing="10">
+                <Label text="Classroom:"/>
+                <RadioButton text="AB2225" fx:id="rbAB2225"/>
+                <RadioButton text="ARC103" fx:id="rbARC103"/>
+                <RadioButton text="HLL114" fx:id="rbHLL114"/>
+                <RadioButton text="BE100"  fx:id="rbBE100"/>
+                <RadioButton text="TIL232"  fx:id="rbTIL232"/>
+            </HBox>
+
+            <!-- Action Buttons -->
+            <HBox spacing="10">
+                <Button text="Offer Section"  fx:id="btnOffer"  onAction="#handleOffer"/>
+                <Button text="Close Section"  fx:id="btnClose"  onAction="#handleClose"/>
+                <Button text="Enroll Student" fx:id="btnEnroll" onAction="#handleEnroll"/>
+                <Button text="Drop Student"   fx:id="btnDrop"   onAction="#handleDrop"/>
+            </HBox>
+
+            <!-- Output Area -->
+            <TextArea fx:id="taScheduleOutput" editable="false"
+                      prefHeight="150" wrapText="true"/>
+        </VBox>
+    </Tab>
+
+    <!-- ==================== TAB 3: REPORTS ==================== -->
+    <Tab text="Reports">
+        <VBox spacing="10" style="-fx-padding: 10;">
+
+            <!-- Report Buttons -->
+            <HBox spacing="10">
+                <Button text="Print Students"        onAction="#handlePrintStudents"/>
+                <Button text="Print by Classroom"    onAction="#handlePrintByClassroom"/>
+                <Button text="Print by Course"       onAction="#handlePrintByCourse"/>
+                <Button text="Print Tuition"         onAction="#handlePrintTuition"/>
+                <Button text="Print Graduating"      onAction="#handlePrintGraduating"/>
+            </HBox>
+
+            <!-- Output Area -->
+            <TextArea fx:id="taReportOutput" editable="false"
+                      prefHeight="400" wrapText="true"/>
+        </VBox>
+    </Tab>
+
+</TabPane>
