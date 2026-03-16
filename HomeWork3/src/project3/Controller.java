@@ -5,6 +5,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import project2.*;
+import util.Date;
+import java.util.Calendar;
 
 /**
  * Controller for the Student Registration System GUI.
@@ -26,10 +28,7 @@ public class Controller {
 
     // ==================== STUDENTS TAB — FXML FIELDS ====================
 
-    @FXML private RadioButton rbResident;
-    @FXML private RadioButton rbNonResident;
-    @FXML private RadioButton rbTriState;
-    @FXML private RadioButton rbInternational;
+    @FXML private ComboBox<String> cbStudentType;
 
     @FXML private TextField tfFirstName;
     @FXML private TextField tfLastName;
@@ -47,7 +46,7 @@ public class Controller {
 
     @FXML private RadioButton rbCS;
     @FXML private RadioButton rbMATH;
-    @FXML private RadioButton rbEE;
+    @FXML private RadioButton rbECE;
     @FXML private RadioButton rbITI;
     @FXML private RadioButton rbBAIT;
 
@@ -110,7 +109,68 @@ public class Controller {
      * (state for TriState, study-abroad checkbox for International).
      */
     @FXML
-    public void initialize() {  }
+    public void initialize() {
+
+        //-----------student tab------------
+
+        //major group toggle group
+        majorGroup = new ToggleGroup();
+        rbCS.setToggleGroup(majorGroup);
+        rbMATH.setToggleGroup(majorGroup);
+        rbECE.setToggleGroup(majorGroup);
+        rbITI.setToggleGroup(majorGroup);
+        rbBAIT.setToggleGroup(majorGroup);
+
+        //student type Combo Box
+        cbStudentType.getItems().addAll("Resident", "Tristate", "International");
+
+        //if tristate is selected
+        stateGroup = new ToggleGroup();
+        rbNY.setToggleGroup(stateGroup);
+        rbCT.setToggleGroup(stateGroup);
+
+        // Hide optional fields by default
+        hbState.setVisible(false);
+        lblState.setVisible(false);
+
+        cbStudyAbroad.setVisible(false);
+        lblStudyAbroad.setVisible(false);
+
+        // Listen for student type selection
+        cbStudentType.setOnAction(e -> {
+            String type = cbStudentType.getValue();
+
+            if (type.equals("Tristate")) {
+                hbState.setVisible(true);
+                lblState.setVisible(true);
+
+                cbStudyAbroad.setVisible(false);
+                lblStudyAbroad.setVisible(false);
+            }
+
+            else if (type.equals("International")) {
+                hbState.setVisible(false);
+                lblState.setVisible(false);
+
+                cbStudyAbroad.setVisible(true);
+                lblStudyAbroad.setVisible(true);
+            }
+
+            else { // Resident
+                hbState.setVisible(false);
+                lblState.setVisible(false);
+
+                cbStudyAbroad.setVisible(false);
+                lblStudyAbroad.setVisible(false);
+            }
+        });
+
+
+
+
+
+
+    }
 
     // ==================== STUDENTS TAB HANDLERS ====================
 
@@ -127,7 +187,98 @@ public class Controller {
      * @param e the ActionEvent fired by the Add button
      */
     @FXML
-    private void handleAdd(ActionEvent e) { }
+    private void handleAdd(ActionEvent e) {
+        StringBuilder errors = new StringBuilder();
+        boolean validInput = true;
+
+        String studentType = cbStudentType.getValue();
+        String fname = tfFirstName.getText().trim();
+        String lname = tfLastName.getText().trim();
+        String inputDate = tfDob.getText().trim();
+        String creditText = tfCredits.getText().trim();
+
+        // ---------- INPUT VALIDATION ONLY ----------
+        if (studentType == null) {
+            errors.append("Student type not selected.\n");
+            validInput = false;
+        }
+
+        if (fname.isEmpty() || lname.isEmpty() || inputDate.isEmpty() || creditText.isEmpty()) {
+            errors.append("Missing data tokens.\n");
+            validInput = false;
+        }
+
+        Date dob = null;
+        if (!inputDate.isEmpty()) {
+            dob = checkDate(inputDate, errors);
+            if (dob == null) {
+                validInput = false;
+            }
+        }
+
+        Integer credits = null;
+        if (!creditText.isEmpty()) {
+            credits = checkCredit(creditText, errors);
+            if (credits == null) {
+                validInput = false;
+            }
+        }
+
+        Major major = null;
+        if (rbCS.isSelected()) major = Major.CS;
+        else if (rbMATH.isSelected()) major = Major.MATH;
+        else if (rbECE.isSelected()) major = Major.ECE;
+        else if (rbITI.isSelected()) major = Major.ITI;
+        else if (rbBAIT.isSelected()) major = Major.BAIT;
+        else {
+            errors.append("Major not selected.\n");
+            validInput = false;
+        }
+
+        if ("Tristate".equals(studentType)) {
+            if (!rbNY.isSelected() && !rbCT.isSelected()) {
+                errors.append("State not selected.\n");
+                validInput = false;
+            }
+        }
+
+        // If any input is invalid, show only input errors and stop
+        if (!validInput) {
+            taStudentOutput.setText(errors.toString());
+            return;
+        }
+
+        // ---------- MAIN ADD LOGIC ----------
+        Profile profile = checkProfile(fname, lname, dob, errors);
+        if (profile == null) {
+            taStudentOutput.setText("[" + fname + " " + lname + " " + dob + "] student is already in the list.");
+            return;
+        }
+
+        if ("Resident".equals(studentType)) {
+            studentList.add(new Resident(profile, major, credits));
+            taStudentOutput.setText(profile + " [Resident] added to the list.");
+            return;
+        }
+
+        if ("Tristate".equals(studentType)) {
+            String state = rbNY.isSelected() ? "NY" : "CT";
+            studentList.add(new TriState(profile, major, credits, state));
+            taStudentOutput.setText(profile + " [Tristate: " + state + "] added to the list.");
+            return;
+        }
+
+        if ("International".equals(studentType)) {
+            boolean isStudyAbroad = cbStudyAbroad.isSelected();
+            studentList.add(new International(profile, major, credits, isStudyAbroad));
+
+            if (isStudyAbroad) {
+                taStudentOutput.setText(profile + " [International study abroad] added to the list.");
+            } else {
+                taStudentOutput.setText(profile + " [International] added to the list.");
+            }
+        }
+    }
 
     /**
      * Handles the Remove button.
@@ -139,7 +290,61 @@ public class Controller {
      * @param e the ActionEvent fired by the Remove button
      */
     @FXML
-    private void handleRemove(ActionEvent e) {  }
+    private void handleRemove(ActionEvent e) {
+
+        StringBuilder errors = new StringBuilder();
+        boolean validInput = true;
+
+        String fname = tfFirstName.getText().trim();
+        String lname = tfLastName.getText().trim();
+        String inputDate = tfDob.getText().trim();
+
+        // ---------- INPUT VALIDATION ----------
+        if (fname.isEmpty()) {
+            errors.append("First name missing.\n");
+            validInput = false;
+        }
+
+        if (lname.isEmpty()) {
+            errors.append("Last name missing.\n");
+            validInput = false;
+        }
+
+        Date dob = null;
+        if (inputDate.isEmpty()) {
+            errors.append("Date of birth missing.\n");
+            validInput = false;
+        } else {
+            dob = checkDate(inputDate, errors);
+            if (dob == null) {
+                validInput = false;
+            }
+        }
+
+        // If validation failed → print all errors
+        if (!validInput) {
+            taStudentOutput.setText(errors.toString());
+            return;
+        }
+
+        // ---------- MAIN LOGIC (same as doRemove) ----------
+
+        Profile profile = new Profile(fname, lname, dob);
+        Student student = studentList.getStudent(profile);
+
+        if (student == null) {
+            taStudentOutput.setText(profile.toString() + " is not in the student list.");
+            return;
+        }
+
+        if (schedule.isStudentEnrolled(student)) {
+            taStudentOutput.setText(profile.toString() + " is currently enrolled in a section.");
+            return;
+        }
+
+        studentList.remove(student);
+        taStudentOutput.setText(profile.toString() + " removed from the list.");
+    }
 
     /**
      * Handles the Set Scholarship button.
@@ -275,4 +480,88 @@ public class Controller {
      */
     @FXML
     private void handlePrintGraduating(ActionEvent e) { }
-}
+
+
+    private Date checkDate(String dateToken, StringBuilder errors) {
+        String[] date = dateToken.split("/");
+
+        if (date.length != 3) {
+            errors.append("INVALID: ").append(dateToken)
+                    .append(" is not a valid calendar date!\n");
+            return null;
+        }
+
+        int month, day, year;
+        try {
+            month = Integer.parseInt(date[0]);
+            day = Integer.parseInt(date[1]);
+            year = Integer.parseInt(date[2]);
+        } catch (NumberFormatException e) {
+            errors.append("INVALID: ").append(dateToken)
+                    .append(" is not a valid calendar date!\n");
+            return null;
+        }
+
+        Date dob = new Date(month, day, year);
+
+        if (!dob.isValid()) {
+            errors.append("INVALID: ").append(dob)
+                    .append(" is not a valid calendar date!\n");
+            return null;
+        }
+
+        Calendar dobcalendar = dob.toCalendar();
+        Calendar today = Calendar.getInstance();
+        if (!dobcalendar.before(today)) {
+            errors.append("INVALID: ").append(dob)
+                    .append(" cannot be today or a future day.\n");
+            return null;
+        }
+
+        Calendar sixteen = Calendar.getInstance();
+        sixteen.add(Calendar.YEAR, -16);
+        if (dobcalendar.after(sixteen)) {
+            errors.append("INVALID: ").append(dob)
+                    .append(" younger than 16 years old.\n");
+            return null;
+        }
+
+        return dob;
+    }
+
+    /** Checks if a profile already exists in the student list
+     * @param first first name input
+     * @param last last name input
+     * @param dob checked dob input
+     * @return a new Profile if it does not already exist, or null if the student is already in the list */
+    private Profile checkProfile(String first, String last, Date dob, StringBuilder errors) {
+        Profile profile = new Profile(first, last, dob);
+        if (studentList.getStudent(profile) != null) {
+            errors.append("[").append(first).append(" ").append(last).append(" ").append(dob)
+                    .append("] student is already in the list.\n");
+            return null;
+        }
+        return profile;
+    }
+
+    private Integer checkCredit(String num, StringBuilder errors) {
+        int credits;
+        try {
+            credits = Integer.parseInt(num);
+        } catch (NumberFormatException e) {
+            errors.append("INVALID: ").append(num).append(" is not an integer!\n");
+            return null;
+        }
+
+        if (credits < 0) {
+            errors.append("INVALID: ").append(num).append(" credit is negative!\n");
+            return null;
+        }
+
+        return credits;
+    }
+
+    }
+
+
+
