@@ -357,7 +357,84 @@ public class Controller {
      * @param e the ActionEvent fired by the Set Scholarship button
      */
     @FXML
-    private void handleSetScholarship(ActionEvent e) { }
+    private void handleSetScholarship(ActionEvent e) {
+        StringBuilder errors = new StringBuilder();
+        boolean validInput = true;
+
+        String fname = tfFirstName.getText().trim();
+        String lname = tfLastName.getText().trim();
+        String inputDate = tfDob.getText().trim();
+        String scholarshipText = tfScholarship.getText().trim();
+
+        // ---------- INPUT VALIDATION ----------
+        if (fname.isEmpty()) {
+            errors.append("First name missing.\n");
+            validInput = false;
+        }
+
+        if (lname.isEmpty()) {
+            errors.append("Last name missing.\n");
+            validInput = false;
+        }
+
+        Date dob = null;
+        if (inputDate.isEmpty()) {
+            errors.append("Date of birth missing.\n");
+            validInput = false;
+        } else {
+            dob = checkDate(inputDate, errors);
+            if (dob == null) {
+                validInput = false;
+            }
+        }
+
+        Integer amount = null;
+        if (scholarshipText.isEmpty()) {
+            errors.append("Scholarship amount missing.\n");
+            validInput = false;
+        } else {
+            try {
+                amount = Integer.parseInt(scholarshipText);
+            } catch (NumberFormatException ex) {
+                errors.append("INVALID: amount is not an integer.\n");
+                validInput = false;
+            }
+        }
+
+        // If input validation failed, print all input errors together
+        if (!validInput) {
+            taStudentOutput.setText(errors.toString());
+            return;
+        }
+
+        // ---------- MAIN LOGIC ----------
+        Profile profile = new Profile(fname, lname, dob);
+        Student student = studentList.getStudent(profile);
+
+        if (student == null) {
+            taStudentOutput.setText("[" + fname + " " + lname + " " + inputDate + "] does not exist.");
+            return;
+        }
+
+        if (!(student instanceof Resident)) {
+            taStudentOutput.setText("[" + fname + " " + lname + " " + inputDate + "] is a non-resident not eligible for the scholarship.");
+            return;
+        }
+
+        if (schedule.getTotalCredits(student) < 12) {
+            taStudentOutput.setText("[" + fname + " " + lname + " " + inputDate + "] enrolled less than 12 credits, not eligible for the scholarship.");
+            return;
+        }
+
+        if (amount <= 0 || amount > 10000) {
+            taStudentOutput.setText("INVALID: scholarship amount cannot be 0 or negative or greater than $10,000.");
+            return;
+        }
+
+        ((Resident) student).setScholarship(amount);
+        taStudentOutput.setText("Scholarship $" + String.format("%,d", amount) +
+                " updated for [" + fname + " " + lname + " " + inputDate + "]");
+    }
 
     /**
      * Handles the Load from File button.
