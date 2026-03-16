@@ -7,6 +7,10 @@ import javafx.scene.layout.HBox;
 import project2.*;
 import util.Date;
 import java.util.Calendar;
+import javafx.stage.FileChooser;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
 
 /**
  * Controller for the Student Registration System GUI.
@@ -446,7 +450,44 @@ public class Controller {
      * @param e the ActionEvent fired by the Load from File button
      */
     @FXML
-    private void handleLoad(ActionEvent e) { }
+    private void handleLoad(ActionEvent e) {
+        File file = new File("HomeWork3/students.txt");
+        //System.out.println("this is " + file.getAbsolutePath());
+
+        StringBuilder output = new StringBuilder();
+
+        try (Scanner fileScanner = new Scanner(file)) {
+            while (fileScanner.hasNextLine()) {
+                String line = fileScanner.nextLine().trim();
+                if (line.isEmpty()) continue;
+
+                String[] parts = line.split("\\s+");
+
+                switch (parts[0]) {
+                    case "R":
+                        output.append(addResidentFromFile(parts)).append("\n");
+                        break;
+                    case "N":
+                        output.append(addNonResidentFromFile(parts)).append("\n");
+                        break;
+                    case "T":
+                        output.append(addTriStateFromFile(parts)).append("\n");
+                        break;
+                    case "I":
+                        output.append(addInternationalFromFile(parts)).append("\n");
+                        break;
+                    default:
+                        output.append(parts[0]).append(" is an invalid command!\n");
+                }
+            }
+
+            output.append("student list loaded from the text file.");
+            taStudentOutput.setText(output.toString());
+
+        } catch (FileNotFoundException ex) {
+            taStudentOutput.setText("../students.txt not found.");
+        }
+    }
 
     // ==================== SCHEDULE TAB HANDLERS ====================
 
@@ -636,6 +677,165 @@ public class Controller {
         }
 
         return credits;
+    }
+
+    private String addResidentFromFile(String[] tokens) {
+        if (tokens.length < 6) {
+            return "Missing data tokens.";
+        }
+
+        String fname = tokens[1];
+        String lname = tokens[2];
+        String inputDate = tokens[3];
+
+        StringBuilder errors = new StringBuilder();
+
+        Date dob = checkDate(inputDate, errors);
+        if (dob == null) {
+            return errors.toString().trim();
+        }
+
+        Profile profile = checkProfile(fname, lname, dob, errors);
+        if (profile == null) {
+            return errors.toString().trim();
+        }
+
+        Major major = checkMajor(tokens[4], errors);
+        if (major == null) {
+            return errors.toString().trim();
+        }
+
+        Integer credits = checkCredit(tokens[5], errors);
+        if (credits == null) {
+            return errors.toString().trim();
+        }
+
+        studentList.add(new Resident(profile, major, credits));
+        return profile + " [Resident] added to the list.";
+    }
+
+    private String addNonResidentFromFile(String[] tokens) {
+        if (tokens.length < 6) {
+            return "Missing data tokens.";
+        }
+
+        String fname = tokens[1];
+        String lname = tokens[2];
+        String inputDate = tokens[3];
+
+        StringBuilder errors = new StringBuilder();
+
+        Date dob = checkDate(inputDate, errors);
+        if (dob == null) {
+            return errors.toString().trim();
+        }
+
+        Profile profile = checkProfile(fname, lname, dob, errors);
+        if (profile == null) {
+            return errors.toString().trim();
+        }
+
+        Major major = checkMajor(tokens[4], errors);
+        if (major == null) {
+            return errors.toString().trim();
+        }
+
+        Integer credits = checkCredit(tokens[5], errors);
+        if (credits == null) {
+            return errors.toString().trim();
+        }
+
+        studentList.add(new NonResident(profile, major, credits));
+        return profile + " [Noresident] added to the list.";
+    }
+
+    private String addTriStateFromFile(String[] tokens) {
+        if (tokens.length < 7) {
+            return "Missing data tokens.";
+        }
+
+        String fname = tokens[1];
+        String lname = tokens[2];
+        String inputDate = tokens[3];
+
+        StringBuilder errors = new StringBuilder();
+
+        Date dob = checkDate(inputDate, errors);
+        if (dob == null) {
+            return errors.toString().trim();
+        }
+
+        Profile profile = checkProfile(fname, lname, dob, errors);
+        if (profile == null) {
+            return errors.toString().trim();
+        }
+
+        Major major = checkMajor(tokens[4], errors);
+        if (major == null) {
+            return errors.toString().trim();
+        }
+
+        Integer credits = checkCredit(tokens[5], errors);
+        if (credits == null) {
+            return errors.toString().trim();
+        }
+
+        String state = tokens[6].toUpperCase();
+        if (!state.equals("NY") && !state.equals("CT")) {
+            return state + ": Invalid state code.";
+        }
+
+        studentList.add(new TriState(profile, major, credits, state));
+        return profile + " [Tristate: " + state + "] added to the list.";
+    }
+
+    private String addInternationalFromFile(String[] tokens) {
+        if (tokens.length < 7) {
+            return "Missing data tokens.";
+        }
+
+        String fname = tokens[1];
+        String lname = tokens[2];
+        String inputDate = tokens[3];
+
+        StringBuilder errors = new StringBuilder();
+
+        Date dob = checkDate(inputDate, errors);
+        if (dob == null) {
+            return errors.toString().trim();
+        }
+
+        Profile profile = checkProfile(fname, lname, dob, errors);
+        if (profile == null) {
+            return errors.toString().trim();
+        }
+
+        Major major = checkMajor(tokens[4], errors);
+        if (major == null) {
+            return errors.toString().trim();
+        }
+
+        Integer credits = checkCredit(tokens[5], errors);
+        if (credits == null) {
+            return errors.toString().trim();
+        }
+
+        boolean isStudyAbroad = Boolean.parseBoolean(tokens[6]);
+
+        studentList.add(new International(profile, major, credits, isStudyAbroad));
+        return isStudyAbroad
+                ? profile + " [International study abroad] added to the list."
+                : profile + " [International] added to the list.";
+    }
+
+    private Major checkMajor(String majorT, StringBuilder errors){
+        try {
+            return Major.valueOf(majorT.toUpperCase());
+        } catch (IllegalArgumentException e) {
+            errors.append("INVALID: ").append(majorT)
+                    .append(" major does not exist.\n");
+            return null;
+        }
     }
 
     }
