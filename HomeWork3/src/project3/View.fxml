@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
@@ -120,43 +121,25 @@
             <!-- Course Selection -->
             <HBox spacing="10">
                 <Label text="Course:" />
-                <RadioButton fx:id="rbCS213" text="CS213" />
-                <RadioButton fx:id="rbCS214" text="CS214" />
-                <RadioButton fx:id="rbCS336" text="CS336" />
-                <RadioButton fx:id="rbITI301" text="ITI301" />
-                <RadioButton fx:id="rbITI403" text="ITI403" />
-                <RadioButton fx:id="rbEE111" text="EE111" />
-                <RadioButton fx:id="rbMATH167" text="MATH167" />
+            <ChoiceBox fx:id="cbCourse" prefWidth="150.0" />
             </HBox>
 
             <!-- Time Selection -->
             <HBox spacing="10">
                 <Label text="Time:" />
-                <RadioButton fx:id="rbTime9" text="9:00" />
-                <RadioButton fx:id="rbTime10" text="10:00" />
-                <RadioButton fx:id="rbTime11" text="11:00" />
-                <RadioButton fx:id="rbTime13" text="13:00" />
-                <RadioButton fx:id="rbTime14" text="14:00" />
+            <ChoiceBox fx:id="cbTime" prefWidth="150.0" />
             </HBox>
 
             <!-- Instructor Selection -->
             <HBox spacing="10">
                 <Label text="Instructor:" />
-                <RadioButton fx:id="rbMenendez" text="Menendez" />
-                <RadioButton fx:id="rbVenugopal" text="Venugopal" />
-                <RadioButton fx:id="rbSesh" text="Sesh" />
-                <RadioButton fx:id="rbKaplan" text="Kaplan" />
-                <RadioButton fx:id="rbMalloy" text="Malloy" />
+            <ChoiceBox fx:id="cbInstructor" prefWidth="150.0" />
             </HBox>
 
             <!-- Classroom/Campus Selection -->
             <HBox spacing="10">
                 <Label text="Classroom:" />
-                <RadioButton fx:id="rbAB2225" text="AB2225" />
-                <RadioButton fx:id="rbARC103" text="ARC103" />
-                <RadioButton fx:id="rbHLL114" text="HLL114" />
-                <RadioButton fx:id="rbBE100" text="BE100" />
-                <RadioButton fx:id="rbTIL232" text="TIL232" />
+            <ChoiceBox fx:id="cbClassroom" prefWidth="150.0" />
             </HBox>
 
             <!-- Action Buttons -->

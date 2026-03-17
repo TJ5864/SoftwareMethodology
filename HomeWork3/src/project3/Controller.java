@@ -58,35 +58,14 @@ public class Controller {
 
     // ==================== SCHEDULE TAB — FXML FIELDS ====================
 
+    @FXML private ChoiceBox<String> cbCourse;
+    @FXML private ChoiceBox<String> cbTime;
+    @FXML private ChoiceBox<String> cbInstructor;
+    @FXML private ChoiceBox<String> cbClassroom;
+
     @FXML private TextField tfSchedFirstName;
     @FXML private TextField tfSchedLastName;
     @FXML private TextField tfSchedDob;
-
-    @FXML private RadioButton rbCS213;
-    @FXML private RadioButton rbCS214;
-    @FXML private RadioButton rbCS336;
-    @FXML private RadioButton rbITI301;
-    @FXML private RadioButton rbITI403;
-    @FXML private RadioButton rbEE111;
-    @FXML private RadioButton rbMATH167;
-
-    @FXML private RadioButton rbTime9;
-    @FXML private RadioButton rbTime10;
-    @FXML private RadioButton rbTime11;
-    @FXML private RadioButton rbTime13;
-    @FXML private RadioButton rbTime14;
-
-    @FXML private RadioButton rbMenendez;
-    @FXML private RadioButton rbVenugopal;
-    @FXML private RadioButton rbSesh;
-    @FXML private RadioButton rbKaplan;
-    @FXML private RadioButton rbMalloy;
-
-    @FXML private RadioButton rbAB2225;
-    @FXML private RadioButton rbARC103;
-    @FXML private RadioButton rbHLL114;
-    @FXML private RadioButton rbBE100;
-    @FXML private RadioButton rbTIL232;
 
     @FXML private TextArea taScheduleOutput;
 
@@ -168,6 +147,13 @@ public class Controller {
                 lblStudyAbroad.setVisible(false);
             }
         });
+
+        //-----------Schedule tab------------
+
+        cbCourse.getItems().addAll("CS100", "CS200", "CS300", "CS400", "CS442", "PHY100", "PHY200", "ECE300", "ECE400", "CCD", "HST");
+        cbTime.getItems().addAll("PERIOD1", "PERIOD2", "PERIOD3", "PERIOD4", "PERIOD5", "PERIOD6");
+        cbInstructor.getItems().addAll("PATEL", "LIM", "ZIMNES", "HARPER", "KAUR", "TAYLOR", "RAMESH", "CERAVOLO", "BROWN");
+        cbClassroom.getItems().addAll("HIL114", "ARC103", "BEAUD", "TIL232", "AB2225", "MU302");
 
 
 
@@ -502,7 +488,81 @@ public class Controller {
      * @param e the ActionEvent fired by the Offer Section button
      */
     @FXML
-    private void handleOffer(ActionEvent e) { }
+    private void handleOffer(ActionEvent e) {
+
+        String courseVal = cbCourse.getValue();
+        String timeVal = cbTime.getValue();
+        String instructorVal = cbInstructor.getValue();
+        String classroomVal = cbClassroom.getValue();
+
+        if (courseVal == null || timeVal == null || instructorVal == null || classroomVal == null) {
+            taScheduleOutput.setText("Missing data tokens.");
+            return;
+        }
+
+        Course course;
+        Time time;
+        Instructor instructor;
+        Classroom classroom;
+
+        try {
+            course = Course.valueOf(courseVal);
+        } catch (IllegalArgumentException ex) {
+            taScheduleOutput.setText("INVALID: course name " + courseVal + " does not exist.");
+            return;
+        }
+
+        try {
+            time = Time.valueOf(timeVal);
+        } catch (IllegalArgumentException ex) {
+            taScheduleOutput.setText("INVALID: period " + timeVal + " does not exist.");
+            return;
+        }
+
+        try {
+            instructor = Instructor.valueOf(instructorVal);
+        } catch (IllegalArgumentException ex) {
+            taScheduleOutput.setText("INVALID: faculty " + instructorVal + " does not exist.");
+            return;
+        }
+
+        try {
+            classroom = Classroom.valueOf(classroomVal);
+        } catch (IllegalArgumentException ex) {
+            taScheduleOutput.setText("INVALID: location " + classroomVal + " does not exist.");
+            return;
+        }
+
+        Section section = new Section(course, instructor, classroom, time);
+
+        if (schedule.contains(section)) {
+            taScheduleOutput.setText("INVALID: " +
+                    section.getCourse().getCourseNum() + " period " +
+                    section.getTime().getPeriodNum() + " already exists.");
+            return;
+        }
+
+        int inputPeriod = time.getPeriodNum();
+
+        if (!instructor.checkAvailability(inputPeriod)) {
+            taScheduleOutput.setText("INVALID: " + instructorVal + " time conflict.");
+            return;
+        }
+
+        if (!classroom.checkAvailability(inputPeriod)) {
+            taScheduleOutput.setText("INVALID: [" +
+                    classroom.getClassroomNum() + ", " +
+                    classroom.getBuilding() + ", " +
+                    classroom.getCampus() + "] not available.");
+            return;
+        }
+
+        schedule.add(section);
+        instructor.fillAvailability(inputPeriod);
+        classroom.fillAvailability(inputPeriod);
+
+        taScheduleOutput.setText(section + " added to the schedule.");
+    }
 
     /**
      * Handles the Close Section button.
@@ -515,7 +575,46 @@ public class Controller {
      * @param e the ActionEvent fired by the Close Section button
      */
     @FXML
-    private void handleClose(ActionEvent e) { }
+    private void handleClose(ActionEvent e) {
+        String courseInput = cbCourse.getValue();
+        String timeInput = cbTime.getValue();
+
+        if (courseInput == null || timeInput == null) {
+            taScheduleOutput.setText("Missing data tokens.");
+            return;
+        }
+
+        Course course;
+        try {
+            course = Course.valueOf(courseInput.toUpperCase());
+        } catch (IllegalArgumentException ex) {
+            taScheduleOutput.setText("INVALID: course name " + courseInput + " does not exist.");
+            return;
+        }
+
+        Time time;
+        try {
+            time = Time.valueOf(timeInput.toUpperCase());
+        } catch (IllegalArgumentException ex) {
+            taScheduleOutput.setText("INVALID: period " + timeInput + " does not exist.");
+            return;
+        }
+
+        Section section = schedule.getSection(course, time);
+        if (section == null) {
+            taScheduleOutput.setText(courseInput.toUpperCase() + " " + time.getTime() + " does not exist.");
+            return;
+        }
+
+        if (!section.isEmpty()) {
+            int x = section.getNumStudents();
+            taScheduleOutput.setText(courseInput.toUpperCase() + " " + time + " cannot be removed [" + x + " student(s) enrolled]");
+            return;
+        }
+
+        schedule.remove(section);
+        taScheduleOutput.setText(courseInput.toUpperCase() + " " + time + " removed.");
+    }
 
     /**
      * Handles the Enroll Student button.
@@ -530,7 +629,105 @@ public class Controller {
      * @param e the ActionEvent fired by the Enroll Student button
      */
     @FXML
-    private void handleEnroll(ActionEvent e) { }
+    private void handleEnroll(ActionEvent e) {
+
+        StringBuilder errors = new StringBuilder();
+        boolean valid = true;
+
+        String fname = tfSchedFirstName.getText().trim();
+        String lname = tfSchedLastName.getText().trim();
+        String dobInput = tfSchedDob.getText().trim();
+        String courseInput = cbCourse.getValue();
+        String timeInput = cbTime.getValue();
+
+        if (fname.isEmpty() || lname.isEmpty() || dobInput.isEmpty()
+                || courseInput == null || timeInput == null) {
+            taScheduleOutput.setText("INVALID: missing arguments for command");
+            return;
+        }
+
+        int period;
+        try {
+            period = Integer.parseInt(timeInput.replace("PERIOD",""));
+        } catch (NumberFormatException ex) {
+            taScheduleOutput.setText("INVALID: period " + timeInput + " does not exist.");
+            return;
+        }
+
+        Date date = checkDate(dobInput, errors);
+        if (date == null) {
+            taScheduleOutput.setText(errors.toString());
+            return;
+        }
+
+        Profile tempP = new Profile(fname, lname, date);
+        Student student = studentList.getStudent(tempP);
+        if (student == null) {
+            taScheduleOutput.setText("INVALID: " + tempP + " does not exist.");
+            return;
+        }
+
+        Course course;
+        try {
+            course = Course.valueOf(courseInput.toUpperCase());
+        } catch (IllegalArgumentException ex) {
+            taScheduleOutput.setText("INVALID: course name " + courseInput + " does not exist.");
+            return;
+        }
+
+        Time time = findTimePeriod(period);
+        if (time == null) {
+            taScheduleOutput.setText("INVALID: period " + period + " does not exist.");
+            return;
+        }
+
+        Section section = schedule.getSection(course, time);
+        if (section == null) {
+            taScheduleOutput.setText("INVALID: " + courseInput.toUpperCase()+ " "+ time+ " does not exist.");
+            return;
+        }
+
+        if (schedule.isEnrolledInCourse(student, course)) {
+            taScheduleOutput.setText("["+fname + " "+ lname + " "+ dobInput +"] already enrolled in "+ courseInput.toUpperCase());
+            return;
+        }
+
+        int currentCredits = schedule.getTotalCredits(student);
+        int newTotal = currentCredits + section.getCourse().getCreditHours();
+
+        if (student instanceof International && ((International) student).isStudyAbroad() && newTotal > 12) {
+            taScheduleOutput.setText("International student study abroad cannot enroll more than 12 credits.");
+            return;
+        }
+
+        if (newTotal  > 20) {
+            taScheduleOutput.setText("Cannot enroll [" + fname + " "+ lname+ " "+ dobInput+ "]; now has "+ currentCredits + " will exceeds credit limit of 20.");
+            return;
+        }
+
+        if (student.getStanding().compareTo(course.getStanding()) < 0) {
+            taScheduleOutput.setText("Prereq: "+ course.getStanding().getStanding() + " - [" + fname + " "+ lname+ " "+ dobInput+"] ["+student.getStanding().getStanding()+"]");
+            return;
+        }
+
+        if (course.getMajor() != null && student.getMajor() != course.getMajor()) {
+            taScheduleOutput.setText("Prereq: major only - [" + fname + " "+ lname + " "+ dobInput+ "] ["+ student.getMajor().getMajor() +"]");
+            return;
+        }
+
+        if (schedule.hasTimeConflict(student, time)) {
+            taScheduleOutput.setText("Time conflict: ["+ fname + " "+ lname+ " "+ dobInput+ "] enrolled in another class at period "+ time.getPeriodNum());
+            return;
+        }
+
+        if (section.isFull()) {
+            taScheduleOutput.setText("Cannot enroll ["+ fname+" "+lname+" "+dobInput+"], "+ course.getCourseNum()+" "+ time+" is full.");
+            return;
+        }
+
+        section.enroll(student);
+        taScheduleOutput.setText(tempP + " added to "+ course.getCourseNum()+ " "+ time.getTime());
+    }
 
     /**
      * Handles the Drop Student button.
@@ -543,7 +740,69 @@ public class Controller {
      * @param e the ActionEvent fired by the Drop Student button
      */
     @FXML
-    private void handleDrop(ActionEvent e) { }
+    private void handleDrop(ActionEvent e) {
+        String fname = tfSchedFirstName.getText().trim();
+        String lname = tfSchedLastName.getText().trim();
+        String inputDate = tfSchedDob.getText().trim();
+        String inputCourse = cbCourse.getValue();
+        String inputTime = cbTime.getValue();
+
+        if (fname.isEmpty() || lname.isEmpty() || inputDate.isEmpty()
+                || inputCourse == null || inputTime == null) {
+            taScheduleOutput.setText("INVALID: missing arguments for command");
+            return;
+        }
+
+        StringBuilder errors = new StringBuilder();
+        Date date = checkDate(inputDate, errors);
+        if (date == null) {
+            taScheduleOutput.setText(errors.toString());
+            return;
+        }
+
+        Profile profile = new Profile(fname, lname, date);
+        Student student = studentList.getStudent(profile);
+        if (student == null) {
+            taScheduleOutput.setText("[" + fname + " " + lname + " " + inputDate + "] does not exist.");
+            return;
+        }
+
+        Course course;
+        try {
+            course = Course.valueOf(inputCourse.toUpperCase());
+        } catch (IllegalArgumentException ex) {
+            taScheduleOutput.setText("INVALID: course name " + inputCourse + " does not exist.");
+            return;
+        }
+
+        int period;
+        try {
+            period = Integer.parseInt(inputTime.replace("PERIOD", ""));
+        } catch (NumberFormatException ex) {
+            taScheduleOutput.setText("INVALID: period " + inputTime + " does not exist.");
+            return;
+        }
+
+        Time time = findTimePeriod(period);
+        if (time == null) {
+            taScheduleOutput.setText("INVALID: period " + period + " does not exist.");
+            return;
+        }
+
+        Section section = schedule.getSection(course, time);
+        if (section == null) {
+            taScheduleOutput.setText("INVALID: " + inputCourse.toUpperCase() + " " + time + " does not exist.");
+            return;
+        }
+
+        if (!section.contains(student)) {
+            taScheduleOutput.setText("[" + fname + " " + lname + " " + inputDate + "] is not enrolled in this section.");
+            return;
+        }
+
+        section.drop(student);
+        taScheduleOutput.setText("[" + fname + " " + lname + " " + inputDate + "] dropped from " + course.getCourseNum() + " " + time);
+    }
 
     // ==================== REPORTS TAB HANDLERS ====================
 
@@ -555,7 +814,9 @@ public class Controller {
      * @param e the ActionEvent fired by the Print Students button
      */
     @FXML
-    private void handlePrintStudents(ActionEvent e) { }
+    private void handlePrintStudents(ActionEvent e) {
+        taReportOutput.setText(studentList.print());
+    }
 
     /**
      * Handles the Print by Classroom button.
@@ -565,7 +826,9 @@ public class Controller {
      * @param e the ActionEvent fired by the Print by Classroom button
      */
     @FXML
-    private void handlePrintByClassroom(ActionEvent e) { }
+    private void handlePrintByClassroom(ActionEvent e) {
+        taReportOutput.setText(schedule.printByClassroom());
+    }
 
     /**
      * Handles the Print by Course button.
@@ -575,7 +838,9 @@ public class Controller {
      * @param e the ActionEvent fired by the Print by Course button
      */
     @FXML
-    private void handlePrintByCourse(ActionEvent e) { }
+    private void handlePrintByCourse(ActionEvent e) {
+        taReportOutput.setText(schedule.printByCourse());
+    }
 
     /**
      * Handles the Print Tuition button.
@@ -587,7 +852,9 @@ public class Controller {
      * @param e the ActionEvent fired by the Print Tuition button
      */
     @FXML
-    private void handlePrintTuition(ActionEvent e) { }
+    private void handlePrintTuition(ActionEvent e) {
+        taReportOutput.setText(studentList.printTuition(schedule));
+    }
 
     /**
      * Handles the Print Graduating button.
@@ -597,7 +864,9 @@ public class Controller {
      * @param e the ActionEvent fired by the Print Graduating button
      */
     @FXML
-    private void handlePrintGraduating(ActionEvent e) { }
+    private void handlePrintGraduating(ActionEvent e) {
+        taReportOutput.setText(studentList.printGraduatingStudents(schedule));
+    }
 
 
     private Date checkDate(String dateToken, StringBuilder errors) {
@@ -836,6 +1105,18 @@ public class Controller {
                     .append(" major does not exist.\n");
             return null;
         }
+    }
+
+    /** find time helper method, used to return time when given period
+     * @param input integer period that was input
+     * @return time the time which the period occurs */
+    private Time findTimePeriod(int input){
+        for(Time t : Time.values()){
+            if(t.getPeriodNum() == input){
+                return t;
+            }
+        }
+        return null;
     }
 
     }

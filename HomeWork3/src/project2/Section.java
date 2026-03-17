@@ -24,7 +24,7 @@ public class Section {
      * @param classroom enum object containing classroomNum, building, and campus
      * @param time enum object tracking the time periods throughout the daily schedule
      */
-    Section(Course course, Instructor instructor, Classroom classroom, Time time) {
+    public Section(Course course, Instructor instructor, Classroom classroom, Time time) {
         this.course = course;
         this.instructor = instructor;
         this.classroom = classroom;
