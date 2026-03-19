@@ -134,6 +134,7 @@ public class Controller {
             else if (type.equals("International")) {
                 hbState.setVisible(false);
                 lblState.setVisible(false);
+                stateGroup.selectToggle(null);
 
                 cbStudyAbroad.setVisible(true);
                 lblStudyAbroad.setVisible(true);
@@ -142,6 +143,7 @@ public class Controller {
             else { // Resident
                 hbState.setVisible(false);
                 lblState.setVisible(false);
+                stateGroup.selectToggle(null);
 
                 cbStudyAbroad.setVisible(false);
                 lblStudyAbroad.setVisible(false);
