@@ -13,6 +13,7 @@ public class Sort {
 
     /**
      * Generic insertion sort for Comparable elements.
+     * @param list the list of Comparable elements to sort in ascending order
      */
     public static <E extends Comparable<E>> void sort(List<E> list) {
         if (list == null || list.size() <= 1) return;
@@ -32,6 +33,7 @@ public class Sort {
     /**
      * Sort students by last name, first name, then DOB.
      * Uses Student.compareTo(...) for name ordering, then DOB tiebreak.
+     * @param list the list of students to sort
      */
     public static void sortStudents(List<Student> list) {
         if (list == null || list.size() <= 1) return;
@@ -62,6 +64,7 @@ public class Sort {
 
     /**
      * Sort sections by campus then building (selection sort).
+     * @param list the list of sections to sort by classroom location
      */
     public static void sortByClassroom(List<Section> list) {
         if (list == null || list.size() <= 1) return;
@@ -96,6 +99,7 @@ public class Sort {
 
     /**
      * Sort sections by course number then period (insertion sort).
+     * @param list the list of sections to sort by course number and time period
      */
     public static void sortByCourse(List<Section> list) {
         if (list == null || list.size() <= 1) return;
@@ -128,7 +132,8 @@ public class Sort {
     }
 
     /** Sort students by major name alphabetically, then by profile as a tiebreaker
-     * @param list the list of students to sort */
+     * @param list the list of students to sort
+     */
     public static void sortByMajor(List<Student> list) {
         if (list == null || list.size() <= 1) {
             return;

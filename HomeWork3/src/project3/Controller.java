@@ -871,6 +871,14 @@ public class Controller {
     }
 
 
+    /**
+     * Parses and validates a date string in MM/DD/YYYY format.
+     * Appends an error message to errors if the date is malformed, invalid,
+     * not in the past, or corresponds to a student younger than 16.
+     * @param dateToken the date string to parse
+     * @param errors StringBuilder to accumulate any error messages
+     * @return a valid Date object, or null if validation fails
+     */
     private Date checkDate(String dateToken, StringBuilder errors) {
         String[] date = dateToken.split("/");
 
@@ -933,6 +941,13 @@ public class Controller {
         return profile;
     }
 
+    /**
+     * Parses and validates a credit count string.
+     * Appends an error message to errors if the value is not an integer or is negative.
+     * @param num the credit count string to parse
+     * @param errors StringBuilder to accumulate any error messages
+     * @return the parsed credit count as an Integer, or null if validation fails
+     */
     private Integer checkCredit(String num, StringBuilder errors) {
         int credits;
         try {
@@ -950,6 +965,12 @@ public class Controller {
         return credits;
     }
 
+    /**
+     * Attempts to add a Resident student from a tokenized file line.
+     * Validates the date, profile uniqueness, major, and credit count.
+     * @param tokens array of strings parsed from a single line of the input file
+     * @return a confirmation message if successful, or an error message if validation fails
+     */
     private String addResidentFromFile(String[] tokens) {
         if (tokens.length < 6) {
             return "Missing data tokens.";
@@ -985,6 +1006,12 @@ public class Controller {
         return profile + " [Resident] added to the list.";
     }
 
+    /**
+     * Attempts to add a NonResident student from a tokenized file line.
+     * Validates the date, profile uniqueness, major, and credit count.
+     * @param tokens array of strings parsed from a single line of the input file
+     * @return a confirmation message if successful, or an error message if validation fails
+     */
     private String addNonResidentFromFile(String[] tokens) {
         if (tokens.length < 6) {
             return "Missing data tokens.";
@@ -1020,6 +1047,12 @@ public class Controller {
         return profile + " [Noresident] added to the list.";
     }
 
+    /**
+     * Attempts to add a TriState student from a tokenized file line.
+     * Validates the date, profile uniqueness, major, credit count, and state code (NY or CT).
+     * @param tokens array of strings parsed from a single line of the input file
+     * @return a confirmation message if successful, or an error message if validation fails
+     */
     private String addTriStateFromFile(String[] tokens) {
         if (tokens.length < 7) {
             return "Missing data tokens.";
@@ -1060,6 +1093,12 @@ public class Controller {
         return profile + " [Tristate: " + state + "] added to the list.";
     }
 
+    /**
+     * Attempts to add an International student from a tokenized file line.
+     * Validates the date, profile uniqueness, major, credit count, and study abroad flag.
+     * @param tokens array of strings parsed from a single line of the input file
+     * @return a confirmation message if successful, or an error message if validation fails
+     */
     private String addInternationalFromFile(String[] tokens) {
         if (tokens.length < 7) {
             return "Missing data tokens.";
@@ -1099,6 +1138,13 @@ public class Controller {
                 : profile + " [International] added to the list.";
     }
 
+    /**
+     * Parses and validates a major string against the Major enum values.
+     * Appends an error message to errors if the major does not exist.
+     * @param majorT the major string to look up
+     * @param errors StringBuilder to accumulate any error messages
+     * @return the matching Major enum constant, or null if not found
+     */
     private Major checkMajor(String majorT, StringBuilder errors){
         try {
             return Major.valueOf(majorT.toUpperCase());

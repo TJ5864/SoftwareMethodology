@@ -25,12 +25,14 @@ public abstract class Student implements Comparable<Student> {
 /** The abstract method Tuition that will be used in the other classes*/
     public abstract double tuition(int creditCompleted);
 
-/** returns the student major object */
+/** returns the student major object
+     * @return the Major enum associated with this student */
     public Major getMajor() {
         return this.major;
     }
 
-/** returns the student credit completed */
+/** returns the student credit completed
+     * @return number of credits the student has completed */
     public int getCreditCompleted() {
         return creditCompleted;
     }
