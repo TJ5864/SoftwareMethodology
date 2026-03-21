@@ -439,8 +439,12 @@ public class Controller {
      */
     @FXML
     private void handleLoad(ActionEvent e) {
-        File file = new File("HomeWork3/students.txt");
-        //System.out.println("this is " + file.getAbsolutePath());
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Open Student File");
+        fileChooser.getExtensionFilters().add(
+                new FileChooser.ExtensionFilter("Text Files", "*.txt"));
+        File file = fileChooser.showOpenDialog(taStudentOutput.getScene().getWindow());
+        if (file == null) return;
 
         StringBuilder output = new StringBuilder();
 
