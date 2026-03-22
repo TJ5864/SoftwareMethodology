@@ -105,7 +105,7 @@ public class Controller {
         rbBAIT.setToggleGroup(majorGroup);
 
         //student type Combo Box
-        cbStudentType.getItems().addAll("Resident", "Tristate", "International");
+        cbStudentType.getItems().addAll("Resident", "NonResident", "Tristate", "International");
 
         //if tristate is selected
         stateGroup = new ToggleGroup();
@@ -250,6 +250,12 @@ public class Controller {
         if ("Resident".equals(studentType)) {
             studentList.add(new Resident(profile, major, credits));
             taStudentOutput.setText(profile + " [Resident] added to the list.");
+            return;
+        }
+
+        if ("NonResident".equals(studentType)) {
+            studentList.add(new NonResident(profile, major, credits));
+            taStudentOutput.setText(profile + " [NonResident] added to the list.");
             return;
         }
 
@@ -1048,7 +1054,7 @@ public class Controller {
         }
 
         studentList.add(new NonResident(profile, major, credits));
-        return profile + " [Noresident] added to the list.";
+        return profile + " [NonResident] added to the list.";
     }
 
     /**
