@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<TabPane tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project3.Controller">
+
+    <!-- ==================== TAB 1: STUDENTS ==================== -->
+    <Tab text="Students">
+        <VBox spacing="10" style="-fx-padding: 10;">
+
+            <!-- Student Type Selection -->
+            <HBox spacing="10">
+                <Label alignment="CENTER" contentDisplay="TOP" text="Student Type:" />
+            <ComboBox fx:id="cbStudentType" prefWidth="150.0" />
+            </HBox>
+
+            <!-- Input Form -->
+            <GridPane hgap="10" vgap="8">
+                <Label text="First Name:" GridPane.columnIndex="0" />
+                <TextField fx:id="tfFirstName" GridPane.columnIndex="1" />
+
+                <Label text="Last Name:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                <TextField fx:id="tfLastName" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+                <Label text="Date of Birth:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                <TextField fx:id="tfDob" promptText="mm/dd/yyyy" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+
+                <Label text="Credits Completed:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+                <TextField fx:id="tfCredits" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+
+                <Label text="Scholarship ($):" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+                <TextField fx:id="tfScholarship" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+
+                <!-- TriState only -->
+                <Label fx:id="lblState" text="State (NY/CT):" visible="false" GridPane.columnIndex="0" GridPane.rowIndex="5" />
+                <HBox fx:id="hbState" spacing="10" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                    <RadioButton fx:id="rbNY" text="NY" />
+                    <RadioButton fx:id="rbCT" text="CT" />
+                </HBox>
+
+                <!-- International only -->
+                <Label fx:id="lblStudyAbroad" text="Study Abroad:" visible="false" GridPane.columnIndex="0" GridPane.rowIndex="6" />
+                <CheckBox fx:id="cbStudyAbroad" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <columnConstraints>
+               <ColumnConstraints />
+               <ColumnConstraints />
+            </columnConstraints>
+            <rowConstraints>
+               <RowConstraints />
+               <RowConstraints />
+               <RowConstraints />
+               <RowConstraints />
+               <RowConstraints />
+               <RowConstraints />
+               <RowConstraints />
+            </rowConstraints>
+            </GridPane>
+
+            <!-- Major Selection -->
+            <HBox spacing="10">
+                <Label text="Major:" />
+                <RadioButton fx:id="rbCS" text="CS" />
+                <RadioButton fx:id="rbMATH" text="MATH" />
+                <RadioButton fx:id="rbECE" text="ECE" />
+                <RadioButton fx:id="rbITI" text="ITI" />
+                <RadioButton fx:id="rbBAIT" text="BAIT" />
+            </HBox>
+
+            <!-- Action Buttons -->
+            <HBox spacing="10">
+                <Button fx:id="btnAdd" onAction="#handleAdd" text="Add" />
+                <Button fx:id="btnRemove" onAction="#handleRemove" text="Remove" />
+                <Button fx:id="btnScholarship" onAction="#handleSetScholarship" text="Set Scholarship" />
+                <Button fx:id="btnLoad" onAction="#handleLoad" text="Load from File" />
+            </HBox>
+
+            <!-- Output Area -->
+            <TextArea fx:id="taStudentOutput" editable="false" prefHeight="150" wrapText="true" />
+        </VBox>
+    </Tab>
+
+    <!-- ==================== TAB 2: SCHEDULE ==================== -->
+    <Tab text="Schedule">
+        <VBox spacing="10" style="-fx-padding: 10;">
+
+            <!-- Student Identifier -->
+            <GridPane hgap="10" vgap="8">
+                <Label text="First Name:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                <TextField fx:id="tfSchedFirstName" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+
+                <Label text="Last Name:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                <TextField fx:id="tfSchedLastName" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+                <Label text="Date of Birth:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                <TextField fx:id="tfSchedDob" promptText="mm/dd/yyyy" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <columnConstraints>
+               <ColumnConstraints />
+               <ColumnConstraints />
+            </columnConstraints>
+            <rowConstraints>
+               <RowConstraints />
+               <RowConstraints />
+               <RowConstraints />
+            </rowConstraints>
+            </GridPane>
+
+            <!-- Course Selection -->
+            <HBox spacing="10">
+                <Label text="Course:" />
+            <ChoiceBox fx:id="cbCourse" prefWidth="150.0" />
+            </HBox>
+
+            <!-- Time Selection -->
+            <HBox spacing="10">
+                <Label text="Time:" />
+            <ChoiceBox fx:id="cbTime" prefWidth="150.0" />
+            </HBox>
+
+            <!-- Instructor Selection -->
+            <HBox spacing="10">
+                <Label text="Instructor:" />
+            <ChoiceBox fx:id="cbInstructor" prefWidth="150.0" />
+            </HBox>
+
+            <!-- Classroom/Campus Selection -->
+            <HBox spacing="10">
+                <Label text="Classroom:" />
+            <ChoiceBox fx:id="cbClassroom" prefWidth="150.0" />
+            </HBox>
+
+            <!-- Action Buttons -->
+            <HBox spacing="10">
+                <Button fx:id="btnOffer" onAction="#handleOffer" text="Offer Section" />
+                <Button fx:id="btnClose" onAction="#handleClose" text="Close Section" />
+                <Button fx:id="btnEnroll" onAction="#handleEnroll" text="Enroll Student" />
+                <Button fx:id="btnDrop" onAction="#handleDrop" text="Drop Student" />
+            </HBox>
+
+            <!-- Output Area -->
+            <TextArea fx:id="taScheduleOutput" editable="false" prefHeight="150" wrapText="true" />
+        </VBox>
+    </Tab>
+
+    <!-- ==================== TAB 3: REPORTS ==================== -->
+    <Tab text="Reports">
+        <VBox spacing="10" style="-fx-padding: 10;">
+
+            <!-- Report Buttons -->
+            <HBox spacing="10">
+                <Button onAction="#handlePrintStudents" text="Print Students" />
+                <Button onAction="#handlePrintByClassroom" text="Print by Classroom" />
+                <Button onAction="#handlePrintByCourse" text="Print by Course" />
+                <Button onAction="#handlePrintTuition" text="Print Tuition" />
+                <Button onAction="#handlePrintGraduating" text="Print Graduating" />
+            </HBox>
+
+            <!-- Output Area -->
+            <TextArea fx:id="taReportOutput" editable="false" prefHeight="400" wrapText="true" />
+        </VBox>
+    </Tab>
+
+</TabPane>
