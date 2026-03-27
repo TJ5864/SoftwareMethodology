@@ -11,10 +11,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="490.0" prefWidth="604.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
    <center>
-      <GridPane BorderPane.alignment="CENTER">
+      <GridPane alignment="CENTER" gridLinesVisible="true" BorderPane.alignment="CENTER">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -26,12 +25,12 @@
          <children>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                <children>
-                  <ImageView fitHeight="126.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="145.0" fitWidth="254.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../../../../../../../../Desktop/Screenshot%202026-03-27%20at%201.47.37%20AM.png" />
                      </image>
                   </ImageView>
-                  <TextField alignment="CENTER" editable="false" prefHeight="32.0" prefWidth="209.0" text="Chicago-Style">
+                  <TextField alignment="CENTER" editable="false" maxWidth="-Infinity" prefHeight="32.0" prefWidth="209.0" text="Chicago-Style">
                      <font>
                         <Font name="Herculanum" size="19.0" />
                      </font>
@@ -40,12 +39,12 @@
             </VBox>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
                <children>
-                  <ImageView fitHeight="112.0" fitWidth="131.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="142.0" fitWidth="216.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../../../../../../../../Desktop/Screenshot%202026-03-27%20at%202.12.40%20AM.png" />
                      </image>
                   </ImageView>
-                  <TextField alignment="CENTER" text="New York  Style">
+                  <TextField alignment="CENTER" editable="false" maxWidth="-Infinity" prefWidth="209.0" text="New York  Style">
                      <font>
                         <Font name="Herculanum" size="19.0" />
                      </font>
@@ -54,12 +53,12 @@
             </VBox>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1">
                <children>
-                  <ImageView fitHeight="116.0" fitWidth="157.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="155.0" fitWidth="237.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../../../../../../../../Downloads/pizza-boxes-15345814-removebg-preview.png" />
                      </image>
                   </ImageView>
-                  <TextField alignment="CENTER" prefHeight="32.0" prefWidth="202.0" text="Current Order">
+                  <TextField alignment="CENTER" editable="false" maxWidth="-Infinity" prefHeight="32.0" prefWidth="209.0" text="Current Order">
                      <font>
                         <Font name="Herculanum" size="19.0" />
                      </font>
@@ -68,12 +67,12 @@
             </VBox>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <children>
-                  <ImageView fitHeight="117.0" fitWidth="153.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="155.0" fitWidth="209.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../../../../../../../../Downloads/istockphoto-1173524748-612x612-removebg-preview.png" />
                      </image>
                   </ImageView>
-                  <TextField alignment="CENTER" text="View All Orders">
+                  <TextField alignment="CENTER" editable="false" maxWidth="-Infinity" prefWidth="209.0" text="View ALL Orders">
                      <font>
                         <Font name="Herculanum" size="19.0" />
                      </font>
