@@ -26,7 +26,7 @@
       </ImageView>
       <TextField editable="false" layoutX="19.0" layoutY="18.0" prefHeight="29.0" prefWidth="565.0" text="Customize Your Chicago-Style Pizza">
          <font>
-            <Font name="Herculanum" size="28.0" />
+            <Font name="Georgia Bold" size="28.0" />
          </font>
       </TextField>
       <GridPane layoutX="11.0" layoutY="67.0" prefHeight="317.0" prefWidth="581.0">

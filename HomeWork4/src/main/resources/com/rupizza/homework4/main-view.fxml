@@ -32,7 +32,7 @@
                   </ImageView>
                   <TextField alignment="CENTER" editable="false" maxWidth="-Infinity" prefHeight="32.0" prefWidth="209.0" text="Chicago-Style">
                      <font>
-                        <Font name="Herculanum" size="19.0" />
+                        <Font name="Georgia" size="19.0" />
                      </font>
                   </TextField>
                </children>
@@ -46,7 +46,7 @@
                   </ImageView>
                   <TextField alignment="CENTER" editable="false" maxWidth="-Infinity" prefWidth="209.0" text="New York  Style">
                      <font>
-                        <Font name="Herculanum" size="19.0" />
+                        <Font name="Georgia" size="19.0" />
                      </font>
                   </TextField>
                </children>
@@ -60,7 +60,7 @@
                   </ImageView>
                   <TextField alignment="CENTER" editable="false" maxWidth="-Infinity" prefHeight="32.0" prefWidth="209.0" text="Current Order">
                      <font>
-                        <Font name="Herculanum" size="19.0" />
+                        <Font name="Georgia" size="19.0" />
                      </font>
                   </TextField>
                </children>
@@ -74,7 +74,7 @@
                   </ImageView>
                   <TextField alignment="CENTER" editable="false" maxWidth="-Infinity" prefWidth="209.0" text="View ALL Orders">
                      <font>
-                        <Font name="Herculanum" size="19.0" />
+                        <Font name="Georgia" size="19.0" />
                      </font>
                   </TextField>
                </children>
@@ -92,7 +92,7 @@
             </ImageView>
             <TextField alignment="CENTER" editable="false" text="RU Pizza: Main Menu">
                <font>
-                  <Font name="Herculanum" size="46.0" />
+                  <Font name="Georgia Bold" size="46.0" />
                </font>
             </TextField>
          </children>
