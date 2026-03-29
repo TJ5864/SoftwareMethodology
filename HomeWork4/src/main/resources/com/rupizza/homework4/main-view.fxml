@@ -23,11 +23,11 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+            <VBox alignment="CENTER" onMouseClicked="#openChicago" prefHeight="200.0" prefWidth="100.0">
                <children>
                   <ImageView fitHeight="145.0" fitWidth="254.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../../../../../../Desktop/Screenshot%202026-03-27%20at%201.47.37%20AM.png" />
+                        <Image url="@images/Screenshot%202026-03-27%20at%201.47.37%20AM.png" />
                      </image>
                   </ImageView>
                   <TextField alignment="CENTER" editable="false" maxWidth="-Infinity" prefHeight="32.0" prefWidth="209.0" text="Chicago-Style">
@@ -37,25 +37,25 @@
                   </TextField>
                </children>
             </VBox>
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
+            <VBox alignment="CENTER" onMouseClicked="#openNewYork" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
                <children>
                   <ImageView fitHeight="142.0" fitWidth="216.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../../../../../../Desktop/Screenshot%202026-03-27%20at%202.12.40%20AM.png" />
+                        <Image url="@images/Screenshot%202026-03-27%20at%202.12.40%20AM.png" />
                      </image>
                   </ImageView>
-                  <TextField alignment="CENTER" editable="false" maxWidth="-Infinity" prefWidth="209.0" text="New York  Style">
+                  <TextField alignment="CENTER" editable="false" maxWidth="-Infinity" prefWidth="209.0" text="New York Style">
                      <font>
                         <Font name="Georgia" size="19.0" />
                      </font>
                   </TextField>
                </children>
             </VBox>
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1">
+            <VBox alignment="CENTER" onMouseClicked="#openCurrentOrder" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1">
                <children>
                   <ImageView fitHeight="155.0" fitWidth="237.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../../../../../../Downloads/pizza-boxes-15345814-removebg-preview.png" />
+                        <Image url="@images/pizza-boxes-15345814-removebg-preview.png" />
                      </image>
                   </ImageView>
                   <TextField alignment="CENTER" editable="false" maxWidth="-Infinity" prefHeight="32.0" prefWidth="209.0" text="Current Order">
@@ -65,11 +65,11 @@
                   </TextField>
                </children>
             </VBox>
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <VBox alignment="CENTER" onMouseClicked="#openAllOrders" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <children>
                   <ImageView fitHeight="155.0" fitWidth="209.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../../../../../../Downloads/istockphoto-1173524748-612x612-removebg-preview.png" />
+                        <Image url="@images/istockphoto-1173524748-612x612-removebg-preview.png" />
                      </image>
                   </ImageView>
                   <TextField alignment="CENTER" editable="false" maxWidth="-Infinity" prefWidth="209.0" text="View ALL Orders">
@@ -87,7 +87,7 @@
          <children>
             <ImageView fitHeight="84.0" fitWidth="604.0" pickOnBounds="true">
                <image>
-                  <Image url="@../../../../../../../../../Desktop/Screenshot%202026-03-27%20at%202.09.43%20AM.png" />
+                  <Image url="@images/Screenshot%202026-03-27%20at%202.09.43%20AM.png" />
                </image>
             </ImageView>
             <TextField alignment="CENTER" editable="false" text="RU Pizza: Main Menu">
