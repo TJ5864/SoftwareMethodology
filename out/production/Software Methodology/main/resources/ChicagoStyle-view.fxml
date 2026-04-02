@@ -79,13 +79,13 @@
             </VBox>
             <VBox alignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="2">
                <children>
-                  <HBox alignment="CENTER" prefHeight="67.0" prefWidth="193.0" spacing="3.0">
+                  <HBox alignment="CENTER" prefHeight="101.0" prefWidth="193.0" spacing="3.0">
                      <children>
                         <Label text="Quantity: " />
                         <Spinner fx:id="spinnerQuantity" maxWidth="-Infinity" prefHeight="26.0" prefWidth="61.0" />
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER" prefHeight="92.0" prefWidth="193.0">
+                  <HBox alignment="CENTER" prefHeight="91.0" prefWidth="193.0">
                      <children>
                         <Label text="Price:">
                            <padding>
@@ -95,7 +95,12 @@
                         <TextField fx:id="tfPrice" alignment="CENTER" editable="false" maxWidth="-Infinity" prefWidth="100.0" />
                      </children>
                   </HBox>
-                  <Button mnemonicParsing="false" onAction="#handleAddToCart" text="Add to Cart" />
+                  <HBox alignment="CENTER" prefHeight="44.0" prefWidth="193.0" spacing="5.0">
+                     <children>
+                        <Button alignment="CENTER" mnemonicParsing="false" onAction="#handleAddToCart" text="Add to Cart" />
+                        <Button fx:id="buttonMainMenu" mnemonicParsing="false" onAction="#handleMainMenu" text="Main Menu" />
+                     </children>
+                  </HBox>
                </children>
             </VBox>
          </children>

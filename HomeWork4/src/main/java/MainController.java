@@ -2,6 +2,7 @@ package main.java;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
@@ -21,7 +22,7 @@ public class MainController {
      */
     @FXML
     private void handleChicagoStyle() {
-        loadScene("/ChicagoStyle-view.fxml", "RU Pizza - Chicago Style");
+        loadScene(root, "/ChicagoStyle-view.fxml", "RU Pizza - Chicago Style");
     }
 
     /**
@@ -29,7 +30,7 @@ public class MainController {
      */
     @FXML
     private void handleNewYorkStyle() {
-        loadScene("/NYStyle-view.fxml", "RU Pizza - New York Style");
+        loadScene(root, "/NYStyle-view.fxml", "RU Pizza - New York Style");
     }
 
     /**
@@ -37,7 +38,7 @@ public class MainController {
      */
     @FXML
     private void handleCurrentOrder() {
-        loadScene("/CurrentOrder-view.fxml", "RU Pizza - Current Order");
+        loadScene(root, "/CurrentOrder-view.fxml", "RU Pizza - Current Order");
     }
 
     /**
@@ -45,20 +46,22 @@ public class MainController {
      */
     @FXML
     private void handleViewAllOrders() {
-        loadScene("/AllOrders-view.fxml", "RU Pizza - All Orders");
+        loadScene(root, "/AllOrders-view.fxml", "RU Pizza - All Orders");
     }
 
     /**
      * Loads a new scene into the current stage.
+     * @param node any node in the current scene
      * @param fxmlPath the path to the FXML file
      * @param title the title to set on the stage
      */
-    private void loadScene(String fxmlPath, String title) {
+    public static void loadScene(Node node, String fxmlPath, String title) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
-            Stage stage = (Stage) root.getScene().getWindow();
+            FXMLLoader loader = new FXMLLoader(MainController.class.getResource(fxmlPath));
+            Stage stage = (Stage) node.getScene().getWindow();
             stage.setScene(new Scene(loader.load()));
             stage.setTitle(title);
+            stage.show();
         } catch (Exception e) {
             e.printStackTrace();
         }

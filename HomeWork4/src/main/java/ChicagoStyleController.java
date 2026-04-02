@@ -215,6 +215,11 @@ public class ChicagoStyleController {
         resetForNextPizza();
     }
 
+    @FXML
+    private void handleMainMenu() {
+        MainController.loadScene(buttonMainMenu, "/main-view.fxml", "RU Pizza: Main Menu");
+    }
+
     /**
      * Updates the pizza size from radio buttons.
      */
