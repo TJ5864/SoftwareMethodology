@@ -5,6 +5,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.control.Spinner;
+import javafx.scene.control.SpinnerValueFactory;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -41,6 +43,12 @@ public class ChicagoStyleController {
 
     @FXML
     private ImageView imgPizza;
+
+    @FXML
+    private Spinner<Integer> spinnerQuantity;
+
+    @FXML
+    private Button buttonMainMenu;
 
     private final ToggleGroup sizeGroup = new ToggleGroup();
     private final DecimalFormat money = new DecimalFormat("0.00");
@@ -80,6 +88,9 @@ public class ChicagoStyleController {
                 updatePrice();
             }
         });
+
+        spinnerQuantity.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1,99,1));
+
 
         clearView();
     }
