@@ -66,12 +66,7 @@ public class ChicagoStyleController {
         rbMedium.setToggleGroup(sizeGroup);
         rbLarge.setToggleGroup(sizeGroup);
 
-        cbPizzaType.setItems(FXCollections.observableArrayList(
-                "Deluxe",
-                "BBQ Chicken",
-                "Meatzza",
-                "Build Your Own"
-        ));
+        cbPizzaType.setItems(FXCollections.observableArrayList("Deluxe", "BBQ Chicken", "Meatzza", "Build Your Own"));
 
         lvAvailableToppings.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
         lvSelectedToppings.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
@@ -116,6 +111,8 @@ public class ChicagoStyleController {
                 currentPizza = null;
                 return;
         }
+
+        tfCrust.setText(currentPizza.getCrust().toString());
 
         rbSmall.setSelected(true);
         updatePizzaSize();
@@ -228,7 +225,7 @@ public class ChicagoStyleController {
             tfCrust.clear();
             return;
         }
-        tfCrust.setText(formatEnum(currentPizza.getCrust().name()));
+        tfCrust.setText(currentPizza.getCrust().toString());
     }
 
     /**
@@ -241,17 +238,12 @@ public class ChicagoStyleController {
             return;
         }
 
-        if (isBuildYourOwn()) {
-            ArrayList<Topping> selected = currentPizza.getToppings();
-            ArrayList<Topping> available = new ArrayList<>(Arrays.asList(Topping.values()));
-            available.removeAll(selected);
+        ArrayList<Topping> selected = currentPizza.getToppings();
+        ArrayList<Topping> available = new ArrayList<>(Arrays.asList(Topping.values()));
+        available.removeAll(selected);
 
-            lvAvailableToppings.setItems(FXCollections.observableArrayList(available));
-            lvSelectedToppings.setItems(FXCollections.observableArrayList(selected));
-        } else {
-            lvAvailableToppings.getItems().clear();
-            lvSelectedToppings.setItems(FXCollections.observableArrayList(currentPizza.getToppings()));
-        }
+        lvAvailableToppings.setItems(FXCollections.observableArrayList(available));
+        lvSelectedToppings.setItems(FXCollections.observableArrayList(selected));
     }
 
     /**
@@ -265,9 +257,6 @@ public class ChicagoStyleController {
         tfPrice.setText(money.format(currentPizza.price()));
     }
 
-    /**
-     * Updates displayed image.
-     */
     private void updateImage() {
         if (cbPizzaType.getValue() == null) {
             imgPizza.setImage(null);
@@ -277,16 +266,16 @@ public class ChicagoStyleController {
         String fileName;
         switch (cbPizzaType.getValue()) {
             case "Deluxe":
-                fileName = "deluxe.png";
+                fileName = "/images/deluxe-dd.png";
                 break;
             case "BBQ Chicken":
-                fileName = "bbqchicken.png";
+                fileName = "/images/bbqchicken-pan.png";
                 break;
             case "Meatzza":
-                fileName = "meatzza.png";
+                fileName = "/images/meatzza-stuffed.png";
                 break;
             case "Build Your Own":
-                fileName = "buildyourown.png";
+                fileName = "/images/buildyourown-pan.png";
                 break;
             default:
                 fileName = null;
@@ -297,10 +286,22 @@ public class ChicagoStyleController {
             return;
         }
 
+        var stream = getClass().getResourceAsStream(fileName);
+        //System.out.println("Looking for: " + fileName);
+        //System.out.println("Stream is null: " + (stream == null));
+
+        if (stream == null) {
+            imgPizza.setImage(null);
+            return;
+        }
+
         try {
-            Image image = new Image(getClass().getResourceAsStream(fileName));
+            Image image = new Image(stream);
+            //System.out.println("Image error: " + image.isError());
+            //System.out.println("Image width: " + image.getWidth());
             imgPizza.setImage(image);
         } catch (Exception e) {
+            //System.out.println("Exception: " + e.getMessage());
             imgPizza.setImage(null);
         }
     }
