@@ -43,4 +43,13 @@ public abstract class Pizza {
         this.size = size;
     }
 
+    @Override
+    public String toString() {
+        return getClass().getSimpleName()
+                + " | Size: " + size
+                + " | Crust: " + crust
+                + " | Toppings: " + toppings
+                + String.format(" | $%.2f", price());
+    }
+
 }

@@ -55,15 +55,6 @@ public class ChicagoStyleController {
 
     private final PizzaFactory chicagoFactory = new ChicagoPizza();
     private Pizza currentPizza;
-    private Order currentOrder;
-
-    /**
-     * Sets the current order used by this view.
-     * @param order current order
-     */
-    public void setCurrentOrder(Order order) {
-        this.currentOrder = order;
-    }
 
     /**
      * Initializes GUI controls.
@@ -91,6 +82,11 @@ public class ChicagoStyleController {
 
         spinnerQuantity.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1,99,1));
 
+        spinnerQuantity.valueProperty().addListener((obs, oldVal, newVal) -> {
+            if (currentPizza != null) {
+                updatePrice();
+            }
+        });
 
         clearView();
     }
@@ -203,21 +199,21 @@ public class ChicagoStyleController {
             return;
         }
 
-        if (currentOrder == null) {
-            showError("Current order is not set.");
-            return;
+        int quantity = spinnerQuantity.getValue();
+
+        for (int i = 0; i < quantity; i++) {
+            Pizza pizzaToAdd = duplicatePizza(currentPizza);
+            Store.currentOrder.addPizza(pizzaToAdd);
         }
 
-        Pizza pizzaToAdd = duplicatePizza(currentPizza);
-        currentOrder.addPizza(pizzaToAdd);
-
-        showInfo("Pizza added to cart.");
+        showInfo(quantity + " pizza(s) added to cart.");
         resetForNextPizza();
+        spinnerQuantity.getValueFactory().setValue(1);
     }
 
     @FXML
     private void handleMainMenu() {
-        MainController.loadScene(buttonMainMenu, "/main-view.fxml", "RU Pizza: Main Menu");
+        MainController.loadScene(buttonMainMenu, "/main-view.fxml", "RU Pizza!");
     }
 
     /**
@@ -270,7 +266,7 @@ public class ChicagoStyleController {
             tfPrice.clear();
             return;
         }
-        tfPrice.setText(money.format(currentPizza.price()));
+        tfPrice.setText(money.format(currentPizza.price() * spinnerQuantity.getValue()));
     }
 
     private void updateImage() {

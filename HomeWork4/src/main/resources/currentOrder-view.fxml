@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.CurrentOrderController">
+   <center>
+      <ListView fx:id="lvPizzasList" prefHeight="181.0" prefWidth="600.0" BorderPane.alignment="CENTER" />
+   </center>
+   <top>
+      <Label prefHeight="70.0" prefWidth="358.0" text="Current Order" BorderPane.alignment="CENTER">
+         <font>
+            <Font name="Georgia Bold" size="48.0" />
+         </font>
+      </Label>
+   </top>
+   <bottom>
+      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox alignment="CENTER" prefHeight="82.0" prefWidth="600.0" spacing="5.0">
+               <children>
+                  <Label text="Subtotal: " />
+                  <TextField fx:id="txtSubTotal" editable="false" prefHeight="26.0" prefWidth="92.0" />
+                  <Label text="+ 6.625%  tax = Total:" />
+                  <TextField fx:id="txtTotal" editable="false" prefHeight="26.0" prefWidth="92.0" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+               <children>
+                  <Button fx:id="btnMainMenu" mnemonicParsing="false" onAction="#handleMainMenu" text="Main Menu" />
+                  <Button fx:id="btnRemoveSelected" mnemonicParsing="false" onAction="#handleRemoveSelected" text="Remove Selected" />
+                  <Button fx:id="btnCancelOrder" mnemonicParsing="false" onAction="#handleCancelOrder" text="Cancel Order" />
+                  <Button fx:id="btnCompleteOrder" mnemonicParsing="false" onAction="#handleCompleteOrder" text="Complete Order" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </bottom>
+</BorderPane>
