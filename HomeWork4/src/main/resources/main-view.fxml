@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.TextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
@@ -11,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="root" fx:controller="main.java.MainController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="490.0" prefWidth="604.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="490.0" prefWidth="604.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.MainController">
    <center>
       <GridPane alignment="CENTER" gridLinesVisible="true" BorderPane.alignment="CENTER">
          <columnConstraints>
@@ -23,32 +24,35 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <VBox alignment="CENTER" onMouseClicked="#handleChicagoStyle" prefHeight="200.0" prefWidth="100.0">
+            <VBox alignment="CENTER" onMouseClicked="#handleChicagoStyle" prefHeight="200.0" prefWidth="100.0" spacing="3.0">
                <children>
                   <ImageView fitHeight="145.0" fitWidth="254.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@images/Screenshot%202026-03-27%20at%201.47.37%20AM.png" />
                      </image>
                   </ImageView>
-                  <TextField alignment="CENTER" editable="false" maxWidth="-Infinity" prefHeight="32.0" prefWidth="209.0" text="Chicago-Style">
+                  <Label text="Chicago-Style">
                      <font>
                         <Font name="Georgia" size="19.0" />
                      </font>
-                  </TextField>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </Label>
                </children>
             </VBox>
-            <VBox alignment="CENTER" onMouseClicked="#handleNewYorkStyle" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
+            <VBox alignment="CENTER" onMouseClicked="#handleNewYorkStyle" prefHeight="200.0" prefWidth="100.0" spacing="3.0" GridPane.columnIndex="1">
                <children>
                   <ImageView fitHeight="142.0" fitWidth="216.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@images/Screenshot%202026-03-27%20at%202.12.40%20AM.png" />
                      </image>
                   </ImageView>
-                  <TextField alignment="CENTER" editable="false" maxWidth="-Infinity" prefWidth="209.0" text="New York Style">
+                  <Label text="New York Style">
                      <font>
                         <Font name="Georgia" size="19.0" />
                      </font>
-                  </TextField>
+                  </Label>
                </children>
             </VBox>
             <VBox alignment="CENTER" onMouseClicked="#handleCurrentOrder" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1">
@@ -58,11 +62,11 @@
                         <Image url="@images/pizza-boxes-15345814-removebg-preview.png" />
                      </image>
                   </ImageView>
-                  <TextField alignment="CENTER" editable="false" maxWidth="-Infinity" prefHeight="32.0" prefWidth="209.0" text="Current Order">
+                  <Label text="Current Order">
                      <font>
                         <Font name="Georgia" size="19.0" />
                      </font>
-                  </TextField>
+                  </Label>
                </children>
             </VBox>
             <VBox alignment="CENTER" onMouseClicked="#handleViewAllOrders" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
@@ -72,11 +76,11 @@
                         <Image url="@images/istockphoto-1173524748-612x612-removebg-preview.png" />
                      </image>
                   </ImageView>
-                  <TextField alignment="CENTER" editable="false" maxWidth="-Infinity" prefWidth="209.0" text="View ALL Orders">
+                  <Label text="View ALL Orders">
                      <font>
                         <Font name="Georgia" size="19.0" />
                      </font>
-                  </TextField>
+                  </Label>
                </children>
             </VBox>
          </children>
@@ -85,16 +89,16 @@
    <top>
       <StackPane minHeight="-Infinity" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <ImageView fitHeight="84.0" fitWidth="604.0" pickOnBounds="true">
+            <ImageView fitHeight="103.0" fitWidth="604.0" pickOnBounds="true">
                <image>
-                  <Image url="@images/Screenshot%202026-03-27%20at%202.09.43%20AM.png" />
+                  <Image url="@images/banner-background.png" />
                </image>
             </ImageView>
-            <TextField alignment="CENTER" editable="false" text="RU Pizza: Main Menu">
+            <Label prefHeight="57.0" prefWidth="514.0" text="RU Pizza: Main Menu">
                <font>
                   <Font name="Georgia Bold" size="46.0" />
                </font>
-            </TextField>
+            </Label>
          </children>
       </StackPane>
    </top>
