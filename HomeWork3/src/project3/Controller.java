@@ -249,20 +249,20 @@ public class Controller {
 
         if ("Resident".equals(studentType)) {
             studentList.add(new Resident(profile, major, credits));
-            taStudentOutput.setText(profile + " [Resident] added to the list.");
+            taStudentOutput.setText(profile + "[Resident] added to the list.");
             return;
         }
 
         if ("NonResident".equals(studentType)) {
             studentList.add(new NonResident(profile, major, credits));
-            taStudentOutput.setText(profile + " [NonResident] added to the list.");
+            taStudentOutput.setText(profile + "[Noresident] added to the list.");
             return;
         }
 
         if ("Tristate".equals(studentType)) {
             String state = rbNY.isSelected() ? "NY" : "CT";
             studentList.add(new TriState(profile, major, credits, state));
-            taStudentOutput.setText(profile + " [Tristate: " + state + "] added to the list.");
+            taStudentOutput.setText(profile + "[Tristate: " + state + "] added to the list.");
             return;
         }
 
@@ -271,9 +271,9 @@ public class Controller {
             studentList.add(new International(profile, major, credits, isStudyAbroad));
 
             if (isStudyAbroad) {
-                taStudentOutput.setText(profile + " [International study abroad] added to the list.");
+                taStudentOutput.setText(profile + "[International study abroad] added to the list.");
             } else {
-                taStudentOutput.setText(profile + " [International] added to the list.");
+                taStudentOutput.setText(profile + "[International] added to the list.");
             }
         }
     }
@@ -1013,7 +1013,7 @@ public class Controller {
         }
 
         studentList.add(new Resident(profile, major, credits));
-        return profile + " [Resident] added to the list.";
+        return profile + "[Resident] added to the list.";
     }
 
     /**
@@ -1054,7 +1054,7 @@ public class Controller {
         }
 
         studentList.add(new NonResident(profile, major, credits));
-        return profile + " [NonResident] added to the list.";
+        return profile + "[Noresident] added to the list.";
     }
 
     /**
@@ -1100,7 +1100,7 @@ public class Controller {
         }
 
         studentList.add(new TriState(profile, major, credits, state));
-        return profile + " [Tristate: " + state + "] added to the list.";
+        return profile + "[Tristate: " + state + "] added to the list.";
     }
 
     /**
@@ -1144,8 +1144,8 @@ public class Controller {
 
         studentList.add(new International(profile, major, credits, isStudyAbroad));
         return isStudyAbroad
-                ? profile + " [International study abroad] added to the list."
-                : profile + " [International] added to the list.";
+                ? profile + "[International study abroad] added to the list."
+                : profile + "[International] added to the list.";
     }
 
     /**
