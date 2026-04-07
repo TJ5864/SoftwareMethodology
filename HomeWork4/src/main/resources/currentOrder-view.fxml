@@ -14,20 +14,32 @@
       <ListView fx:id="lvPizzasList" prefHeight="181.0" prefWidth="600.0" BorderPane.alignment="CENTER" />
    </center>
    <top>
-      <Label prefHeight="70.0" prefWidth="358.0" text="Current Order" BorderPane.alignment="CENTER">
-         <font>
-            <Font name="Georgia Bold" size="48.0" />
-         </font>
-      </Label>
+      <VBox BorderPane.alignment="CENTER">
+         <children>
+            <Label prefHeight="70.0" prefWidth="358.0" text="Current Order" BorderPane.alignment="CENTER">
+               <font>
+                  <Font name="Georgia Bold" size="48.0" />
+               </font>
+            </Label>
+            <HBox alignment="CENTER" prefHeight="30.0" prefWidth="600.0" spacing="5.0">
+               <children>
+                  <Label text="Order #:" />
+                  <TextField fx:id="txtOrderNumber" editable="false" prefHeight="26.0" prefWidth="60.0" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
    </top>
    <bottom>
       <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
-            <HBox alignment="CENTER" prefHeight="82.0" prefWidth="600.0" spacing="5.0">
+            <HBox alignment="CENTER" prefHeight="50.0" prefWidth="600.0" spacing="5.0">
                <children>
-                  <Label text="Subtotal: " />
+                  <Label text="Subtotal:" />
                   <TextField fx:id="txtSubTotal" editable="false" prefHeight="26.0" prefWidth="92.0" />
-                  <Label text="+ 6.625%  tax = Total:" />
+                  <Label text="Sales Tax:" />
+                  <TextField fx:id="txtSalesTax" editable="false" prefHeight="26.0" prefWidth="92.0" />
+                  <Label text="Order Total:" />
                   <TextField fx:id="txtTotal" editable="false" prefHeight="26.0" prefWidth="92.0" />
                </children>
             </HBox>

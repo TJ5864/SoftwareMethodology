@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import java.text.DecimalFormat;
 
 /**
@@ -14,6 +15,12 @@ public class AllOrdersController {
 
     @FXML
     private TextArea txtAllOrders;
+
+    @FXML
+    private TextField txtCancelOrderNumber;
+
+    @FXML
+    private Button btnCancelOrder;
 
     @FXML
     private Button btnExportAllOrdersToFile;
@@ -31,6 +38,44 @@ public class AllOrdersController {
     public void initialize() {
         txtAllOrders.setEditable(false);
         refreshView();
+    }
+
+    /**
+     * Handles canceling a placed order by order number.
+     */
+    @FXML
+    private void handleCancelOrder() {
+        String input = txtCancelOrderNumber.getText().trim();
+        if (input.isEmpty()) {
+            showError("Please enter an order number to cancel.");
+            return;
+        }
+
+        int orderNumber;
+        try {
+            orderNumber = Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            showError("Please enter a valid order number.");
+            return;
+        }
+
+        Order toCancel = null;
+        for (Order order : Store.orderManager.getOrders()) {
+            if (order.getNumber() == orderNumber) {
+                toCancel = order;
+                break;
+            }
+        }
+
+        if (toCancel == null) {
+            showError("Order #" + orderNumber + " not found.");
+            return;
+        }
+
+        Store.orderManager.cancelOrder(toCancel);
+        txtCancelOrderNumber.clear();
+        refreshView();
+        showInfo("Order #" + orderNumber + " has been canceled.");
     }
 
     /**

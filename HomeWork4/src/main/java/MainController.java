@@ -38,7 +38,7 @@ public class MainController {
      */
     @FXML
     private void handleCurrentOrder() {
-        loadScene(root, "/CurrentOrder-view.fxml", "RU Pizza - Current Order");
+        loadScene(root, "/currentOrder-view.fxml", "RU Pizza - Current Order");
     }
 
     /**
@@ -46,7 +46,7 @@ public class MainController {
      */
     @FXML
     private void handleViewAllOrders() {
-        loadScene(root, "/AllOrders-view.fxml", "RU Pizza - All Orders");
+        loadScene(root, "/allOrders-view.fxml", "RU Pizza - All Orders");
     }
 
     /**

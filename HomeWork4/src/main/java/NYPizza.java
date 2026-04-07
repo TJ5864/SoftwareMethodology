@@ -1,7 +1,10 @@
 package main.java;
 
+/** Concrete factory that creates New York-style pizzas with their designated crusts and toppings. */
 public class NYPizza implements PizzaFactory{
 
+    /** Creates a New York-style Deluxe pizza with Brooklyn crust.
+     * @return a Deluxe Pizza */
     @Override
     public Pizza createDeluxe(){
         Pizza pizza  = new Deluxe();
@@ -13,6 +16,8 @@ public class NYPizza implements PizzaFactory{
         pizza.getToppings().add(Topping.MUSHROOM);
         return pizza;
     }
+    /** Creates a New York-style BBQ Chicken pizza with Thin crust.
+     * @return a BBQChicken Pizza */
     @Override
     public Pizza createBBQChicken(){
         Pizza pizza  = new BBQChicken();
@@ -24,6 +29,8 @@ public class NYPizza implements PizzaFactory{
         return pizza;
 
     }
+    /** Creates a New York-style Meatzza pizza with Hand-Tossed crust.
+     * @return a Meatzza Pizza */
     @Override
     public Pizza createMeatzza(){
         Pizza pizza = new Meatzza();
@@ -34,6 +41,8 @@ public class NYPizza implements PizzaFactory{
         pizza.getToppings().add(Topping.BEEF);
         return pizza;
     }
+    /** Creates a New York-style Build Your Own pizza with Hand-Tossed crust and no toppings.
+     * @return a BuildYourOwn Pizza */
     @Override
     public Pizza createBuildYourOwn(){
         Pizza pizza = new BuildYourOwn();

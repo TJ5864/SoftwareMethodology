@@ -8,6 +8,21 @@ public abstract class Pizza {
     private Size size; //Size is a enum class
     /** Abstract Price method, works with the price of the pizza*/
     public abstract double price(); //polymorphism
+
+    /** Adds a topping to the pizza. Subclasses may override to enforce limits.
+     * @param topping the topping to add
+     * @return true if the topping was added, false otherwise */
+    public boolean addTopping(Topping topping) {
+        getToppings().add(topping);
+        return true;
+    }
+
+    /** Removes a topping from the pizza.
+     * @param topping the topping to remove
+     * @return true if the topping was removed, false if it was not present */
+    public boolean removeTopping(Topping topping) {
+        return getToppings().remove(topping);
+    }
 /** Constructor for Pizza
  * creates an array list of toppings */
     public Pizza(){
@@ -43,9 +58,18 @@ public abstract class Pizza {
         this.size = size;
     }
 
+    /** Returns the pizza style (Chicago or New York) derived from the crust type.
+     * @return style as a String */
+    public String getStyle() {
+        if (crust == Crust.DEEP_DISH || crust == Crust.PAN || crust == Crust.STUFFED) {
+            return "Chicago";
+        }
+        return "New York";
+    }
+
     @Override
     public String toString() {
-        return getClass().getSimpleName()
+        return getStyle() + " " + getClass().getSimpleName()
                 + " | Size: " + size
                 + " | Crust: " + crust
                 + " | Toppings: " + toppings

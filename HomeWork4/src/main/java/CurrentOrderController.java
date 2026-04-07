@@ -27,16 +27,27 @@ public class CurrentOrderController {
     private Button btnMainMenu;
 
     @FXML
+    private TextField txtOrderNumber;
+
+    @FXML
     private TextField txtSubTotal;
+
+    @FXML
+    private TextField txtSalesTax;
 
     @FXML
     private TextField txtTotal;
 
     private final DecimalFormat money = new DecimalFormat("0.00");
 
+    /**
+     * Initializes the current order view.
+     */
     @FXML
     public void initialize() {
+        txtOrderNumber.setEditable(false);
         txtSubTotal.setEditable(false);
+        txtSalesTax.setEditable(false);
         txtTotal.setEditable(false);
         refreshView();
     }
@@ -93,6 +104,7 @@ public class CurrentOrderController {
     private void refreshView() {
         refreshPizzaList();
         updateTotals();
+        txtOrderNumber.setText(String.valueOf(Store.currentOrder.getNumber()));
     }
 
     /**
@@ -103,15 +115,16 @@ public class CurrentOrderController {
     }
 
     /**
-     * Updates subtotal and total fields.
+     * Updates subtotal, sales tax, and order total fields.
      */
     private void updateTotals() {
-
         double NJtaxRate = 0.06625;
         double subtotal = Store.currentOrder.getTotal();
-        double total = subtotal * ( 1 + NJtaxRate); // change this later if you add tax
+        double salesTax = subtotal * NJtaxRate;
+        double total = subtotal + salesTax;
 
         txtSubTotal.setText(money.format(subtotal));
+        txtSalesTax.setText(money.format(salesTax));
         txtTotal.setText(money.format(total));
     }
 

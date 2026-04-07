@@ -148,8 +148,7 @@ public class NYStyleController {
             return;
         }
 
-        BuildYourOwn byo = (BuildYourOwn) currentPizza;
-        boolean added = byo.addTopping(topping);
+        boolean added = currentPizza.addTopping(topping);
         if (!added) {
             showError("You can add up to 5 toppings only.");
             return;
@@ -180,8 +179,7 @@ public class NYStyleController {
             return;
         }
 
-        BuildYourOwn byo = (BuildYourOwn) currentPizza;
-        byo.removeTopping(topping);
+        currentPizza.removeTopping(topping);
 
         refreshToppingLists();
         updatePrice();
@@ -209,6 +207,7 @@ public class NYStyleController {
         spinnerQuantity.getValueFactory().setValue(1);
     }
 
+    /** Returns to the main menu. */
     @FXML
     private void handleMainMenu() {
         MainController.loadScene(buttonMainMenu, "/main-view.fxml", "RU Pizza!");
@@ -267,6 +266,7 @@ public class NYStyleController {
         tfPrice.setText(money.format(currentPizza.price() * spinnerQuantity.getValue()));
     }
 
+    /** Updates the pizza image displayed based on the selected pizza type. */
     private void updateImage() {
         if (cbPizzaType.getValue() == null) {
             imgPizza.setImage(null);

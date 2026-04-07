@@ -1,7 +1,10 @@
 package main.java;
 
 
+/** Concrete factory that creates Chicago-style pizzas with their designated crusts and toppings. */
 public class ChicagoPizza implements PizzaFactory {
+    /** Creates a Chicago-style Deluxe pizza with Deep Dish crust.
+     * @return a Deluxe Pizza */
     @Override
     public Pizza createDeluxe(){
         Pizza pizza  = new Deluxe();
@@ -13,6 +16,8 @@ public class ChicagoPizza implements PizzaFactory {
         pizza.getToppings().add(Topping.MUSHROOM);
         return pizza;
     }
+    /** Creates a Chicago-style BBQ Chicken pizza with Pan crust.
+     * @return a BBQChicken Pizza */
     @Override
     public Pizza createBBQChicken(){
         Pizza pizza  = new BBQChicken();
@@ -24,6 +29,8 @@ public class ChicagoPizza implements PizzaFactory {
         return pizza;
 
     }
+    /** Creates a Chicago-style Meatzza pizza with Stuffed crust.
+     * @return a Meatzza Pizza */
     @Override
     public Pizza createMeatzza(){
         Pizza pizza = new Meatzza();
@@ -34,6 +41,8 @@ public class ChicagoPizza implements PizzaFactory {
         pizza.getToppings().add(Topping.BEEF);
         return pizza;
     }
+    /** Creates a Chicago-style Build Your Own pizza with Pan crust and no toppings.
+     * @return a BuildYourOwn Pizza */
     @Override
     public Pizza createBuildYourOwn(){
         Pizza pizza = new BuildYourOwn();
