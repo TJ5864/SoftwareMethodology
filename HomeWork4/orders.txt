@@ -1,0 +1,13 @@
+Order #1
+  BBQChicken | Size: MEDIUM | Crust: PAN | Toppings: [BBQ_CHICKEN, GREEN_PEPPER, PROVOLONE, CHEDDAR] | $18.99
+  BBQChicken | Size: MEDIUM | Crust: PAN | Toppings: [BBQ_CHICKEN, GREEN_PEPPER, PROVOLONE, CHEDDAR] | $18.99
+  BBQChicken | Size: MEDIUM | Crust: PAN | Toppings: [BBQ_CHICKEN, GREEN_PEPPER, PROVOLONE, CHEDDAR] | $18.99
+  BBQChicken | Size: LARGE | Crust: THIN | Toppings: [BBQ_CHICKEN, GREEN_PEPPER, PROVOLONE, CHEDDAR] | $20.99
+  BBQChicken | Size: LARGE | Crust: THIN | Toppings: [BBQ_CHICKEN, GREEN_PEPPER, PROVOLONE, CHEDDAR] | $20.99
+  BBQChicken | Size: LARGE | Crust: THIN | Toppings: [BBQ_CHICKEN, GREEN_PEPPER, PROVOLONE, CHEDDAR] | $20.99
+  Order Total: $127.89
+
+Order #3
+  Meatzza | Size: SMALL | Crust: HAND_TOSSED | Toppings: [SAUSAGE, HAM, PEPPERONI, BEEF] | $19.99
+  Order Total: $21.31
+

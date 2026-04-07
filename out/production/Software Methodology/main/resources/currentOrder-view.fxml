@@ -27,7 +27,7 @@
                <children>
                   <Label text="Subtotal: " />
                   <TextField fx:id="txtSubTotal" editable="false" prefHeight="26.0" prefWidth="92.0" />
-                  <Label text="+ 6.625% tax = Total:" />
+                  <Label text="+ 6.625%  tax = Total:" />
                   <TextField fx:id="txtTotal" editable="false" prefHeight="26.0" prefWidth="92.0" />
                </children>
             </HBox>
