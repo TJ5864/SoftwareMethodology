@@ -9,6 +9,10 @@ import javafx.scene.control.TextField;
 
 import java.text.DecimalFormat;
 
+/**
+ * Controller for the current order view.
+ * Displays the active order, allows removing pizzas, canceling, or completing the order.
+ */
 public class CurrentOrderController {
 
     @FXML
@@ -52,6 +56,9 @@ public class CurrentOrderController {
         refreshView();
     }
 
+    /**
+     * Removes the selected pizza from the current order.
+     */
     @FXML
     private void handleRemoveSelected() {
         Pizza selectedPizza = lvPizzasList.getSelectionModel().getSelectedItem();
@@ -66,6 +73,9 @@ public class CurrentOrderController {
         showInfo("Pizza removed from current order.");
     }
 
+    /**
+     * Cancels the current order and starts a fresh one.
+     */
     @FXML
     private void handleCancelOrder() {
         if (Store.currentOrder.getPizzas().isEmpty()) {
@@ -78,6 +88,9 @@ public class CurrentOrderController {
         showInfo("Current order canceled.");
     }
 
+    /**
+     * Places the current order and creates a new empty order.
+     */
     @FXML
     private void handleCompleteOrder() {
         if (Store.currentOrder.getPizzas().isEmpty()) {
@@ -93,6 +106,9 @@ public class CurrentOrderController {
         showInfo("Order #" + completedOrderNumber + " has been placed.");
     }
 
+    /**
+     * Returns to the main menu.
+     */
     @FXML
     private void handleMainMenu() {
         MainController.loadScene(btnMainMenu, "/main-view.fxml", "RU Pizza!");

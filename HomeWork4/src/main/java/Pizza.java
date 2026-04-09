@@ -1,7 +1,7 @@
 package main.java;
 
 import java.util.ArrayList;
-
+/** Pizza class, used to create different pizzas*/
 public abstract class Pizza {
     private ArrayList<Topping> toppings; //Topping is a enum class
     private Crust crust; //Crust is a enum class

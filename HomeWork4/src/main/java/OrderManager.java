@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
+/** Manages all placed orders and provides order lifecycle operations (create, place, cancel, export). */
 public class OrderManager {
     private ArrayList<Order> orders;
     private int nextOrderNumber;

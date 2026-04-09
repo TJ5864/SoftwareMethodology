@@ -2,6 +2,7 @@ package main.java;
 import java.util.ArrayList;
 
 
+/** Represents a single customer order containing a list of pizzas. */
 public class Order {
     private int number;
     private ArrayList<Pizza> pizzas;
