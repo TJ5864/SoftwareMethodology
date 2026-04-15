@@ -1,19 +1,114 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <!-- Toolbar pinned to top -->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- RU logo left of title -->
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:contentDescription="@string/desc_ru_logo"
+        app:srcCompat="@drawable/ru"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/textTitle"
+        app:layout_constraintBottom_toTopOf="@id/textSubtitle"
+        app:layout_constraintVertical_chainStyle="packed"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="8dp" />
+
+    <!-- App title -->
     <TextView
+        android:id="@+id/textTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="@string/home_title"
+        android:textSize="48sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        app:layout_constraintStart_toEndOf="@id/imageView2"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/textSubtitle"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="4dp" />
+
+    <TextView
+        android:id="@+id/textSubtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/home_subtitle"
+        android:textSize="16sp"
+        android:textColor="@color/black"
+        app:layout_constraintTop_toBottomOf="@id/textTitle"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/imageView"
+        android:layout_marginBottom="16dp" />
+
+    <!-- Pizza slice image centered between subtitle and buttons -->
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:contentDescription="@string/desc_pizza_image"
+        app:srcCompat="@drawable/pizza_image"
+        app:layout_constraintTop_toBottomOf="@id/textSubtitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/btnOrderPizza"
+        android:layout_marginBottom="16dp" />
+
+    <Button
+        android:id="@+id/btnOrderPizza"
+        android:layout_width="240dp"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_order_pizza"
+        android:textSize="18sp"
+        app:layout_constraintTop_toBottomOf="@id/imageView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/btnCurrentOrder"
+        android:layout_marginBottom="16dp" />
+
+    <Button
+        android:id="@+id/btnCurrentOrder"
+        android:layout_width="240dp"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_current_order"
+        android:textSize="18sp"
+        app:layout_constraintTop_toBottomOf="@id/btnOrderPizza"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/btnAllOrders"
+        android:layout_marginBottom="16dp" />
+
+    <Button
+        android:id="@+id/btnAllOrders"
+        android:layout_width="240dp"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_all_orders"
+        android:textSize="18sp"
+        app:layout_constraintTop_toBottomOf="@id/btnCurrentOrder"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

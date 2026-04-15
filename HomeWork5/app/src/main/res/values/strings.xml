@@ -1,3 +1,10 @@
 <resources>
-    <string name="app_name">My Application</string>
+    <string name="app_name">RU Pizza</string>
+    <string name="home_title">RU Pizza</string>
+    <string name="home_subtitle">Rutgers University\'s Finest Pizza</string>
+    <string name="btn_order_pizza">Order Pizza</string>
+    <string name="btn_current_order">Current Order</string>
+    <string name="btn_all_orders">All Orders</string>
+    <string name="desc_pizza_image">Pizza slice image</string>
+    <string name="desc_ru_logo">Rutgers University logo</string>
 </resources>
