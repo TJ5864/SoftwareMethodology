@@ -7,4 +7,13 @@
     <string name="btn_all_orders">All Orders</string>
     <string name="desc_pizza_image">Pizza slice image</string>
     <string name="desc_ru_logo">Rutgers University logo</string>
+    <string name="menu_title">Order Pizza</string>
+    <string name="ny_deluxe">NY Style Deluxe</string>
+    <string name="ny_bbq_chicken">NY Style BBQ Chicken</string>
+    <string name="ny_meatzza">NY Style Meatzza</string>
+    <string name="ny_byo">NY Style Build Your Own</string>
+    <string name="chicago_deluxe">Chicago Style Deluxe</string>
+    <string name="chicago_bbq_chicken">Chicago Style BBQ Chicken</string>
+    <string name="chicago_meatzza">Chicago Style Meatzza</string>
+    <string name="chicago_byo">Chicago Style Build Your Own</string>
 </resources>
