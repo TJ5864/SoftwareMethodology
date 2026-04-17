@@ -1,7 +1,7 @@
 package com.example.myapplication;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -30,7 +30,12 @@ public class PizzaMenuActivity extends AppCompatActivity {
         List<PizzaOption> pizzaList = buildPizzaList();
 
         PizzaMenuAdapter adapter = new PizzaMenuAdapter(pizzaList, option -> {
-            Toast.makeText(this, option.getName() + " selected", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(this, PizzaCustomizeActivity.class);
+            intent.putExtra(PizzaCustomizeActivity.EXTRA_STYLE,     option.getStyle());
+            intent.putExtra(PizzaCustomizeActivity.EXTRA_TYPE,      option.getPizzaType());
+            intent.putExtra(PizzaCustomizeActivity.EXTRA_NAME,      option.getName());
+            intent.putExtra(PizzaCustomizeActivity.EXTRA_IMAGE_RES, option.getImageResId());
+            startActivity(intent);
         });
 
         recyclerView.setAdapter(adapter);
@@ -42,35 +47,35 @@ public class PizzaMenuActivity extends AppCompatActivity {
 
         list.add(new PizzaOption(getString(R.string.ny_deluxe),
                 "Sausage, Pepperoni, Green Pepper, Onion, Mushroom",
-                R.drawable.deluxe_pizza));
+                R.drawable.deluxe_pizza, "NY", "Deluxe"));
 
         list.add(new PizzaOption(getString(R.string.ny_bbq_chicken),
                 "BBQ Chicken, Green Pepper, Provolone, Cheddar",
-                R.drawable.bbq_pizza));
+                R.drawable.bbq_pizza, "NY", "BBQChicken"));
 
         list.add(new PizzaOption(getString(R.string.ny_meatzza),
                 "Sausage, Ham, Pepperoni, Beef",
-                R.drawable.meat_pizza));
+                R.drawable.meat_pizza, "NY", "Meatzza"));
 
         list.add(new PizzaOption(getString(R.string.ny_byo),
                 "Pick up to 5 toppings",
-                R.drawable.pizza));
+                R.drawable.pizza, "NY", "BuildYourOwn"));
 
         list.add(new PizzaOption(getString(R.string.chicago_deluxe),
                 "Sausage, Pepperoni, Green Pepper, Onion, Mushroom",
-                R.drawable.deluxe_pizza));
+                R.drawable.deluxe_pizza, "Chicago", "Deluxe"));
 
         list.add(new PizzaOption(getString(R.string.chicago_bbq_chicken),
                 "BBQ Chicken, Green Pepper, Provolone, Cheddar",
-                R.drawable.bbq_pizza));
+                R.drawable.bbq_pizza, "Chicago", "BBQChicken"));
 
         list.add(new PizzaOption(getString(R.string.chicago_meatzza),
                 "Sausage, Ham, Pepperoni, Beef",
-                R.drawable.meat_pizza));
+                R.drawable.meat_pizza, "Chicago", "Meatzza"));
 
         list.add(new PizzaOption(getString(R.string.chicago_byo),
                 "Pick up to 5 toppings",
-                R.drawable.pizza));
+                R.drawable.pizza, "Chicago", "BuildYourOwn"));
 
         return list;
     }

@@ -16,4 +16,35 @@
     <string name="chicago_bbq_chicken">Chicago Style BBQ Chicken</string>
     <string name="chicago_meatzza">Chicago Style Meatzza</string>
     <string name="chicago_byo">Chicago Style Build Your Own</string>
+
+    <string name="current_order_title">Current Order</string>
+    <string name="order_number_prefix">Order #</string>
+    <string name="btn_remove_selected">Remove Selected</string>
+    <string name="btn_place_order">Place Order</string>
+    <string name="label_subtotal">Subtotal:</string>
+    <string name="label_tax">Tax (6.625%):</string>
+    <string name="label_total">Total:</string>
+    <string name="toast_no_selection">Select a pizza to remove</string>
+    <string name="toast_empty_order">Add pizzas before placing an order</string>
+    <string name="toast_order_placed">Order #%d placed!</string>
+    <string name="dialog_place_order_title">Confirm Order</string>
+    <string name="dialog_place_order_msg">Place %d pizza(s) for %s?</string>
+    <string name="dialog_confirm">Confirm</string>
+    <string name="dialog_cancel">Cancel</string>
+
+    <string name="customize_title">Customize Pizza</string>
+    <string name="label_size">Size</string>
+    <string name="label_price">Price:</string>
+    <string name="label_toppings">Toppings</string>
+    <string name="btn_add_to_order">Add to Order</string>
+    <string name="toast_added">added to order</string>
+    <string name="dialog_max_title">Max Toppings Reached</string>
+    <string name="dialog_max_msg">You can only add up to 5 toppings.</string>
+    <string name="dialog_ok">OK</string>
+
+    <string-array name="sizes">
+        <item>Small</item>
+        <item>Medium</item>
+        <item>Large</item>
+    </string-array>
 </resources>
