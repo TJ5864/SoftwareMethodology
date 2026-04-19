@@ -42,6 +42,10 @@
     <string name="dialog_max_msg">You can only add up to 5 toppings.</string>
     <string name="dialog_ok">OK</string>
 
+    <string name="selected_order_label">Selected Order:</string>
+    <string name="order_number_hint">Order #</string>
+    <string name="cancel_order">Cancel Order</string>
+
     <string-array name="sizes">
         <item>Small</item>
         <item>Medium</item>
